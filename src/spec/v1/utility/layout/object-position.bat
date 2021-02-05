@@ -1,0 +1,241 @@
+# TURBO-SPEC-FORMAT-V1
+
+# TITLE
+Object position
+
+# SHORT
+How to align replaced elements like images relative to their containers.
+
+# LONG
+How to align replaced elements like images relative to their containers.
+
+
+# SYNTAX
+object-{xPosName}
+object-position: {xPosName};
+
+# SYNTAX
+object-{yPosName}
+object-position: {yPosName};
+
+# SYNTAX
+object-{xPosName}-{yPosName}
+object-position: {xPosName} {yPosName};
+
+# SYNTAX
+object-{yPosName}-{xPosName}
+object-position: {yPosName} {xPosName};
+
+# SYNTAX
+object-pos-{xPos}-{yPos}
+object-position: {xPos} {yPos};
+
+# ARGUMENT
+xPosName left | center | right
+Horizontal object position.
+
+# ARGUMENT
+yPosName top | center | bottom
+Vertical object position.
+
+# ARGUMENT
+xPos <length-percentage default-unit=1%>
+Horizontal object position.
+
+# ARGUMENT
+yPos <length-percentage default-unit=1%>
+Vertical object position.
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-center
+==================================================
+t1 object-center
+--------------------------------------------------
+.t1.object-center {
+	object-position: center;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-top
+==================================================
+t1 object-top
+--------------------------------------------------
+.t1.object-top {
+	object-position: top;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-right-top
+==================================================
+t1 object-right-top
+--------------------------------------------------
+.t1.object-right-top {
+	object-position: right top;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-top-right
+==================================================
+t1 object-top-right
+--------------------------------------------------
+.t1.object-top-right {
+	object-position: top right;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-right
+==================================================
+t1 object-right
+--------------------------------------------------
+.t1.object-right {
+	object-position: right;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-right-bottom
+==================================================
+t1 object-right-bottom
+--------------------------------------------------
+.t1.object-right-bottom {
+	object-position: right bottom;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-bottom-right
+==================================================
+t1 object-bottom-right
+--------------------------------------------------
+.t1.object-bottom-right {
+	object-position: bottom right;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-bottom
+==================================================
+t1 object-bottom
+--------------------------------------------------
+.t1.object-bottom {
+	object-position: bottom;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-left-bottom
+==================================================
+t1 object-left-bottom
+--------------------------------------------------
+.t1.object-left-bottom {
+	object-position: left bottom;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-bottom-left
+==================================================
+t1 object-bottom-left
+--------------------------------------------------
+.t1.object-bottom-left {
+	object-position: bottom left;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-left
+==================================================
+t1 object-left
+--------------------------------------------------
+.t1.object-left {
+	object-position: left;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-left-top
+==================================================
+t1 object-left-top
+--------------------------------------------------
+.t1.object-left-top {
+	object-position: left top;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Use object-top-left
+==================================================
+t1 object-top-left
+--------------------------------------------------
+.t1.object-top-left {
+	object-position: top left;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Position provided as percentage.
+==================================================
+t1 object-pos-10%-20%
+--------------------------------------------------
+.t1.object-pos-10\%-20\% {
+	object-position: 10% 20%;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Position provided in px units.
+==================================================
+t1 object-pos-10px-20px
+--------------------------------------------------
+.t1.object-pos-10px-20px {
+	object-position: 10px 20px;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE THAT FAILS
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Units must be provided when providing position in
+numeric form
+==================================================
+t1 object-pos-10-20
+--------------------------------------------------
+Error: invalid arguments passed to utility function [object-pos] in [object-pos-10-20]
+invalid arguments passed to utility function [object] in [object-pos-10-20]
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+

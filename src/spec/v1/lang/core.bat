@@ -1,0 +1,183 @@
+# TURBO-SPEC-FORMAT-V1
+
+# TITLE
+Core
+
+# SHORT
+Additional tests for the core of the language
+
+# LONG
+Additional tests for the core of the language
+
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Definition order of interaction selectors.
+==================================================
+t1
+color-black
+visited:color-black
+focus:color-black
+hover:color-black
+active:color-black
+--------------------------------------------------
+.t1.color-black {
+	color: #000000;
+}
+.t1.visited\:color-black:visited {
+	color: #000000;
+}
+.t1.focus\:color-black:focus {
+	color: #000000;
+}
+.t1.hover\:color-black:hover {
+	color: #000000;
+}
+.t1.active\:color-black:active {
+	color: #000000;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Definition order of pseudo-class, pseudo-element
+and mode selectors.
+==================================================
+t1
+block
+
+visited:block
+focus:block
+hover:block
+active:block
+
+empty:block
+not-empty:block
+even:block
+odd:block
+first:block
+not-first:block
+last:block
+not-last:block
+
+after:block
+before:block
+placeholder:block
+selection:block
+thumb:block
+
+checked:block
+unchecked:block
+enabled:block
+disabled:block
+valid:block
+invalid:block
+
+mode-open:block
+--------------------------------------------------
+.t1.block {
+	display: block;
+}
+.t1.visited\:block:visited {
+	display: block;
+}
+.t1.focus\:block:focus {
+	display: block;
+}
+.t1.hover\:block:hover {
+	display: block;
+}
+.t1.active\:block:active {
+	display: block;
+}
+.t1.empty\:block:empty {
+	display: block;
+}
+.t1.not-empty\:block:not(:empty) {
+	display: block;
+}
+.t1.first\:block:first-child {
+	display: block;
+}
+.t1.not-first\:block:not(:first-child) {
+	display: block;
+}
+.t1.last\:block:last-child {
+	display: block;
+}
+.t1.not-last\:block:not(:last-child) {
+	display: block;
+}
+.t1.even\:block:nth-child(even) {
+	display: block;
+}
+.t1.odd\:block:nth-child(odd) {
+	display: block;
+}
+.t1.after\:block:after {
+	display: block;
+	content: "";
+}
+.t1.before\:block:before {
+	display: block;
+	content: "";
+}
+.t1.placeholder\:block::placeholder {
+	display: block;
+}
+.t1.selection\:block::selection {
+	display: block;
+}
+.t1.thumb\:block::slider-thumb {
+	display: block;
+}
+.t1.checked\:block:checked {
+	display: block;
+}
+.t1.unchecked\:block:not(:checked) {
+	display: block;
+}
+.t1.enabled\:block:enabled {
+	display: block;
+}
+.t1.disabled\:block:disabled {
+	display: block;
+}
+.t1.valid\:block:valid {
+	display: block;
+}
+.t1.invalid\:block:invalid {
+	display: block;
+}
+.t1.mode-open\:block.mode-open {
+	display: block;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Order of multiple selectors.
+==================================================
+t1 hover:after:block
+--------------------------------------------------
+.t1.hover\:after\:block:hover:after {
+	display: block;
+	content: "";
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE THAT FAILS
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Interaction selector can not be used without
+utility function call.
+==================================================
+t1 hover:
+--------------------------------------------------
+Error: missing utility function call in class name [hover:]
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
