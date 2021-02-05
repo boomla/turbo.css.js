@@ -1,0 +1,48 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"]
+		},
+		"outDir": "./dist",
+		"target": "ES2015", // we'll transpile down to ES5 in Babel
+		"lib": ["ES2015", "DOM"],
+		"allowJs": false,
+		"checkJs": false,
+		"alwaysStrict": true,
+		"sourceMap": true,
+		"charset": "utf8",
+		"newLine": "lf",
+		"skipLibCheck": true, // skip type checking of *.d.ts files
+
+		"allowSyntheticDefaultImports": false,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"downlevelIteration": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmitOnError": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noImplicitUseStrict": false,
+		"noStrictGenericChecks": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"removeComments": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"strictBindCallApply": true,
+		"strictFunctionTypes": true
+	},
+	"include": [
+		"./src"
+	],
+	"exclude": [
+		"./node_modules"
+	],
+	"ts-node": {
+		"module": "commonjs"
+	}
+}

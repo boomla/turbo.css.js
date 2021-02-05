@@ -1,0 +1,22 @@
+{
+  "name": "turbo-css-js",
+  "version": "0.2.0",
+  "description": "Turbo CSS compiler written in JavaScript (TypeScript)",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "chai": "^4.3.0",
+    "mocha": "^8.2.1",
+    "ts-node": "^9.1.1"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register './**/*_test.ts'",
+    "build": "npm test && tsc"
+  },
+  "author": "Tibor Halter",
+  "license": "TODO"
+}
