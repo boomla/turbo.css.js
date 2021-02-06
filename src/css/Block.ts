@@ -7,13 +7,6 @@ export default class Block {
 		this.declarations = Object.assign([], declarations);
 	}
 
-	// The clone function exists only to match the reference implementation.
-	// In TypeScript, we have readonly properties which is a simpler
-	// way of implementing immutable instances.
-	clone(): Block {
-		return this;
-	}
-
 	format(indentation: string, newLine: string): string {
 		let s = "";
 		for (let decl of this.declarations) {

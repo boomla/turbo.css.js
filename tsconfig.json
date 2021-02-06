@@ -1,9 +1,6 @@
 {
 	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["src/*"]
-		},
+		"baseUrl": "./src",
 		"outDir": "./dist",
 		"target": "ES2015", // we'll transpile down to ES5 in Babel
 		"lib": ["ES2015", "DOM"],
