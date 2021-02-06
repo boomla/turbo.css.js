@@ -14,24 +14,12 @@ describe('Block.overwrite()', function() {
 	});
 	it('should add new properties', function() {
 		let block1 = new Block([
-			new Declaration({
-				property: "a-prop",
-				value: "value",
-			}),
-			new Declaration({
-				property: "a-prop2",
-				value: "value2",
-			}),
+			new Declaration("a-prop", "value"),
+			new Declaration("a-prop2", "value2"),
 		]);
 		let block2 = new Block([
-			new Declaration({
-				property: "b-prop",
-				value: "value",
-			}),
-			new Declaration({
-				property: "b-prop2",
-				value: "value2",
-			}),
+			new Declaration("b-prop", "value"),
+			new Declaration("b-prop2", "value2"),
 		]);
 
 		let block3 = block1.overwrite(block2);
@@ -56,28 +44,13 @@ describe('Block.overwrite()', function() {
 	});
 	it('should override existing properties', function() {
 		let block1 = new Block([
-			new Declaration({
-				property: "prop",
-				value: "value",
-			}),
-			new Declaration({
-				property: "prop2",
-				value: "value2",
-			}),
-			new Declaration({
-				property: "x",
-				value: "y",
-			}),
+			new Declaration("prop", "value"),
+			new Declaration("prop2", "value2"),
+			new Declaration("x", "y"),
 		]);
 		let block2 = new Block([
-			new Declaration({
-				property: "prop",
-				value: "value",
-			}),
-			new Declaration({
-				property: "prop2",
-				value: "value2",
-			}),
+			new Declaration("prop", "value"),
+			new Declaration("prop2", "value2"),
 		]);
 
 		let block3 = block1.overwrite(block2);

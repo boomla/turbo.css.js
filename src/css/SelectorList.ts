@@ -37,6 +37,16 @@ export default class SelectorList {
 		return new SelectorList(newSelectors);
 	}
 
+	addSelfSelector(): SelectorList {
+		let newSelectorList = [] as Array<Selector>;
+
+		for (let selector of this.selectors) {
+			newSelectorList.push(selector.addSelfSelector());
+		}
+
+		return new SelectorList(newSelectorList);
+	}
+
 	addTag(tagName: string): SelectorList {
 		let newSelectors = [] as Array<Selector>;
 

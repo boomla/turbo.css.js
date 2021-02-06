@@ -16,14 +16,8 @@ describe('Block.format()', function() {
 	});
 	it('should format block with indentation and newline correctly', function() {
 		let decl = new Block([
-			new Declaration({
-				property: "prop1",
-				value: "val1",
-			}),
-			new Declaration({
-				property: "prop2",
-				value: "val2",
-			}),
+			new Declaration("prop1", "val1"),
+			new Declaration("prop2", "val2"),
 		]);
 
 		let indentation = "\t";
@@ -40,14 +34,8 @@ describe('Block.format()', function() {
 	});
 	it('should format block without indentation and newline correctly', function() {
 		let decl = new Block([
-			new Declaration({
-				property: "prop1",
-				value: "val1",
-			}),
-			new Declaration({
-				property: "prop2",
-				value: "val2",
-			}),
+			new Declaration("prop1", "val1"),
+			new Declaration("prop2", "val2"),
 		]);
 
 		let indentation = "";

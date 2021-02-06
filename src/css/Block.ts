@@ -49,7 +49,7 @@ export default class Block {
 			if (propertyMap[decl.property] !== undefined) {
 				// Undefine
 				let index = propertyMap[decl.property];
-				newDeclarations[index]= new Declaration({});
+				newDeclarations[index]= new Declaration("", "");
 				matchFound = true;
 			}
 
