@@ -14,10 +14,7 @@ describe('ValueInt32', function() {
 	});
 	it('.negate()', function() {
 		let ok = function(orig: ValueInt32, exp: ValueInt32) {
-			let [ act, success ] = orig.negate();
-			if ( ! success) {
-				throw new Error("ValueInt32 ["+orig+"] could not be negated");
-			}
+			let act = orig.negate();
 			if (exp.val !== act.val) {
 				throw new Error("orig["+orig+"] exp["+exp+"] act["+act+"]");
 			}

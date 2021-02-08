@@ -1,5 +1,5 @@
 
-export default class ValueInt32 {
+export default class ValueFloat32 {
 	readonly val: number = 0;
 
 	constructor(val: number) {
@@ -9,8 +9,8 @@ export default class ValueInt32 {
 	toString(): string {
 		return this.val.toString();
 	}
-	negate(): ValueInt32 {
-		return new ValueInt32(0 - this.val);
+	negate(): ValueFloat32 {
+		return new ValueFloat32(0 - this.val);
 	}
 }
 
