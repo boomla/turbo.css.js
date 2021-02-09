@@ -5,5 +5,8 @@ export { default as ValueLength } from "./ValueLength";
 export { default as ValuePercentage } from "./ValuePercentage";
 export { default as ValueString } from "./ValueString";
 export { default as ValueTime } from "./ValueTime";
+export { default as Call } from "./Call";
+export { default as Type } from "./Type";
+export { default as Config } from "./Config";
 export { UnitName } from "./UnitName";
 

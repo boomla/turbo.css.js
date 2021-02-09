@@ -1,5 +1,4 @@
-
-type UnitTime = "ms" | "s";
+import { UnitTime } from './UnitTime';
 
 export default class ValueTime {
 	readonly value: number;
