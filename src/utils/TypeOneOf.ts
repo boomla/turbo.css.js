@@ -5,7 +5,7 @@ import Type from "./Type";
 export default class TypeOneOf implements Type {
 	readonly types: Array<Type>;
 
-	constructor(types: Array<Type>) {
+	constructor(...types: Array<Type>) {
 		this.types = types;
 	}
 
