@@ -6,5 +6,5 @@ Test all files from the project root by running:
 
 Run tests in files starting with the name `RuleSet` by running:
 
-`npm run test-match './**/RuleSet*'`
+`npm run test-match './src/**/RuleSet*'`
 

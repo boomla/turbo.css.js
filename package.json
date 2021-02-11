@@ -16,7 +16,7 @@
     "ts-node": "^9.1.1"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register './**/*_test.ts'",
+    "test": "mocha -r ts-node/register './src/**/*_test.ts'",
     "test-match": "mocha -r ts-node/register",
     "build": "npm test && tsc"
   },

@@ -66,6 +66,11 @@ export default class Rule {
 	}
 	// less reports whether rule1 should sort before rule2.
 	less(rule2: Rule): boolean {
+		let [ less, equal ] = this.order.less(rule2.order);
+		if ( ! equal) {
+			return less;
+		}
+
 		return this.selectors.less(rule2.selectors);
 	}
 }

@@ -16,7 +16,6 @@ describe('SPEC', function() {
 		add("./src/spec/v1/utility/*/*.bat");
 		add("./src/spec/v1/selectors/*/*.bat");
 		add("./src/spec/v1/lang/*.bat");
-//		add("./src/spec/v1/utility/background/background-pattern*.bat");
 
 		let namespace = "";
 		let indentWith = "\t";
