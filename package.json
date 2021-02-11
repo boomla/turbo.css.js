@@ -17,6 +17,7 @@
   },
   "scripts": {
     "test": "mocha -r ts-node/register './**/*_test.ts'",
+    "test-match": "mocha -r ts-node/register",
     "build": "npm test && tsc"
   },
   "author": "Tibor Halter",

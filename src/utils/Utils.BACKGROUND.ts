@@ -139,8 +139,8 @@ export default function registerBackgroundUtils(utils: Utilities) {
 		new types.TypeLengthPercentage(1, "px"),
 		new types.TypeColor(),
 		function(size: Value, color: Value): Block {
-			let sizeData = encodeURIComponent(size.toString());
-			let colorData = encodeURIComponent(color.toString());
+			let sizeData = size.toString();
+			let colorData = color.toString();
 			return new Block([
 				new Declaration("background-image", "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='"+sizeData+"' height='"+sizeData+"' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='"+colorData+"'/%3E%3C/svg%3E\")"),
 			]);

@@ -7,7 +7,7 @@
 		"allowJs": false,
 		"checkJs": false,
 		"alwaysStrict": true,
-		"sourceMap": true,
+		"sourceMap": false,
 		"charset": "utf8",
 		"newLine": "lf",
 		"skipLibCheck": true, // skip type checking of *.d.ts files

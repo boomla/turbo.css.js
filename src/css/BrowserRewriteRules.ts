@@ -8,6 +8,6 @@ export interface BrowserRewriteRules {
 }
 
 export interface RewriteRule {
-	(rule: Rule) => Array<Rule>
+	(rule: Rule): Array<Rule>;
 }
 
