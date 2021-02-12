@@ -1,4 +1,5 @@
 import Config from "./utils/Config";
+import { DefaultConfig } from "./CONFIG";
 import Compiler from "./Compiler";
 import StyleSheet from "./css/StyleSheet";
 
@@ -7,7 +8,13 @@ export default class Turbo {
 	compiler: Compiler;
 	sheet: StyleSheet;
 
-	constructor(config: Config, namespace: string) {
+	constructor(config?: Config, namespace?: string) {
+		if (config === undefined) {
+			config = DefaultConfig;
+		}
+		if (namespace === undefined) {
+			namespace = "";
+		}
 		this.namespace = namespace;
 		this.compiler = new Compiler(config);
 		this.sheet = new StyleSheet();
