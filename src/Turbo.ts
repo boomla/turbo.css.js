@@ -31,7 +31,11 @@ export default class Turbo {
 	}
 
 	meta(): string {
-		return `<meta name="viewport" content="width=device-width, initial-scale=1">`;
+		return `<meta name="viewport" content="` + this.metaContent() + `">`;
+	}
+
+	metaContent(): string {
+		return "width=device-width, initial-scale=1";
 	}
 
 	css(): string {
