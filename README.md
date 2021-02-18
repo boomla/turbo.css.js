@@ -24,7 +24,7 @@ You can download pre-built distributions from [https://turbocss.com/](https://tu
 See `src/Turbo.ts` for the public API.
 
 
-# TESTING
+# Testing
 
 Test all files from the project root by running:
 
