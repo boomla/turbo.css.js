@@ -2,7 +2,6 @@
   "name": "turbo-css-js",
   "version": "0.2.0",
   "description": "Turbo CSS compiler written in JavaScript (TypeScript)",
-  "main": "src/index.ts",
   "dependencies": {
     "typescript": "^4.1.3"
   },
