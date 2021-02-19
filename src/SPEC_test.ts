@@ -13,9 +13,9 @@ describe('SPEC', function() {
 			let morePaths = glob.sync(pathPattern);
 			paths.push(...morePaths);
 		}
-		add("./src/spec/v1/utility/*/*.bat");
-		add("./src/spec/v1/selectors/*/*.bat");
-		add("./src/spec/v1/lang/*.bat");
+		add("./src/spec/v1/utilities/*/*.txt");
+		add("./src/spec/v1/selectors/*/*.txt");
+		add("./src/spec/v1/lang/*.txt");
 
 		let namespace = "";
 		let indentWith = "\t";

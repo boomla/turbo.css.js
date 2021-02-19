@@ -122,7 +122,7 @@ export default class Compiler {
 	compileOne(className: string, definedName: string): StyleSheet {
 		let [ selectorExpression, utilityFn ] = separateSelectorsAndUtilityFunction(className);
 
-		if (utilityFn.startsWith("mode-")) {
+		if (utilityFn.startsWith("mode-") || (utilityFn === "t1-root")) {
 			return new StyleSheet();
 		}
 
