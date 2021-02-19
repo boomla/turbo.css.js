@@ -1,5 +1,5 @@
 import Turbo from "../Turbo";
-import BASE_CSS from "../base-css/BASE_CSS";
+import BASE_CSS_GLOBAL_MIN from "../base-css/BASE_CSS_GLOBAL_MIN";
 
 function init() {
 	let turbo = new Turbo();
@@ -21,7 +21,7 @@ function init() {
 	// Add style tag for base CSS
 	let baseStyle = document.createElement('style');
 	head.appendChild(baseStyle);
-	baseStyle.innerHTML = BASE_CSS;
+	baseStyle.innerHTML = BASE_CSS_GLOBAL_MIN;
 
 	// Add style tag for Turbo generated styles
 	let style = document.createElement('style');

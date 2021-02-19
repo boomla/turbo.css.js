@@ -2,10 +2,10 @@ const process = require("process");
 
 module.exports = [
 	{
-		entry: "./src/builds/turbocss.browser.ts",
+		entry: "./src/builds/turbocss.browser.lib.ts",
 		output: {
 			path: process.cwd() + "/dist",
-			filename: "turbocss.browser.min.js",
+			filename: "turbocss.browser.lib.min.js",
 		},
 		resolve: {
 			extensions: [".ts"],
@@ -19,10 +19,10 @@ module.exports = [
 		mode: "production",
 	},
 	{
-		entry: "./src/builds/turbocss.browser.watch.ts",
+		entry: "./src/builds/turbocss.browser.global.watch.ts",
 		output: {
 			path: process.cwd() + "/dist",
-			filename: "turbocss.browser.watch.min.js",
+			filename: "turbocss.browser.global.watch.min.js",
 		},
 		resolve: {
 			extensions: [".ts"],
