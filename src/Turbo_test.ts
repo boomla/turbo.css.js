@@ -117,5 +117,15 @@ describe('Turbo', function() {
 
 		assert.equal(expCss, actCss)
 	});
+	it('should preserve space suffix', function() {
+		let namespace = "";
+		let important = true;
+		let turbo = new Turbo(NoCompatConfig, namespace, important);
+		
+		let actNamespacedClasses = turbo.add("t1 w-2 h-8 ");
+		
+		let expNamespacedClasses = "t1 w-2 h-8 ";
+		assert.equal(actNamespacedClasses, expNamespacedClasses);
+	});
 });
 

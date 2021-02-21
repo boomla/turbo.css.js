@@ -65,6 +65,10 @@ export default class Compiler {
 		
 		let namespacedClasses = T1 + " " + this.namespaceClasses(namespace, classNames);
 
+		if (classes.endsWith(" ")) {
+			namespacedClasses += " ";
+		}
+
 		return [ sheet, namespacedClasses ];
 	}
 
