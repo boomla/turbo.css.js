@@ -91,6 +91,10 @@ export default class Compiler {
 			if (className === "") {
 				continue;
 			}
+			if (className === "t1-root") {
+				namespacedClassNames.push(className);
+				continue;
+			}
 			namespacedClassNames.push(applyNamespace(className, namespace));
 		}
 
