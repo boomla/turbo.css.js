@@ -53,10 +53,10 @@ export default class Compiler {
 		return newCompiler;
 	}
 
-	format(sheet: StyleSheet, namespace: string, indentWith: string, newLine: string): string {
+	format(sheet: StyleSheet, namespace: string, indentWith: string, newLine: string, important: boolean): string {
 		sheet = sheet.sort();
 		sheet = sheet.applyBrowserPrefixes(this.config.browserRewriteRules())
-		return sheet.format(T1, namespace, indentWith, newLine);
+		return sheet.format(T1, namespace, indentWith, newLine, important);
 	}
 
 	addRewrite(sheet: StyleSheet, namespace: string, classes: string): [newSheet: StyleSheet, rewrittenClasses: string] {

@@ -18,9 +18,9 @@ export default class Rule {
 		return new Rule(selectors, block, new Order(0));
 	}
 
-	format(namespace: string, indentation: string, indentWith: string, newLine: string): string {
+	format(namespace: string, indentation: string, indentWith: string, newLine: string, important: boolean): string {
 	    let selectorsStr = this.selectors.format(namespace, indentation, newLine);
-	    let blockStr = this.block.format(indentation + indentWith, newLine);
+	    let blockStr = this.block.format(indentation + indentWith, newLine, important);
 
 	    let s = selectorsStr + " {" + newLine;
 	    s += blockStr;

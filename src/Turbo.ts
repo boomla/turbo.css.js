@@ -5,17 +5,22 @@ import StyleSheet from "./css/StyleSheet";
 
 export default class Turbo {
 	namespace: string;
+	important: boolean;
 	compiler: Compiler;
 	sheet: StyleSheet;
 
-	constructor(config?: Config, namespace?: string) {
+	constructor(config?: Config, namespace?: string, important?: boolean) {
 		if (config === undefined) {
 			config = DefaultConfig;
 		}
 		if (namespace === undefined) {
 			namespace = "";
 		}
+		if (important === undefined) {
+			important = false;
+		}
 		this.namespace = namespace;
+		this.important = important;
 		this.compiler = new Compiler(config);
 		this.sheet = new StyleSheet();
 	}
@@ -41,7 +46,7 @@ export default class Turbo {
 	css(): string {
 		let indentWith = "\t";
 		let newLine = "\n";
-		return this.compiler.format(this.sheet, this.namespace, indentWith, newLine);
+		return this.compiler.format(this.sheet, this.namespace, indentWith, newLine, this.important);
 	}
 
 	style(): string {

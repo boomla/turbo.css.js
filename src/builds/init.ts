@@ -2,7 +2,9 @@ import Turbo from "../Turbo";
 
 function init(baseCss: string) {
 	function compileAndWatch() {
-		let turbo = new Turbo();
+		let namespace = "";
+		let important = true;
+		let turbo = new Turbo(undefined, namespace, important);
 
 		let head = document.getElementsByTagName('head')[0];
 

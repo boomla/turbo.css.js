@@ -20,6 +20,7 @@ describe('SPEC', function() {
 		let namespace = "";
 		let indentWith = "\t";
 		let newLine = "\n";
+		let important = false;
 
 		let compiler = Compiler.newNoCompatCompiler();
 
@@ -49,7 +50,7 @@ describe('SPEC', function() {
 
 				let act: string;
 				try {
-					act = sheet.sort().format(T1, namespace, indentWith, newLine);
+					act = sheet.sort().format(T1, namespace, indentWith, newLine, important);
 				}
 				catch(e) {
 					errors.push(example.description+"\ncode ["+example.code+"]\nerror: "+e.toString());
@@ -119,7 +120,7 @@ describe('SPEC', function() {
 
 				let act: string;
 				try {
-					act = sheet.sort().format(T1, namespace, indentWith, newLine);
+					act = sheet.sort().format(T1, namespace, indentWith, newLine, important);
 				}
 				catch(e) {
 					errors.push(exampleLib.description+"\ncode ["+exampleLib.code+"]\nerror: "+e.toString());

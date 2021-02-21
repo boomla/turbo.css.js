@@ -43,7 +43,8 @@ describe('RuleSet.sort()', function() {
 		let indentation = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = ruleSet.sort().format(namespace, indentation, indentWith, newLine);
+		let important = false;
+		let act = ruleSet.sort().format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "" +
 			".bar {\n" +

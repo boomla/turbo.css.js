@@ -14,7 +14,8 @@ describe('RuleSet.format()', function() {
 		let indentation = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = ruleSet.format(namespace, indentation, indentWith, newLine);
+		let important = false;
+		let act = ruleSet.format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "";
 		assert.equal(exp, act);
@@ -35,7 +36,8 @@ describe('RuleSet.format()', function() {
 		let indentation = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = ruleSet.format(namespace, indentation, indentWith, newLine);
+		let important = false;
+		let act = ruleSet.format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "" +
 			".foo {\n" +
@@ -76,7 +78,8 @@ describe('RuleSet.format()', function() {
 		let indentation = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = ruleSet.format(namespace, indentation, indentWith, newLine);
+		let important = false;
+		let act = ruleSet.format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "" +
 			".foo {\n" +
@@ -116,7 +119,8 @@ describe('RuleSet.format()', function() {
 		let indentation = "\t\t";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = ruleSet.format(namespace, indentation, indentWith, newLine);
+		let important = false;
+		let act = ruleSet.format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "" +
 			"\t\t.NS_foo {\n" +
@@ -129,6 +133,31 @@ describe('RuleSet.format()', function() {
 
 		assert.equal(exp, act);
 	});
-});
+	it('should format RuleSet with !important', function() {
+		let ruleSet = new RuleSet([
+			Rule.testNewNoOrder(
+				new SelectorList([
+					Selector.new(".foo"),
+				]),
+				new Block([
+					new Declaration("prop", "value"),
+				]),
+			),
+		]);
 
+		let namespace = "";
+		let indentation = "";
+		let indentWith = "\t";
+		let newLine = "\n";
+		let important = true;
+		let act = ruleSet.format(namespace, indentation, indentWith, newLine, important);
+
+		let exp = "" +
+			".foo {\n" +
+			"\tprop: value!important;\n" +
+			"}\n";
+
+		assert.equal(exp, act);
+	});
+});
 

@@ -95,5 +95,27 @@ describe('Turbo', function() {
 
 		assert.equal(expHead, actHead)
 	});
+	it('should support !important', function() {
+		let namespace = "";
+		let important = true;
+		let turbo = new Turbo(NoCompatConfig, namespace, important);
+		
+		let actNamespacedClasses = turbo.add("t1 w-2 h-8");
+		
+		let expNamespacedClasses = "t1 w-2 h-8";
+		assert.equal(actNamespacedClasses, expNamespacedClasses);
+
+		let actCss = turbo.css();
+
+		let expCss = "" +
+			".t1.w-2 {\n"+
+			"	width: 2px!important;\n"+
+			"}\n"+
+			".t1.h-8 {\n"+
+			"	height: 8px!important;\n"+
+			"}\n";
+
+		assert.equal(expCss, actCss)
+	});
 });
 

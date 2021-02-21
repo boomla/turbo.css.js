@@ -14,13 +14,13 @@ export default class StyleSheet {
 	}
 
 	// NOTE: format must be called on a StyleSheet that is sorted!
-	format(turboClass: string, namespace: string, indentWith: string, newLine: string): string {
+	format(turboClass: string, namespace: string, indentWith: string, newLine: string, important: boolean): string {
 		// Turn CSS selector [.foo] into [.t1.foo] or [.t1.NS-foo]
 		let customNamespace = turboClass + "." + namespace;
 
 		let s = "";
 		for (let mq of this.mediaQueries) {
-			s += mq.format(customNamespace, indentWith, newLine);
+			s += mq.format(customNamespace, indentWith, newLine, important);
 		}
 		
 		return s;

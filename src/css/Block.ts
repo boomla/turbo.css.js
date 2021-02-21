@@ -7,10 +7,10 @@ export default class Block {
 		this.declarations = Object.assign([], declarations);
 	}
 
-	format(indentation: string, newLine: string): string {
+	format(indentation: string, newLine: string, important: boolean): string {
 		let s = "";
 		for (let decl of this.declarations) {
-			s += decl.format(indentation, newLine);
+			s += decl.format(indentation, newLine, important);
 		}
 		return s;
 	}

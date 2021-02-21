@@ -97,10 +97,10 @@ export default class RuleSet {
 		return new RuleSet(clone);
 	}
 
-	format(namespace: string, indentation: string, indentWith: string, newLine: string): string {
+	format(namespace: string, indentation: string, indentWith: string, newLine: string, important: boolean): string {
 		let s = "";
 		for (let rule of this.rules) {
-			s += rule.format(namespace, indentation, indentWith, newLine);
+			s += rule.format(namespace, indentation, indentWith, newLine, important);
 		}
 		return s;
 	}

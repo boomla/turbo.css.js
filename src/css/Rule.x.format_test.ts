@@ -20,7 +20,8 @@ describe('Rule.format()', function() {
 		let indentation = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = rule.format(namespace, indentation, indentWith, newLine);
+		let important = false;
+		let act = rule.format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "" +
 			".foo {\n" +
@@ -45,7 +46,8 @@ describe('Rule.format()', function() {
 		let indentation = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = rule.format(namespace, indentation, indentWith, newLine);
+		let important = false;
+		let act = rule.format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "" +
 			".foo,\n" +
@@ -70,7 +72,8 @@ describe('Rule.format()', function() {
 		let indentation = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = rule.format(namespace, indentation, indentWith, newLine);
+		let important = false;
+		let act = rule.format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "" +
 			".NS_foo {\n" +
@@ -79,6 +82,29 @@ describe('Rule.format()', function() {
 
 		assert.deepEqual(exp, act);
 	});
-});
+	it('should support !important', function() {
+		let selectors = new SelectorList([
+			Selector.new(".foo"),
+		]);
+		let block = new Block([
+			new Declaration("prop", "value"),
+		]);
 
+		let rule = Rule.testNewNoOrder(selectors, block);
+
+		let namespace = "";
+		let indentation = "";
+		let indentWith = "\t";
+		let newLine = "\n";
+		let important = true;
+		let act = rule.format(namespace, indentation, indentWith, newLine, important);
+
+		let exp = "" +
+			".foo {\n" +
+			"\tprop: value!important;\n" +
+			"}\n";
+
+		assert.deepEqual(exp, act);
+	});
+});
 

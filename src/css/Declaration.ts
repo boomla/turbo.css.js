@@ -9,8 +9,8 @@ export default class Declaration {
 		this.value = value;
 	}
 
-	format(indentation: string, newLine: string): string {
-		return indentation + this.property + ": " + this.value + ";" + newLine;
+	format(indentation: string, newLine: string, important: boolean): string {
+		return indentation + this.property + ": " + this.value + (important ? "!important" : "") + ";" + newLine;
 	}
 }
 

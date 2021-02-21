@@ -42,15 +42,15 @@ export default class MediaQuery {
 		return new MediaQuery(this, props);
 	}
 
-	format(namespace: string, indentWith: string, newLine: string): string {
+	format(namespace: string, indentWith: string, newLine: string, important: boolean): string {
 		let queryList = this.formatQueryList();
 		if (queryList === "") {
 			let indentation = "";
-			return this.ruleSet.format(namespace, indentation, indentWith, newLine);
+			return this.ruleSet.format(namespace, indentation, indentWith, newLine, important);
 		}
 
 		let indentation = indentWith;
-		let ruleSetStr = this.ruleSet.format(namespace, indentation, indentWith, newLine);
+		let ruleSetStr = this.ruleSet.format(namespace, indentation, indentWith, newLine, important);
 
 		let s = "" +
 			"@media "+queryList+" {\n" +

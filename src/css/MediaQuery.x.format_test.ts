@@ -25,7 +25,8 @@ describe('MediaQuery.format()', function() {
 		let namespace = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = mq.format(namespace, indentWith, newLine);
+		let important = false;
+		let act = mq.format(namespace, indentWith, newLine, important);
 
 		let exp = "" +
 			".foo {\n" +
@@ -52,7 +53,8 @@ describe('MediaQuery.format()', function() {
 		let namespace = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = mq.format(namespace, indentWith, newLine);
+		let important = false;
+		let act = mq.format(namespace, indentWith, newLine, important);
 
 		let exp = "" +
 			"@media print {\n" +
@@ -81,13 +83,41 @@ describe('MediaQuery.format()', function() {
 		let namespace = "";
 		let indentWith = "\t";
 		let newLine = "\n";
-		let act = mq.format(namespace, indentWith, newLine);
+		let important = false;
+		let act = mq.format(namespace, indentWith, newLine, important);
 
 		let exp = "" +
 			"@media screen {\n" +
 			"\t.foo {\n" +
 			"\t\tprop: value;\n" +
 			"\t}\n" +
+			"}\n";
+
+		assert.equal(exp, act);
+	});
+	it('format with !important', function() {
+		let mq = new MediaQuery({
+			ruleSet: new RuleSet([
+				Rule.testNewNoOrder(
+					new SelectorList([
+						Selector.new(".foo"),
+					]),
+					new Block([
+						new Declaration("prop", "value"),
+					]),
+				),
+			]),
+		});
+
+		let namespace = "";
+		let indentWith = "\t";
+		let newLine = "\n";
+		let important = true;
+		let act = mq.format(namespace, indentWith, newLine, important);
+
+		let exp = "" +
+			".foo {\n" +
+			"\tprop: value!important;\n" +
 			"}\n";
 
 		assert.equal(exp, act);
