@@ -28,7 +28,7 @@ Checkerboard size provided as unitless number.
 t1 bg-checker-16-black-6
 --------------------------------------------------
 .t1.bg-checker-16-black-6 {
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='#0000000F'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='%230000000F'/%3E%3C/svg%3E");
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -40,7 +40,7 @@ Checkerboard size provided as length.
 t1 bg-checker-16px-black-6
 --------------------------------------------------
 .t1.bg-checker-16px-black-6 {
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='#0000000F'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='%230000000F'/%3E%3C/svg%3E");
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -52,7 +52,7 @@ Checkerboard color provided by name, shade, opacity.
 t1 bg-checker-16-blue-500-50
 --------------------------------------------------
 .t1.bg-checker-16-blue-500-50 {
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='#12A4E280'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='%2312A4E280'/%3E%3C/svg%3E");
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -64,7 +64,7 @@ Checkerboard color provided by HEX color value in lowercase format.
 t1 bg-checker-16-hex-abcdef
 --------------------------------------------------
 .t1.bg-checker-16-hex-abcdef {
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='#ABCDEF'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='%23ABCDEF'/%3E%3C/svg%3E");
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -76,7 +76,7 @@ Checkerboard color provided by HEX color value in uppercase format.
 t1 bg-checker-16-hex-ABCDEF
 --------------------------------------------------
 .t1.bg-checker-16-hex-ABCDEF {
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='#ABCDEF'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='%23ABCDEF'/%3E%3C/svg%3E");
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -88,7 +88,7 @@ Checkerboard color provided by HEX color value with alpha channel.
 t1 bg-checker-16-hex-12345678
 --------------------------------------------------
 .t1.bg-checker-16-hex-12345678 {
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='#12345678'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 2 2'%3E%3Cpath d='M0 0h1v1H0zm1 1h1v1H1z' fill='%2312345678'/%3E%3C/svg%3E");
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
