@@ -95,7 +95,7 @@ export default class Compiler {
 			if (className === "") {
 				continue;
 			}
-			if (className === "t1-root") {
+			if ((className === "t1-start") || (className === "t1-all")) {
 				namespacedClassNames.push(className);
 				continue;
 			}
@@ -130,7 +130,7 @@ export default class Compiler {
 	compileOne(className: string, definedName: string): StyleSheet {
 		let [ selectorExpression, utilityFn ] = separateSelectorsAndUtilityFunction(className);
 
-		if (utilityFn.startsWith("mode-") || (utilityFn === "t1-root")) {
+		if (utilityFn.startsWith("mode-") || (utilityFn === "t1-start") || (utilityFn === "t1-all")) {
 			return new StyleSheet();
 		}
 

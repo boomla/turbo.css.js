@@ -172,9 +172,9 @@ t1 hover:after:block
 
 # EXAMPLE
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-t1-root class is ignored
+t1-start class is ignored
 ==================================================
-t1-root t1 block
+t1 t1-start block
 --------------------------------------------------
 .t1.block {
 	display: block;

@@ -7,9 +7,9 @@ describe('Turbo', function() {
 		let namespace = "NS_";
 		let turbo = new Turbo(NoCompatConfig, namespace);
 		
-		let actNamespacedClasses = turbo.add("t1 t1-root w-2 h-8");
+		let actNamespacedClasses = turbo.add("t1 t1-start t1-all w-2 h-8");
 		
-		let expNamespacedClasses = "t1 t1-root NS_w-2 NS_h-8";
+		let expNamespacedClasses = "t1 t1-start t1-all NS_w-2 NS_h-8";
 		assert.equal(actNamespacedClasses, expNamespacedClasses);
 
 		let actHead = turbo.head()
