@@ -19,44 +19,10 @@ module.exports = [
 		mode: "production",
 	},
 	{
-		entry: "./src/builds/turbocss.browser.global.watch.ts",
+		entry: "./src/builds/turbocss.browser.watch.ts",
 		output: {
 			path: process.cwd() + "/dist",
-			filename: "turbocss.browser.global.watch.min.js",
-		},
-		resolve: {
-			extensions: [".ts"],
-		},
-		module: {
-			rules: [
-				// all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
-				{ test: /\.tsx?$/, use: ["ts-loader"], exclude: /node_modules/ },
-			],
-		},
-		mode: "production",
-	},
-	{
-		entry: "./src/builds/turbocss.browser.subtree.watch.ts",
-		output: {
-			path: process.cwd() + "/dist",
-			filename: "turbocss.browser.subtree.watch.min.js",
-		},
-		resolve: {
-			extensions: [".ts"],
-		},
-		module: {
-			rules: [
-				// all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
-				{ test: /\.tsx?$/, use: ["ts-loader"], exclude: /node_modules/ },
-			],
-		},
-		mode: "production",
-	},
-	{
-		entry: "./src/builds/turbocss.browser.element.watch.ts",
-		output: {
-			path: process.cwd() + "/dist",
-			filename: "turbocss.browser.element.watch.min.js",
+			filename: "turbocss.browser.watch.min.js",
 		},
 		resolve: {
 			extensions: [".ts"],
