@@ -2,6 +2,7 @@ import Config from "./utils/Config";
 import { DefaultConfig } from "./CONFIG";
 import Compiler from "./Compiler";
 import StyleSheet from "./css/StyleSheet";
+import replaceTurboSnippets from "./replaceTurboSnippets";
 
 export default class Turbo {
 	namespace: string;
@@ -29,10 +30,22 @@ export default class Turbo {
 		this.compiler = this.compiler.loadLibrary(path, code);
 	}
 
+	// add() registers a Turbo snippet in the Turbo compiler instance.
+	// It returns the processed snippet, with namespacing applied if necessary.
 	add(classes: string): string {
 		let [sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, classes);
 		this.sheet = sheet;
 		return namespacedClasses;
+	}
+
+	// addSource() source code in any language that contains Turbo snippets.
+	// It extracts all such Turbo snippets, registers them in the Turbo
+	// compiler instance and applies namespacing if necessary.
+	addSource(source: string): string {
+		let turbo = this;
+		return replaceTurboSnippets(source, function(snippet: string): string {
+			return turbo.add(snippet);
+		});
 	}
 
 	meta(): string {

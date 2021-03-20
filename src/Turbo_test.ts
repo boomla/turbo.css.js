@@ -127,5 +127,52 @@ describe('Turbo', function() {
 		let expNamespacedClasses = "t1 w-2 h-8 ";
 		assert.equal(actNamespacedClasses, expNamespacedClasses);
 	});
+	it('should rewrite Turbo embedded in other code', function() {
+		let namespace = "NS_";
+		let turbo = new Turbo(NoCompatConfig, namespace);
+		
+		let source = `<div class="t1 w-10 ; foo">hello</div>`
+		let actSource = turbo.addSource(source);
+		
+		let expSource = `<div class="t1 NS_w-10 ; foo">hello</div>`
+		assert.equal(actSource, expSource);
+
+		let actHead = turbo.head()
+
+		let expHead = "" +
+			`<meta name="viewport" content="width=device-width, initial-scale=1">` + "\n" +
+			"<style>\n"+
+			".t1.NS_w-10 {\n"+
+			"	width: 10px;\n"+
+			"}\n"+
+			"</style>";
+
+		assert.equal(expHead, actHead)
+	});
+	it('should rewrite multiple Turbo snippets embedded in code', function() {
+		let namespace = "NS_";
+		let turbo = new Turbo(NoCompatConfig, namespace);
+		
+		let source = `<div class="t1 w-10 ; foo">hello</div><div class="t1 h-10 ; bar">world</div>`
+		let actSource = turbo.addSource(source);
+		
+		let expSource = `<div class="t1 NS_w-10 ; foo">hello</div><div class="t1 NS_h-10 ; bar">world</div>`
+		assert.equal(actSource, expSource);
+
+		let actHead = turbo.head()
+
+		let expHead = "" +
+			`<meta name="viewport" content="width=device-width, initial-scale=1">` + "\n" +
+			"<style>\n"+
+			".t1.NS_w-10 {\n"+
+			"	width: 10px;\n"+
+			"}\n"+
+			".t1.NS_h-10 {\n"+
+			"	height: 10px;\n"+
+			"}\n"+
+			"</style>";
+
+		assert.equal(expHead, actHead)
+	});
 });
 
