@@ -68,7 +68,7 @@ export default class ConfigStatic implements Config {
 	}
 	resolveLibrary(contextPath: string, libName: string): string | undefined {
 		if (this.resolveLibraryFn === undefined) {
-			throw new Error("can not resolve library name ["+libName+"], no library name resolver is defined");
+			return undefined;
 		}
 
 		return this.resolveLibraryFn(contextPath, libName);
