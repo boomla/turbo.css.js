@@ -26,14 +26,15 @@ export default class Turbo {
 		this.sheet = new StyleSheet();
 	}
 
-	loadLibrary(path: string, code: string) {
-		this.compiler = this.compiler.loadLibrary(path, code);
+	eval(path: string, code: string) {
+		this.compiler = this.compiler.eval(path, code);
 	}
 
 	// add() registers a Turbo snippet in the Turbo compiler instance.
 	// It returns the processed snippet, with namespacing applied if necessary.
 	add(classes: string): string {
-		let [sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, classes);
+		let [compiler, sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, classes);
+		this.compiler = compiler;
 		this.sheet = sheet;
 		return namespacedClasses;
 	}

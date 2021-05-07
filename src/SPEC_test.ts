@@ -2,6 +2,8 @@ import * as glob from 'glob';
 import * as fs from 'fs';
 import StyleSheet from "./css/StyleSheet";
 import { Spec } from "./spec/Spec";
+import ConfigStatic from "./utils/ConfigStatic";
+import { NoCompatConfig } from "./CONFIG";
 import Compiler from "./Compiler";
 import T1 from "./T1";
 import { assert } from 'chai';
@@ -22,8 +24,6 @@ describe('SPEC', function() {
 		let newLine = "\n";
 		let important = false;
 
-		let compiler = Compiler.newNoCompatCompiler();
-
 		let passCount = 0;
 		let failCount = 0;
 
@@ -40,7 +40,8 @@ describe('SPEC', function() {
 			for (let example of spec.examples) {
 				let sheet: StyleSheet;
 				try {
-					sheet = compiler.compile(example.code);
+					let compiler = Compiler.newNoCompatCompiler();
+					[ , sheet] = compiler.compile(example.code);
 				}
 				catch(e) {
 					errors.push(example.description+"\ncode ["+example.code+"]\nerror: "+e.toString());
@@ -76,6 +77,7 @@ describe('SPEC', function() {
 
 			for (let example of spec.examplesThatFail) {
 				try {
+					let compiler = Compiler.newNoCompatCompiler();
 					compiler.compile(example.code)
 
 					// Should not reach this point
@@ -98,19 +100,47 @@ describe('SPEC', function() {
 
 
 			for (let exampleLib of spec.exampleLibraries) {
-				let customCompiler: Compiler;
-				try {
-					customCompiler = compiler.loadLibrary("<anonymous>", exampleLib.globalCode);
-				}
-				catch(e) {
-					errors.push(exampleLib.description+"\ncode ["+exampleLib.code+"]\nerror: "+e.toString());
-					failCount++;
-					continue;
+				let compiler = new Compiler(new ConfigStatic({
+					colorPoints: NoCompatConfig.colorPoints,
+					colorScales: NoCompatConfig.colorScales,
+					shadows: NoCompatConfig.shadows,
+					commonBrowsers: NoCompatConfig.commonBrowsers,
+					resolveLibraryFn: function(_contextPath: string, libName: string): string | undefined {
+						let libPath = "/" + libName + ".turbo";
+
+						for (let lib of exampleLib.libraries) {
+							if (lib.filename === libPath) {
+								return libPath;
+							}
+						}
+
+						return undefined;
+					},
+					loadLibraryFn: function(libPath: string): string {
+						for (let lib of exampleLib.libraries) {
+							if (lib.filename === libPath) {
+								return lib.source;
+							}
+						}
+
+						throw new Error("unexpected libPath #1 ["+libPath+"]");
+					},
+				}));
+
+				if (exampleLib.globalCode.trim() !== "") {
+					try {
+						compiler = compiler.eval("<anonymous>", exampleLib.globalCode);
+					}
+					catch(e) {
+						errors.push(exampleLib.description+"\ncode ["+exampleLib.code+"]\nerror: "+e.toString());
+						failCount++;
+						continue;
+					}
 				}
 
 				let sheet: StyleSheet;
 				try {
-					sheet = customCompiler.compile(exampleLib.code);
+					[ , sheet] = compiler.compile(exampleLib.code);
 				}
 				catch(e) {
 					errors.push(exampleLib.description+"\ncode ["+exampleLib.code+"]\nerror: "+e.toString());
@@ -147,11 +177,41 @@ describe('SPEC', function() {
 
 			for (let exampleLibThatFails of spec.exampleLibrariesThatFail) {
 				try {
-					let customCompiler = compiler.loadLibrary("<anonymous>", exampleLibThatFails.globalCode);
-					customCompiler.compile(exampleLibThatFails.code);
+					let compiler = new Compiler(new ConfigStatic({
+						colorPoints: NoCompatConfig.colorPoints,
+						colorScales: NoCompatConfig.colorScales,
+						shadows: NoCompatConfig.shadows,
+						commonBrowsers: NoCompatConfig.commonBrowsers,
+						resolveLibraryFn: function(_contextPath: string, libName: string): string | undefined {
+							let libPath = "/" + libName + ".turbo";
+
+							for (let lib of exampleLibThatFails.libraries) {
+								if (lib.filename === libPath) {
+									return libPath;
+								}
+							}
+
+							return undefined;
+						},
+						loadLibraryFn: function(libPath: string): string {
+							for (let lib of exampleLibThatFails.libraries) {
+								if (lib.filename === libPath) {
+									return lib.source;
+								}
+							}
+
+							throw new Error("unexpected libPath #2 ["+libPath+"]");
+						},
+					}));
+
+					if (exampleLibThatFails.globalCode.trim() !== "") {
+						compiler = compiler.eval("<anonymous>", exampleLibThatFails.globalCode);
+					}
+
+					compiler.compile(exampleLibThatFails.code);
 
 					// Should not reach this
-					errors.push(exampleLibThatFails.description+"%v\ncode ["+exampleLibThatFails.code+"]\nexpected an error: "+exampleLibThatFails.expErr);
+					errors.push(exampleLibThatFails.description+"\ncode ["+exampleLibThatFails.code+"]\nexpected an error: "+exampleLibThatFails.expErr);
 					failCount++;
 					continue;
 				}
@@ -159,7 +219,7 @@ describe('SPEC', function() {
 					let expErr = exampleLibThatFails.expErr;
 					let actErr = e.toString();
 					if (expErr !== actErr) {
-						errors.push(exampleLibThatFails.description+"%v\ncode ["+exampleLibThatFails.code+"]\nexpErr: ["+expErr+"]\nactErr: ["+actErr+"]");
+						errors.push(exampleLibThatFails.description+"\ncode ["+exampleLibThatFails.code+"]\nexpErr: ["+expErr+"]\nactErr: ["+actErr+"]");
 						failCount++;
 						continue;
 					}

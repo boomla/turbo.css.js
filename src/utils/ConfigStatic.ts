@@ -11,6 +11,9 @@ export default class ConfigStatic implements Config {
 		declarationMap: {},
 		rewriteRuleFuncs: [],
 	};
+	readonly resolveLibraryFn?: (contextPath: string, libName: string) => string | undefined;
+	readonly loadLibraryFn?: (libPath: string) => string;
+
 
 	constructor(source?: Partial<ConfigStatic>) {
 		if (source !== undefined) {
@@ -62,6 +65,20 @@ export default class ConfigStatic implements Config {
 			},
 			rewriteRuleFuncs: [] as Array<RewriteRule>,
 		};
+	}
+	resolveLibrary(contextPath: string, libName: string): string | undefined {
+		if (this.resolveLibraryFn === undefined) {
+			throw new Error("can not resolve library name ["+libName+"], no library name resolver is defined");
+		}
+
+		return this.resolveLibraryFn(contextPath, libName);
+	}
+	loadLibrary(libPath: string): string {
+		if (this.loadLibraryFn === undefined) {
+			throw new Error("can not load library ["+libPath+"], no library loader is defined");
+		}
+
+		return this.loadLibraryFn(libPath);
 	}
 }
 
