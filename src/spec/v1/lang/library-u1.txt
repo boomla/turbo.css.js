@@ -1,0 +1,61 @@
+# TURBO-SPEC-FORMAT-V1
+
+# TITLE
+Standard library u1
+
+# SHORT
+The u1 standard library that is always available.
+
+# LONG
+The u1 standard library that is always available.
+
+
+# EXAMPLE LIBRARY
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+The u1 standard library shall always be available.
+==================================================
+--------------------------------------------------
+t1 u1.btn-m
+--------------------------------------------------
+.t1.u1\.btn-m {
+	height: 40px;
+	padding-left: 24px;
+	padding-right: 24px;
+	font-size: 16px;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE LIBRARY
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+Allow overriding any class in the standard
+library, while still making all other classes
+available.
+==================================================
+[/u1.turbo]
+t1
+.btn-l {
+	font-72
+}
+.foo {
+	font-128
+}
+--------------------------------------------------
+--------------------------------------------------
+t1 u1.btn-m u1.btn-l u1.foo
+--------------------------------------------------
+.t1.u1\.btn-m {
+	height: 40px;
+	padding-left: 24px;
+	padding-right: 24px;
+	font-size: 16px;
+}
+.t1.u1\.btn-l {
+	font-size: 72px;
+}
+.t1.u1\.foo {
+	font-size: 128px;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+

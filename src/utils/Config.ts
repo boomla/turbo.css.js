@@ -5,6 +5,8 @@ export default interface Config {
 	getColorScaleShade(colorScaleName: string, shade: number): string | undefined;
 	getShadow(distance: number, darkness: number): string;
 	browserRewriteRules(): BrowserRewriteRules;
+	resolveLibrary(contextPath: string, libName: string): string | undefined;
+	loadLibrary(libPath: string): string;
 }
 
 export class ShadowData {

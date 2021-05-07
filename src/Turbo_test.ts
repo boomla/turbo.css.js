@@ -27,11 +27,11 @@ describe('Turbo', function() {
 
 		assert.equal(expHead, actHead)
 	});
-	it('should load library', function() {
+	it('should eval library', function() {
 		let namespace = "NS_";
 		let turbo = new Turbo(NoCompatConfig, namespace);
 		
-		turbo.loadLibrary("ui.turbo", `
+		turbo.eval("ui.turbo", `
 			t1
 			.btn {
 				px-32
@@ -68,7 +68,7 @@ describe('Turbo', function() {
 		let namespace = "NS_";
 		let turbo = new Turbo(NoCompatConfig, namespace);
 		
-		turbo.loadLibrary("ui.turbo", `
+		turbo.eval("ui.turbo", `
 			t1
 			.btn {
 				px-32

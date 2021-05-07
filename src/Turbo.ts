@@ -1,5 +1,5 @@
 import Config from "./utils/Config";
-import { DefaultConfig } from "./CONFIG";
+import { DefaultConfig, NoCompatConfig } from "./CONFIG";
 import Compiler from "./Compiler";
 import StyleSheet from "./css/StyleSheet";
 import replaceTurboSnippets from "./replaceTurboSnippets";
@@ -9,6 +9,9 @@ export default class Turbo {
 	important: boolean;
 	compiler: Compiler;
 	sheet: StyleSheet;
+
+	static defaultConfig: Config = DefaultConfig;
+	static noCompatConfig: Config = NoCompatConfig;
 
 	constructor(config?: Config, namespace?: string, important?: boolean) {
 		if (config === undefined) {
@@ -26,14 +29,15 @@ export default class Turbo {
 		this.sheet = new StyleSheet();
 	}
 
-	loadLibrary(path: string, code: string) {
-		this.compiler = this.compiler.loadLibrary(path, code);
+	eval(path: string, code: string) {
+		this.compiler = this.compiler.eval(path, code);
 	}
 
 	// add() registers a Turbo snippet in the Turbo compiler instance.
 	// It returns the processed snippet, with namespacing applied if necessary.
 	add(classes: string): string {
-		let [sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, classes);
+		let [compiler, sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, classes);
+		this.compiler = compiler;
 		this.sheet = sheet;
 		return namespacedClasses;
 	}

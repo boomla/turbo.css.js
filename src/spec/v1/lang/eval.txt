@@ -1,13 +1,13 @@
 # TURBO-SPEC-FORMAT-V1
 
 # TITLE
-Library
+Eval
 
 # SHORT
-Define custom libraries, access classes in a namespace prefixed form.
+Evaluate code to define classes in the global namespace.
 
 # LONG
-Define custom libraries, access classes in a namespace prefixed form.
+Evaluate code to define classes in the global namespace.
 
 
 # SYNTAX
@@ -29,9 +29,8 @@ Utilities and other classes to be applied.
 
 # EXAMPLE LIBRARY
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-Define a utility called btn in the ui package.
+Define a utility called btn.
 ==================================================
-[/ui.turbo]
 t1
 .btn {
 	h-32
@@ -39,10 +38,9 @@ t1
 	font-16
 }
 --------------------------------------------------
+t1 btn
 --------------------------------------------------
-t1 ui.btn
---------------------------------------------------
-.t1.ui\.btn {
+.t1.btn {
 	height: 32px;
 	padding-left: 16px;
 	padding-right: 16px;
@@ -55,14 +53,12 @@ t1 ui.btn
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Define a utility called btn on a single line.
 ==================================================
-[/ui.turbo]
 t1
 .btn { h-32 px-16 font-16 }
 --------------------------------------------------
+t1 btn
 --------------------------------------------------
-t1 ui.btn
---------------------------------------------------
-.t1.ui\.btn {
+.t1.btn {
 	height: 32px;
 	padding-left: 16px;
 	padding-right: 16px;
@@ -77,7 +73,6 @@ Custom utilities can be overriden by system
 utilities as they are inserted higher in the
 generated CSS.
 ==================================================
-[/ui.turbo]
 t1
 .btn {
 	h-32
@@ -85,10 +80,9 @@ t1
 	font-16
 }
 --------------------------------------------------
+t1 h-40 btn
 --------------------------------------------------
-t1 h-40 ui.btn
---------------------------------------------------
-.t1.ui\.btn {
+.t1.btn {
 	height: 32px;
 	padding-left: 16px;
 	padding-right: 16px;
@@ -106,7 +100,6 @@ Comments are supported. Comments must be preceeded
 by a whitespace char: space, tab or new-line.
 They can also be the at the start of the file.
 ==================================================
-[/ui.turbo]
 // Comment
 t1
 .btn { // Comment
@@ -116,10 +109,9 @@ t1
 	font-16
 }
 --------------------------------------------------
+t1 btn
 --------------------------------------------------
-t1 ui.btn
---------------------------------------------------
-.t1.ui\.btn {
+.t1.btn {
 	height: 32px;
 	padding-left: 16px;
 	padding-right: 16px;
@@ -137,16 +129,14 @@ The key benefit of this is that you can be sure
 future utilities added to the core language will
 not break your code.
 ==================================================
-[/ui.turbo]
 t1
 .font-16 {
 	font-32
 }
 --------------------------------------------------
+t1 font-16
 --------------------------------------------------
-t1 ui.font-16
---------------------------------------------------
-.t1.ui\.font-16 {
+.t1.font-16 {
 	font-size: 32px;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -157,7 +147,6 @@ t1 ui.font-16
 User defined utilities may reference other user
 defined utilities that are defined later.
 ==================================================
-[/ui.turbo]
 t1
 .font-16 {
 	font-32
@@ -166,13 +155,12 @@ t1
 	font-64
 }
 --------------------------------------------------
+t1 font-16 font-32
 --------------------------------------------------
-t1 ui.font-16 ui.font-32
---------------------------------------------------
-.t1.ui\.font-16 {
+.t1.font-16 {
 	font-size: 64px;
 }
-.t1.ui\.font-32 {
+.t1.font-32 {
 	font-size: 64px;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -182,7 +170,6 @@ t1 ui.font-16 ui.font-32
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Utilities can not be defined 2x.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	w-16
@@ -191,10 +178,9 @@ t1
 	h-8
 }
 --------------------------------------------------
+t1 foo
 --------------------------------------------------
-t1 ui.foo
---------------------------------------------------
-Error: utility [foo] is already defined in library [/ui.turbo]
+Error: utility [foo] is already defined in library [<anonymous>]
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
@@ -202,17 +188,15 @@ Error: utility [foo] is already defined in library [/ui.turbo]
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Override earlier CSS declarations.
 ==================================================
-[/ui.turbo]
 t1
 .my-width {
 	w-4
 	w-8
 }
 --------------------------------------------------
+t1 my-width
 --------------------------------------------------
-t1 ui.my-width
---------------------------------------------------
-.t1.ui\.my-width {
+.t1.my-width {
 	width: 8px;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -222,7 +206,6 @@ t1 ui.my-width
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 One user-defined utility may depend on another.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	w10:color-black
@@ -231,11 +214,10 @@ t1
 	foo
 }
 --------------------------------------------------
---------------------------------------------------
-t1 ui.bar
+t1 bar
 --------------------------------------------------
 @media (min-width: 1024px) {
-	.t1.ui\.bar {
+	.t1.bar {
 		color: #000000;
 	}
 }
@@ -246,7 +228,6 @@ t1 ui.bar
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Merge complex utilities.
 ==================================================
-[/ui.turbo]
 t1
 .btn-base {
 	focus:outline-none
@@ -269,10 +250,9 @@ t1
 	btn-blue
 }
 --------------------------------------------------
+t1 btn-32-blue
 --------------------------------------------------
-t1 ui.btn-32-blue
---------------------------------------------------
-.t1.ui\.btn-32-blue {
+.t1.btn-32-blue {
 	height: 32px;
 	padding-left: 16px;
 	padding-right: 16px;
@@ -281,13 +261,13 @@ t1 ui.btn-32-blue
 	color: #FFFFFF;
 	background-color: #4080FF;
 }
-.t1.ui\.btn-32-blue:focus {
+.t1.btn-32-blue:focus {
 	outline-style: none;
 }
-.t1.ui\.btn-32-blue:hover {
+.t1.btn-32-blue:hover {
 	background-color: #60A0FF;
 }
-.t1.ui\.btn-32-blue:active {
+.t1.btn-32-blue:active {
 	background-color: #2060FF;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -297,7 +277,6 @@ t1 ui.btn-32-blue
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 All combinators are supported.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	/color-black
@@ -306,19 +285,18 @@ t1
 	/../color-black
 }
 --------------------------------------------------
+t1 foo
 --------------------------------------------------
-t1 ui.foo
---------------------------------------------------
-* + .t1.ui\.foo {
+* + .t1.foo {
 	color: #000000;
 }
-* .t1.ui\.foo {
+* .t1.foo {
 	color: #000000;
 }
-* > .t1.ui\.foo {
+* > .t1.foo {
 	color: #000000;
 }
-* ~ .t1.ui\.foo {
+* ~ .t1.foo {
 	color: #000000;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -328,7 +306,6 @@ t1 ui.foo
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 All DOM structure selectors are supported.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	empty:color-black
@@ -341,31 +318,30 @@ t1
 	odd:color-black
 }
 --------------------------------------------------
+t1 foo
 --------------------------------------------------
-t1 ui.foo
---------------------------------------------------
-.t1.ui\.foo:empty {
+.t1.foo:empty {
 	color: #000000;
 }
-.t1.ui\.foo:not(:empty) {
+.t1.foo:not(:empty) {
 	color: #000000;
 }
-.t1.ui\.foo:first-child {
+.t1.foo:first-child {
 	color: #000000;
 }
-.t1.ui\.foo:not(:first-child) {
+.t1.foo:not(:first-child) {
 	color: #000000;
 }
-.t1.ui\.foo:last-child {
+.t1.foo:last-child {
 	color: #000000;
 }
-.t1.ui\.foo:not(:last-child) {
+.t1.foo:not(:last-child) {
 	color: #000000;
 }
-.t1.ui\.foo:nth-child(even) {
+.t1.foo:nth-child(even) {
 	color: #000000;
 }
-.t1.ui\.foo:nth-child(odd) {
+.t1.foo:nth-child(odd) {
 	color: #000000;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -375,7 +351,6 @@ t1 ui.foo
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 All interaction selectors are supported.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	color-black
@@ -385,22 +360,21 @@ t1
 	active:color-black
 }
 --------------------------------------------------
+t1 foo
 --------------------------------------------------
-t1 ui.foo
---------------------------------------------------
-.t1.ui\.foo {
+.t1.foo {
 	color: #000000;
 }
-.t1.ui\.foo:visited {
+.t1.foo:visited {
 	color: #000000;
 }
-.t1.ui\.foo:focus {
+.t1.foo:focus {
 	color: #000000;
 }
-.t1.ui\.foo:hover {
+.t1.foo:hover {
 	color: #000000;
 }
-.t1.ui\.foo:active {
+.t1.foo:active {
 	color: #000000;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -410,7 +384,6 @@ t1 ui.foo
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 All state selectors are supported.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	checked:color-black
@@ -421,25 +394,24 @@ t1
 	invalid:color-black
 }
 --------------------------------------------------
+t1 foo
 --------------------------------------------------
-t1 ui.foo
---------------------------------------------------
-.t1.ui\.foo:checked {
+.t1.foo:checked {
 	color: #000000;
 }
-.t1.ui\.foo:not(:checked) {
+.t1.foo:not(:checked) {
 	color: #000000;
 }
-.t1.ui\.foo:enabled {
+.t1.foo:enabled {
 	color: #000000;
 }
-.t1.ui\.foo:disabled {
+.t1.foo:disabled {
 	color: #000000;
 }
-.t1.ui\.foo:valid {
+.t1.foo:valid {
 	color: #000000;
 }
-.t1.ui\.foo:invalid {
+.t1.foo:invalid {
 	color: #000000;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -449,7 +421,6 @@ t1 ui.foo
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 All pseudo-element selectors are supported.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	after:color-black
@@ -459,24 +430,23 @@ t1
 	thumb:color-black
 }
 --------------------------------------------------
+t1 foo
 --------------------------------------------------
-t1 ui.foo
---------------------------------------------------
-.t1.ui\.foo:after {
+.t1.foo:after {
 	color: #000000;
 	content: "";
 }
-.t1.ui\.foo:before {
+.t1.foo:before {
 	color: #000000;
 	content: "";
 }
-.t1.ui\.foo::placeholder {
+.t1.foo::placeholder {
 	color: #000000;
 }
-.t1.ui\.foo::selection {
+.t1.foo::selection {
 	color: #000000;
 }
-.t1.ui\.foo::slider-thumb {
+.t1.foo::slider-thumb {
 	color: #000000;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -486,7 +456,6 @@ t1 ui.foo
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 All device selectors are supported.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	print:color-black
@@ -496,31 +465,30 @@ t1
 	not-hoverable:color-black
 }
 --------------------------------------------------
---------------------------------------------------
-t1 ui.foo
+t1 foo
 --------------------------------------------------
 @media (hover: hover) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (hover: none) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media screen {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media print {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media speech {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
@@ -531,7 +499,6 @@ t1 ui.foo
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 All viewport selectors are supported.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	w3:color-black
@@ -544,46 +511,45 @@ t1
 	w19:color-black
 }
 --------------------------------------------------
---------------------------------------------------
-t1 ui.foo
+t1 foo
 --------------------------------------------------
 @media (min-width: 375px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (min-width: 640px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (min-width: 768px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (min-width: 1024px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (min-width: 1280px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (min-width: 1440px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (min-width: 1536px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (min-width: 1920px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
@@ -596,7 +562,6 @@ The order or various selectors may change over
 time. This is a simple test case for the current
 ordering.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	+color-black
@@ -610,40 +575,39 @@ t1
 	w10:color-black
 }
 --------------------------------------------------
+t1 foo
 --------------------------------------------------
-t1 ui.foo
---------------------------------------------------
-* + .t1.ui\.foo {
+* + .t1.foo {
 	color: #000000;
 }
-.t1.ui\.foo:focus {
+.t1.foo:focus {
 	color: #000000;
 }
-.t1.ui\.foo:empty {
+.t1.foo:empty {
 	color: #000000;
 }
-.t1.ui\.foo:before {
+.t1.foo:before {
 	color: #000000;
 	content: "";
 }
-.t1.ui\.foo::placeholder {
+.t1.foo::placeholder {
 	color: #000000;
 }
-.t1.ui\.foo:checked {
+.t1.foo:checked {
 	color: #000000;
 }
 @media (hover: hover) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media (min-width: 1024px) {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
 @media print {
-	.t1.ui\.foo {
+	.t1.foo {
 		color: #000000;
 	}
 }
@@ -655,7 +619,6 @@ t1 ui.foo
 Selectors can be applied to user defined
 utilities as well.
 ==================================================
-[/ui.turbo]
 t1
 .foo {
 	color-black
@@ -664,11 +627,10 @@ t1
 	hover:foo
 }
 --------------------------------------------------
---------------------------------------------------
-t1 w10:ui.bar
+t1 w10:bar
 --------------------------------------------------
 @media (min-width: 1024px) {
-	.t1.w10\:ui\.bar:hover {
+	.t1.w10\:bar:hover {
 		color: #000000;
 	}
 }
@@ -680,7 +642,6 @@ t1 w10:ui.bar
 Raw CSS declarations can be added via an `@css`
 block.
 ==================================================
-[/ui.turbo]
 t1
 @css .bg-img-checkbox {
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M4 7l2 2m0 0l4-4' fill='none' stroke='%23fff' stroke-linecap='round' stroke-width='2'/%3E%3C/svg%3E");
@@ -689,10 +650,9 @@ t1
 	w-24 h-24 b-1-black bg-img-checkbox
 }
 --------------------------------------------------
+t1 checkbox
 --------------------------------------------------
-t1 ui.checkbox
---------------------------------------------------
-.t1.ui\.checkbox {
+.t1.checkbox {
 	width: 24px;
 	height: 24px;
 	border: 1px solid #000000;
@@ -705,111 +665,21 @@ t1 ui.checkbox
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Raw CSS can be overridden by base utilities.
 ==================================================
-[/ui.turbo]
 t1
 @css .my-width-32 {
 	width: 32px;
 }
 --------------------------------------------------
---------------------------------------------------
 t1
-ui.my-width-32
+my-width-32
 w-32
 --------------------------------------------------
-.t1.ui\.my-width-32 {
+.t1.my-width-32 {
 	width: 32px;
 }
 .t1.w-32 {
 	width: 32px;
 }
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-# EXAMPLE LIBRARY THAT FAILS
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-Library can not import itself.
-==================================================
-[/ui.turbo]
-t1
-.foo {
-	w-16
-}
-.bar {
-	ui.foo
-}
---------------------------------------------------
---------------------------------------------------
-t1 ui.bar
---------------------------------------------------
-Error: library can not import itself [/ui.turbo]
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-# EXAMPLE LIBRARY THAT FAILS
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-Disallow circular library dependencies.
-==================================================
-[/foo.turbo]
-t1
-.btn {
-	bar.size
-}
-.padding {
-	p-0
-}
---------------------------------------------------
-[/bar.turbo]
-t1
-.size {
-	w-256
-	h-40
-	foo.padding
-}
---------------------------------------------------
---------------------------------------------------
-t1 foo.btn
---------------------------------------------------
-Error: circular dependency found:
-  [/foo.turbo] imports [/bar.turbo]
-  [/bar.turbo] imports [/foo.turbo]
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-# EXAMPLE LIBRARY THAT FAILS
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-Disallow circular library dependencies.
-==================================================
-[/a.turbo]
-t1
-.btn {
-	b.btn
-}
---------------------------------------------------
-[/b.turbo]
-t1
-.btn {
-	c.btn
-}
---------------------------------------------------
-[/c.turbo]
-t1
-.btn {
-	d.btn
-}
---------------------------------------------------
-[/d.turbo]
-t1
-.btn {
-	b.btn
-}
---------------------------------------------------
---------------------------------------------------
-t1 a.btn
---------------------------------------------------
-Error: circular dependency found:
-  [/b.turbo] imports [/c.turbo]
-  [/c.turbo] imports [/d.turbo]
-  [/d.turbo] imports [/b.turbo]
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 

@@ -14,6 +14,7 @@ describe('utilityClassNameToCssSelector()', function() {
 		ok("hover:>m-1", ".hover\\:\\>m-1");
 		ok("hover:~m-1", ".hover\\:\\~m-1");
 		ok("hover:+m-1", ".hover\\:\\+m-1");
+		ok("ui.btn", ".ui\\.btn");
 	});
 });
 
