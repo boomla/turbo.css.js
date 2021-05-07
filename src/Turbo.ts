@@ -1,5 +1,5 @@
 import Config from "./utils/Config";
-import { DefaultConfig } from "./CONFIG";
+import { DefaultConfig, NoCompatConfig } from "./CONFIG";
 import Compiler from "./Compiler";
 import StyleSheet from "./css/StyleSheet";
 import replaceTurboSnippets from "./replaceTurboSnippets";
@@ -9,6 +9,9 @@ export default class Turbo {
 	important: boolean;
 	compiler: Compiler;
 	sheet: StyleSheet;
+
+	static defaultConfig: Config = DefaultConfig;
+	static noCompatConfig: Config = NoCompatConfig;
 
 	constructor(config?: Config, namespace?: string, important?: boolean) {
 		if (config === undefined) {
