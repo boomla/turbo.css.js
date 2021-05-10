@@ -105,10 +105,7 @@ const LIBRARY_U1_SRC = `t1
 	relative
 	cursor-pointer
 	text-decoration-none
-	focus:outline-0
 	_defaultTransition
-
-	z-0 // Avoid hiding icon when z-index is changed to show the shadow-outline over surrounding form elements
 }
 
 .btn-xs { h-24 px-8 font-14 }
@@ -126,6 +123,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-4
 	active:bg-c-action-550
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-action-500-50
 }
 .btn-neutral {
@@ -137,6 +135,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-4
 	active:bg-c-gray-750
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-gray-500-50
 }
 .btn-danger {
@@ -148,6 +147,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-4
 	active:bg-c-danger-550
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-danger-500-50
 }
 .btn-action-2 {
@@ -157,6 +157,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-action-500-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-action-500-50
 }
 .btn-neutral-2 {
@@ -166,6 +167,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-gray-700-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-gray-700-50
 }
 .btn-danger-2 {
@@ -175,6 +177,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-danger-500-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-danger-500-50
 }
 .btn-action-3 {
@@ -183,6 +186,7 @@ const LIBRARY_U1_SRC = `t1
 	shadow-none
 	hover:shadow-2
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-action-500-50
 }
 .btn-neutral-3 {
@@ -191,6 +195,7 @@ const LIBRARY_U1_SRC = `t1
 	shadow-none
 	hover:shadow-2
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-gray-500-50
 }
 .btn-danger-3 {
@@ -199,6 +204,7 @@ const LIBRARY_U1_SRC = `t1
 	shadow-none
 	hover:shadow-2
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-danger-500-50
 }
 
@@ -210,6 +216,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-none
 	active:bg-c-action-50
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-action-500
 }
 .btn-dark-neutral {
@@ -219,6 +226,7 @@ const LIBRARY_U1_SRC = `t1
 	shadow-2
 	active:bg-c-gray-50
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-white-50
 }
 .btn-dark-danger {
@@ -228,6 +236,7 @@ const LIBRARY_U1_SRC = `t1
 	shadow-2
 	active:bg-c-danger-50
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-danger
 }
 .btn-dark-action-2 {
@@ -236,6 +245,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-black-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-action
 }
 .btn-dark-neutral-2 {
@@ -244,6 +254,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-black-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-white-50
 }
 .btn-dark-danger-2 {
@@ -252,6 +263,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-black-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-danger
 }
 .btn-dark-action-3 {
@@ -260,6 +272,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-black-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-action
 }
 .btn-dark-neutral-3 {
@@ -268,6 +281,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-black-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-white-50
 }
 .btn-dark-danger-3 {
@@ -276,6 +290,7 @@ const LIBRARY_U1_SRC = `t1
 	hover:shadow-2
 	active:bg-c-black-10
 	active:shadow-none
+	focus:outline-0
 	focus:shadow-outline-danger
 }
 
@@ -307,10 +322,8 @@ const LIBRARY_U1_SRC = `t1
 	bg-c-white
 	color-gray-800
 
-	z-0 // Avoid hiding icon when z-index is changed to show the shadow-outline over surrounding form elements
-
 	focus:shadow-outline-action-500-50
-	focus:outline-none
+	focus:outline-0
 	focus:b-c-action-600
 
 	placeholder:color-gray-300
@@ -338,7 +351,10 @@ const LIBRARY_U1_SRC = `t1
 }
 
 .input-xs {
-	h-24 px-8 font-16 w6:font-14 // iOS zooms if font is smaller than 16px
+	h-24
+	px-8
+	font-16
+	w6:font-14 // iOS mobile zooms on the element if font is smaller than 16px - prevent this
 }
 .input-s { h-32 px-8 font-16 }
 .input-m { h-40 px-12 font-16 }
@@ -416,10 +432,8 @@ const LIBRARY_U1_SRC = `t1
 	line-1.5
 	appearance-none
 	bg-no-repeat
-	relative // for z-index on :hover
 	bg-right
 
-	focus:z-1
 	focus:outline-0
 	focus:b-c-action-600
 	focus:shadow-outline-action-500-50
@@ -447,8 +461,6 @@ const LIBRARY_U1_SRC = `t1
 	_bg-img-checkbox
 
 	checked:fill-white
-	focus:z-1
-	focus:outline-0
 
 	_defaultTransition
 }
@@ -462,6 +474,7 @@ const LIBRARY_U1_SRC = `t1
 .checkbox-action {
 	checked:bg-c-action-500
 	checked:b-c-action-500
+	focus:outline-0
 	focus:b-c-action-600
 	focus:shadow-outline-action-500-50
 	active:b-c-action-600
@@ -470,6 +483,7 @@ const LIBRARY_U1_SRC = `t1
 .checkbox-success {
 	checked:bg-c-success-500
 	checked:b-c-success-500
+	focus:outline-0
 	focus:b-c-success-600
 	focus:shadow-outline-success-500-50
 	active:b-c-success-600
@@ -478,6 +492,7 @@ const LIBRARY_U1_SRC = `t1
 .checkbox-danger {
 	checked:bg-c-danger-500
 	checked:b-c-danger-500
+	focus:outline-0
 	focus:b-c-danger-600
 	focus:shadow-outline-danger-500-50
 	active:b-c-danger-600
@@ -495,9 +510,6 @@ const LIBRARY_U1_SRC = `t1
 	b-1-gray-200
 	rounded-full
 	checked:fill-white
-	relative
-	focus:z-1
-	focus:outline-0
 	_bg-img-radio
 	flex-none
 
@@ -512,6 +524,7 @@ const LIBRARY_U1_SRC = `t1
 .radio-action {
 	checked:bg-c-action-500
 	checked:b-c-action-500
+	focus:outline-0
 	focus:b-c-action-600
 	focus:shadow-outline-action-500-50
 	active:b-c-action-600
@@ -520,6 +533,7 @@ const LIBRARY_U1_SRC = `t1
 .radio-success {
 	checked:bg-c-success-500
 	checked:b-c-success-500
+	focus:outline-0
 	focus:b-c-success-600
 	focus:shadow-outline-success-500-50
 	active:b-c-success-600
@@ -528,6 +542,7 @@ const LIBRARY_U1_SRC = `t1
 .radio-danger {
 	checked:bg-c-danger-500
 	checked:b-c-danger-500
+	focus:outline-0
 	focus:b-c-danger-600
 	focus:shadow-outline-danger-500-50
 	active:b-c-danger-600
@@ -540,44 +555,6 @@ const LIBRARY_U1_SRC = `t1
 }
 
 
-.focus {
-    _defaultTransition
-    relative
-    b-1
-    b-solid
-}
-.focus-action {
-    outline-0-none-transparent
-	b-c-action-600
-	shadow-outline-action-500-50
-}
-.focus-success {
-    outline-0-none-transparent
-	b-c-success-600
-	shadow-outline-success-500-50
-}
-.focus-danger {
-    outline-0-none-transparent
-	b-c-danger-600
-	shadow-outline-danger-500-50
-}
-.focus-blue {
-    outline-0-none-transparent
-	b-c-blue-600
-	shadow-outline-blue-500-50
-}
-.focus-red {
-    outline-0-none-transparent
-	b-c-red-600
-	shadow-outline-red-500-50
-}
-.focus-green {
-    outline-0-none-transparent
-	b-c-green-600
-	shadow-outline-green-500-50
-}
-
-
 .textarea {
 	appearance-none
 	b-1-gray-200
@@ -585,9 +562,10 @@ const LIBRARY_U1_SRC = `t1
 	color-gray-800
 	line-1.5
 
-	focus
-	focus:focus-action
-	
+	focus:outline-0
+    focus:b-c-action-600
+    focus:shadow-outline-action-500-50
+
 	placeholder:color-gray-300
 	placeholder:italic
 }
@@ -604,7 +582,6 @@ const LIBRARY_U1_SRC = `t1
 	b-1-gray-200
 	rounded-full
 	line-1.5
-	focus
 	thumb:appearance-none
 	thumb:rounded-full
 	thumb:cursor-pointer
@@ -614,16 +591,19 @@ const LIBRARY_U1_SRC = `t1
 }
 .range-action {
 	thumb:bg-c-action-500
+	focus:outline-0
 	focus:bg-c-action-500
 	thumb:focus:bg-c-action-600
 }
 .range-success {
 	thumb:bg-c-success-500
+	focus:outline-0
 	focus:bg-c-success-500
 	thumb:focus:bg-c-success-600
 }
 .range-danger {
 	thumb:bg-c-danger-500
+	focus:outline-0
 	focus:bg-c-danger-500
 	thumb:focus:bg-c-danger-600
 }

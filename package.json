@@ -18,8 +18,8 @@
     "webpack-cli": "^4.5.0"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register './src/**/*_test.ts'",
-    "test-match": "mocha -r ts-node/register",
+    "test": "mocha --timeout 10000 -r ts-node/register './src/**/*_test.ts'",
+    "test-match": "mocha --timeout 10000 -r ts-node/register",
     "build": "npm test && webpack"
   },
   "author": "Tibor Halter",
