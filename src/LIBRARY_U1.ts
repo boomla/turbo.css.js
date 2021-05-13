@@ -615,6 +615,29 @@ const LIBRARY_U1_SRC = `t1
 .range-xl { h-4 thumb:w-24 thumb:h-24 }
 
 
+._focus-base {
+	b-1
+	b-solid
+	outline-0
+	outline-none
+}
+.focus-action {
+	_focus-base
+	b-c-action-600
+	shadow-outline-action-500-50
+}
+.focus-success {
+	_focus-base
+	b-c-success-600
+	shadow-outline-success-500-50
+}
+.focus-danger {
+	_focus-base
+	b-c-danger-600
+	shadow-outline-danger-500-50
+}
+
+
 .font-body {
     font-sans
 }
