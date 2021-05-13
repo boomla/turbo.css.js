@@ -1,5 +1,4 @@
-import { BrowserRewriteRules, RewriteRule } from "../css/BrowserRewriteRules";
-import Declaration from "../css/Declaration";
+import { BrowserRewriteRules } from "../css/BrowserRewriteRules";
 import Config, { ShadowData } from "./Config";
 
 export default class ConfigStatic implements Config {
@@ -54,17 +53,7 @@ export default class ConfigStatic implements Config {
 		return shadowData.shadowTemplate.replace("{opacity}", opacity.toString());
 	}
 	browserRewriteRules(): BrowserRewriteRules {
-		return {
-			propertyPrefixes: {
-				"key": [] as Array<string>,
-			},
-			declarationMap: {
-				"key": {
-					"key": [] as Array<Declaration>,
-				},
-			},
-			rewriteRuleFuncs: [] as Array<RewriteRule>,
-		};
+		return this.commonBrowsers;
 	}
 	resolveLibrary(contextPath: string, libName: string): string | undefined {
 		if (this.resolveLibraryFn === undefined) {

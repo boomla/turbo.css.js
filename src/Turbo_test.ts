@@ -1,5 +1,5 @@
 import Turbo from './Turbo';
-import { NoCompatConfig } from "./CONFIG";
+import { DefaultConfig, NoCompatConfig } from "./CONFIG";
 import { assert } from 'chai';
 
 describe('Turbo', function() {
@@ -173,6 +173,31 @@ describe('Turbo', function() {
 			"</style>";
 
 		assert.equal(expHead, actHead)
+	});
+	it('should generate browser prefixed variants for slider', function() {
+		let namespace = "";
+		let turbo = new Turbo(DefaultConfig, namespace);
+		
+		let actNamespacedClasses = turbo.add("t1 thumb:bg-c-black");
+		
+		let expNamespacedClasses = "t1 thumb:bg-c-black";
+		assert.equal(actNamespacedClasses, expNamespacedClasses);
+
+		let actCss = turbo.css()
+
+		let expCss = "" +
+			".t1.thumb\\:bg-c-black::-moz-range-thumb {\n"+
+			"	background-color: #000000;\n"+
+			"}\n"+
+			".t1.thumb\\:bg-c-black::-webkit-slider-thumb {\n"+
+			"	background-color: #000000;\n"+
+			"}\n"+
+			".t1.thumb\\:bg-c-black::slider-thumb {\n"+
+			"	background-color: #000000;\n"+
+			"}\n"+
+			"";
+
+		assert.equal(expCss, actCss)
 	});
 });
 
