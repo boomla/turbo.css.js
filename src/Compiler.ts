@@ -23,6 +23,8 @@ import StyleSheet from "./css/StyleSheet";
 import { DefaultConfig, NoCompatConfig } from "./CONFIG";
 import T1 from "./T1";
 
+const MAX_STACK_LEVEL = 32;
+
 // Compiler is a functional object holding all compiler data,
 // including libraries. It is copy-on-write.
 export default class Compiler {
@@ -104,7 +106,8 @@ export default class Compiler {
 		}
 
 		let compiler: Compiler = this;
-		[ compiler, sheet ] = compiler.compileAll(compiler.globalNamespace, sheet, utilityClassNames, "");
+		let stackLevel = 0;
+		[ compiler, sheet ] = compiler.compileAll(compiler.globalNamespace, sheet, utilityClassNames, "", stackLevel);
 		
 		return [ compiler, sheet, utilityClassNames ];
 	}
@@ -138,7 +141,7 @@ export default class Compiler {
 		return [ compiler, sheet ];
 	}
 
-	compileAll(ns: Namespace, sheet: StyleSheet, classNames: Array<string>, definedName: string): [newCompiler: Compiler, newSheet: StyleSheet] {
+	compileAll(ns: Namespace, sheet: StyleSheet, classNames: Array<string>, definedName: string, stackLevel: number): [newCompiler: Compiler, newSheet: StyleSheet] {
 		let compiler: Compiler;
 		compiler = this;
 		let oneSheet: StyleSheet;
@@ -148,14 +151,14 @@ export default class Compiler {
 				continue;
 			}
 			
-			[ compiler, oneSheet ] = compiler.compileOne(ns, className, definedName);
+			[ compiler, oneSheet ] = compiler.compileOne(ns, className, definedName, stackLevel);
 			sheet = sheet.libMergeStyleSheet(oneSheet);
 		}
 
 		return [ compiler, sheet ];
 	}
 
-	compileOne(ns: Namespace, className: string, definedName: string): [newCompiler: Compiler, newSheet: StyleSheet] {
+	compileOne(ns: Namespace, className: string, definedName: string, stackLevel: number): [newCompiler: Compiler, newSheet: StyleSheet] {
 		let [ selectorExpression, utilityFn ] = separateSelectorsAndUtilityFunction(className);
 
 		if (utilityFn.startsWith("mode-") || (utilityFn === "t1-start") || (utilityFn === "t1-all")) {
@@ -168,7 +171,7 @@ export default class Compiler {
 		if (isLibClass) {
 			[ compiler, sheet ] = this.libraryClassNameToSheet(ns, libName, libUtilityFn, className, definedName);
 		} else {
-			[ compiler, sheet ] = this.utilityClassNameToSheet(ns, utilityFn, className, definedName);
+			[ compiler, sheet ] = this.utilityClassNameToSheet(ns, utilityFn, className, definedName, stackLevel);
 		}
 
 		let selectorObjects = parseSelectorExpression(selectorExpression);
@@ -179,7 +182,7 @@ export default class Compiler {
 		return [ compiler, sheet ];
 	}
 
-	utilityClassNameToSheet(ns: Namespace, utilityFn: string, className: string, definedName: string): [ newCompiler: Compiler, newSheet: StyleSheet ] {
+	utilityClassNameToSheet(ns: Namespace, utilityFn: string, className: string, definedName: string, stackLevel: number): [ newCompiler: Compiler, newSheet: StyleSheet ] {
 		let userDefinedUtil = ns.names[utilityFn];
 		if (userDefinedUtil) {
 			let name = className;
@@ -205,7 +208,11 @@ export default class Compiler {
 					throw new Error("unexpected #PI7oDxIhcuo0fnG26wfKjb1wudjnxTPd");
 				}
 
-				let [ newCompiler, sheet ] = this.compileAll(ns, new StyleSheet(), userDefinedUtil.utils, name);
+				if (MAX_STACK_LEVEL <= stackLevel) {
+					throw new Error("stack overflow ["+MAX_STACK_LEVEL+"]");
+				}
+
+				let [ newCompiler, sheet ] = this.compileAll(ns, new StyleSheet(), userDefinedUtil.utils, name, stackLevel + 1);
 
 				// Update order to represent a higher level utility function
 				let order = sheet.getMaxOrder();
@@ -268,7 +275,8 @@ export default class Compiler {
 		}
 
 		let sheet: StyleSheet;
-		[ compiler, sheet ] = compiler.compileAll(libNs, new StyleSheet([]), userDefinedUtil.utils, name);
+		let stackLevel = 0;
+		[ compiler, sheet ] = compiler.compileAll(libNs, new StyleSheet([]), userDefinedUtil.utils, name, stackLevel);
 
 		// Update order to represent a higher level utility function
 		let order = sheet.getMaxOrder();
