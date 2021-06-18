@@ -52,5 +52,5 @@ Errors are thrown, it is up to the callee to catch and handle them.
 
 # LICENSE
 
-TODO: add license
+See the LICENSE file.
 
