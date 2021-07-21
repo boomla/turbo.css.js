@@ -32,8 +32,8 @@ import {
 	SelectorTag,
 	SelectorMode,
 	SelectorChild,
-	SelectorNextSibling,
 	SelectorAfterSibling,
+	SelectorNextSibling,
 	SelectorSelf,
 	SelectorDescendant
 } from "./Selector";
@@ -170,11 +170,11 @@ export default function parseSelectorExpression(selectorExpression: string): Arr
 				break;
 			}
 			case '~': {
-				selector = new SelectorNextSibling();
+				selector = new SelectorAfterSibling();
 				break;
 			}
 			case '+': {
-				selector = new SelectorAfterSibling();
+				selector = new SelectorNextSibling();
 				break;
 			}
 			case '@': {

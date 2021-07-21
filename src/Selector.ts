@@ -16,7 +16,7 @@ export class SelectorChild implements Selector {
 	}
 }
 
-export class SelectorNextSibling implements Selector {
+export class SelectorAfterSibling implements Selector {
 	applyTo(sheet: StyleSheet): StyleSheet {
 		return sheet.addCombinator("~");
 	}
@@ -25,7 +25,7 @@ export class SelectorNextSibling implements Selector {
 	}
 }
 
-export class SelectorAfterSibling implements Selector {
+export class SelectorNextSibling implements Selector {
 	applyTo(sheet: StyleSheet): StyleSheet {
 		return sheet.addCombinator("+");
 	}
