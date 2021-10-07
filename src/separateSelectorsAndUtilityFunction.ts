@@ -1,7 +1,6 @@
 
 export default function separateSelectorsAndUtilityFunction(className: string): [selectors: string, utilityFn: string] {
 	let pos = Math.max(
-		className.lastIndexOf(">"),
 		className.lastIndexOf("+"),
 		className.lastIndexOf("~"),
 		className.lastIndexOf(":"),
