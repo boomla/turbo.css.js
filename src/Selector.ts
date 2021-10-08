@@ -12,7 +12,7 @@ export class SelectorChild implements Selector {
 		return sheet.addCombinator(">");
 	}
 	toString(): string {
-		return ">";
+		return "/";
 	}
 }
 
