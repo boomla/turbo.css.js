@@ -17,13 +17,13 @@ export default class ValuePercentage {
 		return new ValuePercentage(this.value * (-1));
 	}
 	toClassName(defaultUnit?: UnitName): string {
-        if (this.value === 0) {
-            return "0";
-        }
-        if (defaultUnit === "%") {
-            return this.value.toString();
-        }
-        return this.value.toString() + "%";
-    }
+		if (this.value === 0) {
+			return "0";
+		}
+		if (defaultUnit === "%") {
+			return this.value.toString();
+		}
+		return this.value.toString() + "%";
+	}
 }
 

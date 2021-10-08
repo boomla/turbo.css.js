@@ -29,21 +29,21 @@ describe('ValueLength', function() {
 			new ValueLength(0, "px"),
 		);
 	});
-    it('.toClassName()', function () {
-        let ok = function (value: ValueLength, exp: string) {
-            okDefault(value, undefined, exp);
-        };
-        let okDefault = function (value: ValueLength, def: UnitName | undefined, exp: string) {
-            let act = value.toClassName(def);
-            assert.equal(act, exp);
-        };
-        ok(new ValueLength(0, "px"), "0");
-        ok(new ValueLength(13, "px"), "13px");
-        ok(new ValueLength(1.23, "px"), "1.23px");
-        ok(new ValueLength(-1.23, "px"), "-1.23px");
-        okDefault(new ValueLength(1, "px"), "px", "1");
-        okDefault(new ValueLength(1, "px"), "em", "1px");
-        okDefault(new ValueLength(1, "px"), "%", "1px");
-    });
+	it('.toClassName()', function () {
+		let ok = function (value: ValueLength, exp: string) {
+			okDefault(value, undefined, exp);
+		};
+		let okDefault = function (value: ValueLength, def: UnitName | undefined, exp: string) {
+			let act = value.toClassName(def);
+			assert.equal(act, exp);
+		};
+		ok(new ValueLength(0, "px"), "0");
+		ok(new ValueLength(13, "px"), "13px");
+		ok(new ValueLength(1.23, "px"), "1.23px");
+		ok(new ValueLength(-1.23, "px"), "-1.23px");
+		okDefault(new ValueLength(1, "px"), "px", "1");
+		okDefault(new ValueLength(1, "px"), "em", "1px");
+		okDefault(new ValueLength(1, "px"), "%", "1px");
+	});
 });
 

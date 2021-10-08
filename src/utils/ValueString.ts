@@ -12,8 +12,8 @@ export default class ValueString {
 	negate(): undefined {
 		return undefined;
 	}
-    toClassName(): string {
-        return this.val;
-    }
+	toClassName(): string {
+		return this.val;
+	}
 }
 

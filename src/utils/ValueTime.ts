@@ -22,14 +22,14 @@ export default class ValueTime {
 			this.unitName,
 		);
 	}
-    toClassName(defaultUnit?: UnitName): string {
-        if (this.value === 0) {
-            return "0";
-        }
-        if (defaultUnit === this.unitName) {
-            return this.value.toString();
-        }
-        return this.value.toString() + this.unitName;
-    }
+	toClassName(defaultUnit?: UnitName): string {
+		if (this.value === 0) {
+			return "0";
+		}
+		if (defaultUnit === this.unitName) {
+			return this.value.toString();
+		}
+		return this.value.toString() + this.unitName;
+	}
 }
 

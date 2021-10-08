@@ -317,7 +317,7 @@ export default class Compiler {
 					continue;
 				}
 
-                const argsCSS = args.map((val) => val.toCSS(this.config));
+				const argsCSS = args.map((val) => val.toCSS(this.config));
 
 				// Call on success
 				let block = util.fn({
