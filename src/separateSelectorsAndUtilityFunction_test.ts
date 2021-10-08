@@ -13,15 +13,14 @@ describe('separateSelectorsAndUtilityFunction()', function() {
 		ok("foo-1", "", "foo-1");
 		
 		ok("hover:foo", "hover:", "foo");
-		ok(">foo", ">", "foo");
 		ok("+foo", "+", "foo");
 		ok("~foo", "~", "foo");
 		ok("/foo", "/", "foo");
 		ok("@foo", "@", "foo");
 
-		ok("hover:@>>>++~~//foo", "hover:@>>>++~~//", "foo");
-		ok("@>>>++~~//hover:foo", "@>>>++~~//hover:", "foo");
-		ok("hover:>active:>enabled:>foo", "hover:>active:>enabled:>", "foo");
+		ok("hover:@///++~~//foo", "hover:@///++~~//", "foo");
+		ok("@///++~~//hover:foo", "@///++~~//hover:", "foo");
+		ok("hover:/active:/enabled:/foo", "hover:/active:/enabled:/", "foo");
 
 		let fail = function(className: string, expErr: string) {
 			try {
