@@ -317,10 +317,12 @@ export default class Compiler {
 					continue;
 				}
 
+                const argsCSS = args.map((val) => val.toCSS(this.config));
+
 				// Call on success
 				let block = util.fn({
 					className: className,
-					args: args,
+					args: argsCSS,
 				})
 				return [ block, util.order ];
 			}

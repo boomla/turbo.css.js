@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -17,7 +16,7 @@ export default function registerTransitionUtils(utils: Utilities) {
 	)
 	utils.fn1("transition",
 		new types.TypeTransitionProperty(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("transition-property", arg.toString()),
 				new Declaration("transition-timing-function", "cubic-bezier(0.4, 0, 0.2, 1)"),
@@ -37,7 +36,7 @@ export default function registerTransitionUtils(utils: Utilities) {
 	)
 	utils.fn1("transition-prop",
 		new types.TypeTransitionProperty(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("transition-property", arg.toString()),
 			]);
@@ -45,14 +44,14 @@ export default function registerTransitionUtils(utils: Utilities) {
 	)
 
 	utils.fn1("delay", new types.TypeTime(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("transition-delay", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("duration", new types.TypeTime(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("transition-duration", arg.toString()),
 			]);

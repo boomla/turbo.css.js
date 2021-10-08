@@ -2,9 +2,9 @@ import ValueInt32 from './ValueInt32';
 import { assert } from 'chai';
 
 describe('ValueInt32', function() {
-	it('.toString()', function() {
+	it('.toCSS()', function() {
 		let ok = function(value: ValueInt32, exp: string) {
-			let act = value.toString();
+			let act = value.toCSS();
 			assert.equal(exp, act);
 		}
 		ok(new ValueInt32(0), "0");
@@ -15,7 +15,7 @@ describe('ValueInt32', function() {
 	it('.negate()', function() {
 		let ok = function(orig: ValueInt32, exp: ValueInt32) {
 			let act = orig.negate();
-			if (exp.val !== act.val) {
+			if (exp.value !== act.value) {
 				throw new Error("orig["+orig+"] exp["+exp+"] act["+act+"]");
 			}
 		}

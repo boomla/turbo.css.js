@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -15,7 +14,7 @@ export default function registerSizingUtils(utils: Utilities) {
 				"auto": "auto",
 			}),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("width", arg.toString()),
 			]);
@@ -31,7 +30,7 @@ export default function registerSizingUtils(utils: Utilities) {
 				"auto": "auto",
 			}),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("min-width", arg.toString()),
 			]);
@@ -47,7 +46,7 @@ export default function registerSizingUtils(utils: Utilities) {
 				"none": "none",
 			}),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("max-width", arg.toString()),
 			]);
@@ -64,7 +63,7 @@ export default function registerSizingUtils(utils: Utilities) {
 				"auto": "auto",
 			}),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("height", arg.toString()),
 			]);
@@ -80,7 +79,7 @@ export default function registerSizingUtils(utils: Utilities) {
 				"auto": "auto",
 			}),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("min-height", arg.toString()),
 			]);
@@ -96,7 +95,7 @@ export default function registerSizingUtils(utils: Utilities) {
 				"none": "none",
 			}),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("max-height", arg.toString()),
 			]);

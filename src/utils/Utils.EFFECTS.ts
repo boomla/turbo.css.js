@@ -1,19 +1,18 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
 
 export default function registerEffectUtils(utils: Utilities) {
 	utils.fn1("shadow", new types.TypeShadow(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("box-shadow", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("shadow-outline", new types.TypeColor(),
-		function(color: Value): Block {
+		function(color: string): Block {
 			return new Block([
 				new Declaration("box-shadow", "0 0 0 3px " + color.toString()),
 			]);
@@ -22,7 +21,7 @@ export default function registerEffectUtils(utils: Utilities) {
 	utils.fn2("shadow",
 		new types.TypeShadow(),
 		new types.TypeKeyword("inset"),
-		function(arg: Value, _inset: Value): Block {
+		function(arg: string, _inset: string): Block {
 			return new Block([
 				new Declaration("box-shadow", arg.toString() + " inset"),
 			]);
@@ -32,7 +31,7 @@ export default function registerEffectUtils(utils: Utilities) {
 	utils.registerKeyword("shadow-none", new Declaration("box-shadow", "0 0 #0000"))
 
 	utils.fn1("opacity", new types.TypeFloat32(0, 100, 0.01),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("opacity", arg.toString()),
 			]);

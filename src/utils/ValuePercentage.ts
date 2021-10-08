@@ -1,19 +1,29 @@
+import { UnitName } from "./UnitName";
 
 export default class ValuePercentage {
-	readonly val: number;
+	readonly value: number;
 
 	constructor(val: number) {
-		this.val = val;
+		this.value = val;
 	}
 
-	toString(): string {
-		if (this.val === 0) {
+	toCSS(): string {
+		if (this.value === 0) {
 			return "0";
 		}
-		return this.val.toString() + "%";
+		return this.value.toString() + "%";
 	}
 	negate(): ValuePercentage {
-		return new ValuePercentage(this.val * (-1));
+		return new ValuePercentage(this.value * (-1));
 	}
+	toClassName(defaultUnit?: UnitName): string {
+        if (this.value === 0) {
+            return "0";
+        }
+        if (defaultUnit === "%") {
+            return this.value.toString();
+        }
+        return this.value.toString() + "%";
+    }
 }
 

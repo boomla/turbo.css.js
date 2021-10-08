@@ -1,10 +1,11 @@
 import ValuePercentage from './ValuePercentage';
 import { assert } from 'chai';
+import { UnitName } from './UnitName';
 
 describe('ValuePercentage', function() {
-	it('.toString()', function() {
+	it('.toCSS()', function() {
 		let ok = function(value: ValuePercentage, exp: string) {
-			let act = value.toString();
+			let act = value.toCSS();
 			assert.equal(exp, act);
 		}
 		ok(new ValuePercentage(0), "0");
@@ -15,7 +16,7 @@ describe('ValuePercentage', function() {
 	it('.negate()', function() {
 		let ok = function(orig: ValuePercentage, exp: ValuePercentage) {
 			let act = orig.negate();
-			if (exp.toString() !== act.toString()) {
+			if (exp.toCSS() !== act.toCSS()) {
 				throw new Error("orig["+orig+"] exp["+exp+"] act["+act+"]");
 			}
 		}
@@ -32,5 +33,20 @@ describe('ValuePercentage', function() {
 			new ValuePercentage(0),
 		)
 	});
+    it('.toClassName()', function () {
+        let ok = function (value: ValuePercentage, exp: string) {
+            okDefault(value, undefined, exp);
+        };
+        let okDefault = function (value: ValuePercentage, def: UnitName | undefined, exp: string) {
+            let act = value.toClassName(def);
+            assert.equal(act, exp);
+        };
+        ok(new ValuePercentage(0), "0");
+        ok(new ValuePercentage(13), "13%");
+        ok(new ValuePercentage(1.23), "1.23%");
+        ok(new ValuePercentage(-1.23), "-1.23%");
+        okDefault(new ValuePercentage(1), "%", "1");
+        okDefault(new ValuePercentage(1), "px", "1%");
+    });
 });
 

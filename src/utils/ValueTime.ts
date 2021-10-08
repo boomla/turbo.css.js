@@ -1,3 +1,4 @@
+import { UnitName } from './UnitName';
 import { UnitTime } from './UnitTime';
 
 export default class ValueTime {
@@ -9,7 +10,7 @@ export default class ValueTime {
 		this.unitName = unitName;
 	}
 
-	toString(): string {
+	toCSS(): string {
 		if (this.value === 0) {
 			return "0";
 		}
@@ -21,5 +22,14 @@ export default class ValueTime {
 			this.unitName,
 		);
 	}
+    toClassName(defaultUnit?: UnitName): string {
+        if (this.value === 0) {
+            return "0";
+        }
+        if (defaultUnit === this.unitName) {
+            return this.value.toString();
+        }
+        return this.value.toString() + this.unitName;
+    }
 }
 

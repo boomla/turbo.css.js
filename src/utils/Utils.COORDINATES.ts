@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -10,7 +9,7 @@ export default function registerCoordinateUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("top", arg.toString()),
 			]);
@@ -21,7 +20,7 @@ export default function registerCoordinateUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("right", arg.toString()),
 			]);
@@ -32,7 +31,7 @@ export default function registerCoordinateUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("bottom", arg.toString()),
 			]);
@@ -43,7 +42,7 @@ export default function registerCoordinateUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("left", arg.toString()),
 			]);
@@ -54,7 +53,7 @@ export default function registerCoordinateUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			let value = arg.toString();
 			return new Block([
 				new Declaration("top", value),

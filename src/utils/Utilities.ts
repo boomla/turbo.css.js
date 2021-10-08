@@ -1,7 +1,6 @@
 import Signature from "./Signature";
 import Call from "./Call";
 import Type from "./Type";
-import Value from "./Value";
 import Block from "../css/Block";
 import Order from "../css/Order";
 import Declaration from "../css/Declaration";
@@ -91,7 +90,7 @@ export default class Utilities {
 	}
 
 	
-	fn1(name: string, typ: Type, fn: (value: Value) => Block) {
+	fn1(name: string, typ: Type, fn: (value: string) => Block) {
 		this.registerUtil(name,
 			new Signature(typ),
 			function(call: Call): Block {
@@ -100,7 +99,7 @@ export default class Utilities {
 		);
 	}
 
-	fn2(name: string, typ1: Type, typ2: Type, fn: (value1: Value, value2: Value) => Block) {
+	fn2(name: string, typ1: Type, typ2: Type, fn: (value1: string, value2: string) => Block) {
 		this.registerUtil(name,
 			new Signature(
 				typ1,
@@ -112,7 +111,7 @@ export default class Utilities {
 		);
 	}
 
-	fn3(name: string, typ1: Type, typ2: Type, typ3: Type, fn: (value1: Value, value2: Value, value3: Value) => Block) {
+	fn3(name: string, typ1: Type, typ2: Type, typ3: Type, fn: (value1: string, value2: string, value3: string) => Block) {
 		this.registerUtil(name,
 			new Signature(
 				typ1,

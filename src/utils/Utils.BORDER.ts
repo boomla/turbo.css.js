@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -7,14 +6,14 @@ import Declaration from "../css/Declaration";
 export default function registerBorderUtils(utils: Utilities) {
 	// Border width
 	utils.fn1("b", new types.TypeLength(1, "px"),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-width", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("bx", new types.TypeLength(1, "px"),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-left-width", arg.toString()),
 				new Declaration("border-right-width", arg.toString()),
@@ -22,7 +21,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		},
 	)
 	utils.fn1("by", new types.TypeLength(1, "px"),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-width", arg.toString()),
 				new Declaration("border-bottom-width", arg.toString()),
@@ -30,28 +29,28 @@ export default function registerBorderUtils(utils: Utilities) {
 		},
 	)
 	utils.fn1("bt", new types.TypeLength(1, "px"),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-width", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("br", new types.TypeLength(1, "px"),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-right-width", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("bb", new types.TypeLength(1, "px"),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-bottom-width", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("bl", new types.TypeLength(1, "px"),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-left-width", arg.toString()),
 			]);
@@ -62,14 +61,14 @@ export default function registerBorderUtils(utils: Utilities) {
 
 	// Border color
 	utils.fn1("b-c", new types.TypeColor(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-color", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("bx-c", new types.TypeColor(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-left-color", arg.toString()),
 				new Declaration("border-right-color", arg.toString()),
@@ -77,7 +76,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		},
 	)
 	utils.fn1("by-c", new types.TypeColor(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-color", arg.toString()),
 				new Declaration("border-bottom-color", arg.toString()),
@@ -85,28 +84,28 @@ export default function registerBorderUtils(utils: Utilities) {
 		},
 	)
 	utils.fn1("bt-c", new types.TypeColor(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-color", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("br-c", new types.TypeColor(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-right-color", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("bb-c", new types.TypeColor(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-bottom-color", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("bl-c", new types.TypeColor(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-left-color", arg.toString()),
 			]);
@@ -124,7 +123,7 @@ export default function registerBorderUtils(utils: Utilities) {
 	});
 	utils.fn1("b",
 		borderStyle,
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-style", arg.toString()),
 			]);
@@ -132,7 +131,7 @@ export default function registerBorderUtils(utils: Utilities) {
 	)
 	utils.fn1("bx",
 		borderStyle,
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-left-style", arg.toString()),
 				new Declaration("border-right-style", arg.toString()),
@@ -141,7 +140,7 @@ export default function registerBorderUtils(utils: Utilities) {
 	)
 	utils.fn1("by",
 		borderStyle,
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-style", arg.toString()),
 				new Declaration("border-bottom-style", arg.toString()),
@@ -150,7 +149,7 @@ export default function registerBorderUtils(utils: Utilities) {
 	)
 	utils.fn1("bt",
 		borderStyle,
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-style", arg.toString()),
 			]);
@@ -158,7 +157,7 @@ export default function registerBorderUtils(utils: Utilities) {
 	)
 	utils.fn1("br",
 		borderStyle,
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-right-style", arg.toString()),
 			]);
@@ -166,7 +165,7 @@ export default function registerBorderUtils(utils: Utilities) {
 	)
 	utils.fn1("bb",
 		borderStyle,
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-bottom-style", arg.toString()),
 			]);
@@ -174,7 +173,7 @@ export default function registerBorderUtils(utils: Utilities) {
 	)
 	utils.fn1("bl",
 		borderStyle,
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-left-style", arg.toString()),
 			]);
@@ -186,7 +185,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		new types.TypeLength(1, "px"),
 		borderStyle,
 		new types.TypeColor(),
-		function(width: Value, style: Value, color: Value): Block {
+		function(width: string, style: string, color: string): Block {
 			return new Block([
 				new Declaration("border", width.toString() + " " + style.toString() + " " + color.toString()),
 			]);
@@ -196,7 +195,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		new types.TypeLength(1, "px"),
 		borderStyle,
 		new types.TypeColor(),
-		function(width: Value, style: Value, color: Value): Block {
+		function(width: string, style: string, color: string): Block {
 			return new Block([
 				new Declaration("border-left", width.toString() + " " + style.toString() + " " + color.toString()),
 				new Declaration("border-right", width.toString() + " " + style.toString() + " " + color.toString()),
@@ -207,7 +206,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		new types.TypeLength(1, "px"),
 		borderStyle,
 		new types.TypeColor(),
-		function(width: Value, style: Value, color: Value): Block {
+		function(width: string, style: string, color: string): Block {
 			return new Block([
 				new Declaration("border-top", width.toString() + " " + style.toString() + " " + color.toString()),
 				new Declaration("border-bottom", width.toString() + " " + style.toString() + " " + color.toString()),
@@ -218,7 +217,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		new types.TypeLength(1, "px"),
 		borderStyle,
 		new types.TypeColor(),
-		function(width: Value, style: Value, color: Value): Block {
+		function(width: string, style: string, color: string): Block {
 			return new Block([
 				new Declaration("border-top", width.toString() + " " + style.toString() + " " + color.toString()),
 			]);
@@ -228,7 +227,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		new types.TypeLength(1, "px"),
 		borderStyle,
 		new types.TypeColor(),
-		function(width: Value, style: Value, color: Value): Block {
+		function(width: string, style: string, color: string): Block {
 			return new Block([
 				new Declaration("border-right", width.toString() + " " + style.toString() + " " + color.toString()),
 			]);
@@ -238,7 +237,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		new types.TypeLength(1, "px"),
 		borderStyle,
 		new types.TypeColor(),
-		function(width: Value, style: Value, color: Value): Block {
+		function(width: string, style: string, color: string): Block {
 			return new Block([
 				new Declaration("border-bottom", width.toString() + " " + style.toString() + " " + color.toString()),
 			]);
@@ -248,7 +247,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		new types.TypeLength(1, "px"),
 		borderStyle,
 		new types.TypeColor(),
-		function(width: Value, style: Value, color: Value): Block {
+		function(width: string, style: string, color: string): Block {
 			return new Block([
 				new Declaration("border-left", width.toString() + " " + style.toString() + " " + color.toString()),
 			]);
@@ -257,14 +256,14 @@ export default function registerBorderUtils(utils: Utilities) {
 
 	// Border: {width} solid {color};
 	utils.fn2("b", new types.TypeLength(1, "px"), new types.TypeColor(),
-		function(width: Value, color: Value): Block {
+		function(width: string, color: string): Block {
 			return new Block([
 				new Declaration("border", width.toString() + " solid " + color.toString()),
 			]);
 		},
 	)
 	utils.fn2("bx", new types.TypeLength(1, "px"), new types.TypeColor(),
-		function(width: Value, color: Value): Block {
+		function(width: string, color: string): Block {
 			return new Block([
 				new Declaration("border-left", width.toString() + " solid " + color.toString()),
 				new Declaration("border-right", width.toString() + " solid " + color.toString()),
@@ -272,7 +271,7 @@ export default function registerBorderUtils(utils: Utilities) {
 		},
 	)
 	utils.fn2("by", new types.TypeLength(1, "px"), new types.TypeColor(),
-		function(width: Value, color: Value): Block {
+		function(width: string, color: string): Block {
 			return new Block([
 				new Declaration("border-top", width.toString() + " solid " + color.toString()),
 				new Declaration("border-bottom", width.toString() + " solid " + color.toString()),
@@ -280,28 +279,28 @@ export default function registerBorderUtils(utils: Utilities) {
 		},
 	)
 	utils.fn2("bt", new types.TypeLength(1, "px"), new types.TypeColor(),
-		function(width: Value, color: Value): Block {
+		function(width: string, color: string): Block {
 			return new Block([
 				new Declaration("border-top", width.toString() + " solid " + color.toString()),
 			]);
 		},
 	)
 	utils.fn2("br", new types.TypeLength(1, "px"), new types.TypeColor(),
-		function(width: Value, color: Value): Block {
+		function(width: string, color: string): Block {
 			return new Block([
 				new Declaration("border-right", width.toString() + " solid " + color.toString()),
 			]);
 		},
 	)
 	utils.fn2("bb", new types.TypeLength(1, "px"), new types.TypeColor(),
-		function(width: Value, color: Value): Block {
+		function(width: string, color: string): Block {
 			return new Block([
 				new Declaration("border-bottom", width.toString() + " solid " + color.toString()),
 			]);
 		},
 	)
 	utils.fn2("bl", new types.TypeLength(1, "px"), new types.TypeColor(),
-		function(width: Value, color: Value): Block {
+		function(width: string, color: string): Block {
 			return new Block([
 				new Declaration("border-left", width.toString() + " solid " + color.toString()),
 			]);
@@ -314,7 +313,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-radius", arg.toString()),
 			]);
@@ -325,7 +324,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-left-radius", arg.toString()),
 				new Declaration("border-top-right-radius", arg.toString()),
@@ -337,7 +336,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-right-radius", arg.toString()),
 				new Declaration("border-bottom-right-radius", arg.toString()),
@@ -349,7 +348,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-bottom-left-radius", arg.toString()),
 				new Declaration("border-bottom-right-radius", arg.toString()),
@@ -361,7 +360,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-left-radius", arg.toString()),
 				new Declaration("border-bottom-left-radius", arg.toString()),
@@ -373,7 +372,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-right-radius", arg.toString()),
 			]);
@@ -384,7 +383,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-bottom-right-radius", arg.toString()),
 			]);
@@ -395,7 +394,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-bottom-left-radius", arg.toString()),
 			]);
@@ -406,7 +405,7 @@ export default function registerBorderUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeywordValue("full", "9999px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-top-left-radius", arg.toString()),
 			]);

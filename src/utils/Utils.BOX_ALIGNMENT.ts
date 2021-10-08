@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -14,7 +13,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"around": "space-around",
 			"evenly": "space-evenly",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("align-content", arg.toString()),
 			]);
@@ -28,7 +27,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"baseline": "baseline",
 			"stretch": "stretch",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("align-items", arg.toString()),
 			]);
@@ -42,7 +41,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"end": "flex-end",
 			"stretch": "stretch",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("align-self", arg.toString()),
 			]);
@@ -57,7 +56,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"around": "space-around",
 			"evenly": "space-evenly",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("justify-content", arg.toString()),
 			]);
@@ -71,7 +70,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"end": "end",
 			"stretch": "stretch",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("justify-items", arg.toString()),
 			]);
@@ -85,7 +84,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"end": "end",
 			"stretch": "stretch",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("justify-self", arg.toString()),
 			]);
@@ -101,7 +100,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"evenly": "space-evenly",
 			"stretch": "stretch",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("place-content", arg.toString()),
 			]);
@@ -115,7 +114,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"end": "end",
 			"stretch": "stretch",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("place-items", arg.toString()),
 			]);
@@ -129,7 +128,7 @@ export default function registerBoxAlignmentUtils(utils: Utilities) {
 			"end": "end",
 			"stretch": "stretch",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("place-self", arg.toString()),
 			]);

@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -10,7 +9,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("margin", arg.toString()),
 			]);
@@ -21,7 +20,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("margin-left", arg.toString()),
 				new Declaration("margin-right", arg.toString()),
@@ -33,7 +32,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("margin-top", arg.toString()),
 				new Declaration("margin-bottom", arg.toString()),
@@ -45,7 +44,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("margin-top", arg.toString()),
 			]);
@@ -56,7 +55,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("margin-right", arg.toString()),
 			]);
@@ -67,7 +66,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("margin-bottom", arg.toString()),
 			]);
@@ -78,7 +77,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("margin-left", arg.toString()),
 			]);
@@ -91,7 +90,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("padding", arg.toString()),
 			]);
@@ -102,7 +101,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("padding-left", arg.toString()),
 				new Declaration("padding-right", arg.toString()),
@@ -114,7 +113,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("padding-top", arg.toString()),
 				new Declaration("padding-bottom", arg.toString()),
@@ -126,7 +125,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("padding-top", arg.toString()),
 			]);
@@ -140,7 +139,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("padding-right", arg.toString()),
 			]);
@@ -151,7 +150,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("padding-bottom", arg.toString()),
 			]);
@@ -162,7 +161,7 @@ export default function registerSpacingUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("padding-left", arg.toString()),
 			]);

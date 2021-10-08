@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -10,7 +9,7 @@ export default function registerInteractivityUtils(utils: Utilities) {
 			"none": "none",
 			"auto": "auto",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("appearance", arg.toString()),
 			]);
@@ -40,7 +39,7 @@ export default function registerInteractivityUtils(utils: Utilities) {
 			"zoom-in": "zoom-in",
 			"zoom-out": "zoom-out",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("cursor", arg.toString()),
 			]);
@@ -51,7 +50,7 @@ export default function registerInteractivityUtils(utils: Utilities) {
 			"none": "none",
 			"auto": "auto",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("pointer-events", arg.toString()),
 			]);
@@ -63,7 +62,7 @@ export default function registerInteractivityUtils(utils: Utilities) {
 			"x": "horizontal",
 			"y": "vertical",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("resize", arg.toString()),
 			]);
@@ -79,7 +78,7 @@ export default function registerInteractivityUtils(utils: Utilities) {
 			"all": "all",
 			"auto": "auto",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("user-select", arg.toString()),
 			]);

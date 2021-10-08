@@ -2,9 +2,9 @@ import ValueFloat32 from './ValueFloat32';
 import { assert } from 'chai';
 
 describe('ValueFloat32', function() {
-	it('.toString()', function() {
+	it('.toCSS()', function() {
 		let ok = function(value: ValueFloat32, exp: string) {
-			let act = value.toString();
+			let act = value.toCSS();
 			assert.equal(exp, act);
 		}
 		ok(new ValueFloat32(0), "0");
@@ -15,7 +15,7 @@ describe('ValueFloat32', function() {
 	it('.negate()', function() {
 		let ok = function(orig: ValueFloat32, exp: ValueFloat32) {
 			let act = orig.negate();
-			if (exp.val !== act.val) {
+			if (exp.value !== act.value) {
 				throw new Error("orig["+orig+"] exp["+exp+"] act["+act+"]");
 			}
 		}

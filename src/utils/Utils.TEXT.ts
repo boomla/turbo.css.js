@@ -1,12 +1,11 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
 
 export default function registerTextUtils(utils: Utilities) {
 	utils.fn1("color", new types.TypeColor(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("color", arg.toString()),
 			]);
@@ -20,7 +19,7 @@ export default function registerTextUtils(utils: Utilities) {
 			"heading": `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
 			"body": `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("font-family", arg.toString()),
 			]);
@@ -29,7 +28,7 @@ export default function registerTextUtils(utils: Utilities) {
 
 	utils.fn1("font",
 		new types.TypeLengthPercentage(1, "px"),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("font-size", arg.toString()),
 			]);
@@ -59,7 +58,7 @@ export default function registerTextUtils(utils: Utilities) {
 			"extrabold":  "800",
 			"black":      "900",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("font-weight", arg.toString()),
 			]);
@@ -67,7 +66,7 @@ export default function registerTextUtils(utils: Utilities) {
 	)
 	utils.fn1("font-weight",
 		new types.TypeInt32(1, 1000),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("font-weight", arg.toString()),
 			]);
@@ -79,7 +78,7 @@ export default function registerTextUtils(utils: Utilities) {
 			new types.TypeLength(0.1, "px"),
 			new types.TypeKeyword("normal"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("letter-spacing", arg.toString()),
 			]);
@@ -90,7 +89,7 @@ export default function registerTextUtils(utils: Utilities) {
 			new types.TypeFloat32(0),
 			types.TypeLengthPercentage.newWithUnit(),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("line-height", arg.toString()),
 			]);
@@ -101,7 +100,7 @@ export default function registerTextUtils(utils: Utilities) {
 			"inside":  "inside",
 			"outside": "outside",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("list-style-position", arg.toString()),
 			]);
@@ -113,7 +112,7 @@ export default function registerTextUtils(utils: Utilities) {
 			"disc": "disc",
 			"decimal": "decimal",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("list-style-type", arg.toString()),
 			]);
@@ -124,7 +123,7 @@ export default function registerTextUtils(utils: Utilities) {
 			new types.TypeInt32(1),
 			new types.TypeLength(1, "px"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("tab-size", arg.toString()),
 			]);
@@ -137,7 +136,7 @@ export default function registerTextUtils(utils: Utilities) {
 			"right": "right",
 			"justify": "justify",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("text-align", arg.toString()),
 			]);
@@ -153,7 +152,7 @@ export default function registerTextUtils(utils: Utilities) {
 			"ellipsis":  "ellipsis",
 			"clip": "clip",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("text-overflow", arg.toString()),
 			]);
@@ -181,7 +180,7 @@ export default function registerTextUtils(utils: Utilities) {
 			"sub": "sub",
 			"super": "super",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("vertical-align", arg.toString()),
 			]);
@@ -196,7 +195,7 @@ export default function registerTextUtils(utils: Utilities) {
 			"pre-line": "pre-line",
 			"pre-wrap": "pre-wrap",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("white-space", arg.toString()),
 			]);

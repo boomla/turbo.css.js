@@ -6,11 +6,14 @@ export default class ValueString {
 		this.val = val;
 	}
 
-	toString(): string {
+	toCSS(): string {
 		return this.val;
 	}
 	negate(): undefined {
 		return undefined;
 	}
+    toClassName(): string {
+        return this.val;
+    }
 }
 

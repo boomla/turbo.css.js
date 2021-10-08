@@ -1,16 +1,19 @@
 
 export default class ValueInt32 {
-	readonly val: number = 0;
+	readonly value: number = 0;
 
 	constructor(val: number) {
-		this.val = val;
+		this.value = val;
 	}
 
-	toString(): string {
-		return this.val.toString();
-	}
-	negate(): ValueInt32 {
-		return new ValueInt32(0 - this.val);
-	}
+    toCSS(): string {
+        return this.value.toString();
+    }
+    negate(): ValueInt32 {
+        return new ValueInt32(0 - this.value);
+    }
+    toClassName(): string {
+        return this.toCSS();
+    }
 }
 

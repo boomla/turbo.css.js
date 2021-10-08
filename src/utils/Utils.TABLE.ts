@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -10,7 +9,7 @@ export default function registerTableUtils(utils: Utilities) {
 			"collapse": "collapse",
 			"separate": "separate",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("border-collapse", arg.toString()),
 			]);
@@ -21,7 +20,7 @@ export default function registerTableUtils(utils: Utilities) {
 			"auto": "auto",
 			"fixed": "fixed",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("table-layout", arg.toString()),
 			]);

@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -18,7 +17,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"both": "both",
 			"none": "none",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("clear", arg.toString()),
 			]);
@@ -50,7 +49,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"right": "right",
 			"none": "none",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("float", arg.toString()),
 			]);
@@ -64,7 +63,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"none": "none",
 			"scale-down": "scale-down",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("object-fit", arg.toString()),
 			]);
@@ -79,7 +78,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"bottom": "bottom",
 			"left": "left",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("object-position", arg.toString()),
 			]);
@@ -96,7 +95,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"center": "center",
 			"right": "right",
 		}),
-		function(y: Value, x: Value): Block {
+		function(y: string, x: string): Block {
 			return new Block([
 				new Declaration("object-position", y.toString() + " " + x.toString()),
 			]);
@@ -113,7 +112,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"center": "center",
 			"bottom": "bottom",
 		}),
-		function(x: Value, y: Value): Block {
+		function(x: string, y: string): Block {
 			return new Block([
 				new Declaration("object-position", x.toString() + " " + y.toString()),
 			]);
@@ -122,7 +121,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 	utils.fn2("object-pos",
 		types.TypeLengthPercentage.newWithUnit(),
 		types.TypeLengthPercentage.newWithUnit(),
-		function(x: Value, y: Value): Block {
+		function(x: string, y: string): Block {
 			return new Block([
 				new Declaration("object-position", x.toString() + " " + y.toString()),
 			]);
@@ -137,7 +136,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"visible": "visible",
 			"scroll":  "scroll",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("overflow", arg.toString()),
 			]);
@@ -150,7 +149,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"visible": "visible",
 			"scroll":  "scroll",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("overflow-x", arg.toString()),
 			]);
@@ -163,7 +162,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			"visible": "visible",
 			"scroll":  "scroll",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("overflow-y", arg.toString()),
 			]);
@@ -184,7 +183,7 @@ export default function registerLayoutUtils(utils: Utilities) {
 			new types.TypeInt32(),
 			new types.TypeKeyword("auto"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("z-index", arg.toString()),
 			]);

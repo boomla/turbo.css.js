@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -13,7 +12,7 @@ export default function registerTransformUtils(utils: Utilities) {
 			new types.TypeKeyword("top"),
 			new types.TypeKeyword("bottom"),
 		),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("transform-origin", arg.toString()),
 			]);
@@ -30,7 +29,7 @@ export default function registerTransformUtils(utils: Utilities) {
 			new types.TypeKeyword("center"),
 			new types.TypeKeyword("right"),
 		),
-		function(y: Value, x: Value): Block {
+		function(y: string, x: string): Block {
 			return new Block([
 				new Declaration("transform-origin", y.toString() + " " + x.toString()),
 			]);
@@ -49,7 +48,7 @@ export default function registerTransformUtils(utils: Utilities) {
 			new types.TypeKeyword("center"),
 			new types.TypeKeyword("bottom"),
 		),
-		function(x: Value, y: Value): Block {
+		function(x: string, y: string): Block {
 			return new Block([
 				new Declaration("transform-origin", x.toString() + " " + y.toString()),
 			]);
@@ -57,7 +56,7 @@ export default function registerTransformUtils(utils: Utilities) {
 	)
 	utils.fn1("transform",
 		new types.TypeTransformFunction(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("transform", arg.toString()),
 			]);

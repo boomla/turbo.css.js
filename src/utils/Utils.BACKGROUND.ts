@@ -1,12 +1,11 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
 import dataUrlEncode from "./dataUrlEncode";
 
 export default function registerBackgroundUtils(utils: Utilities) {
-	utils.fn1("bg-c", new types.TypeColor(), function(arg: Value): Block {
+	utils.fn1("bg-c", new types.TypeColor(), function(arg: string): Block {
 		return new Block([
 			new Declaration("background-color", arg.toString()),
 		]);
@@ -17,7 +16,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 			"local": "local",
 			"scroll": "scroll",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("background-attachment", arg.toString()),
 			]);
@@ -30,7 +29,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 			"content": "content-box",
 			"text": "text",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("background-clip", arg.toString()),
 			]);
@@ -44,7 +43,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 			"bottom": "bottom",
 			"left": "left",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("background-position", arg.toString()),
 			]);
@@ -61,7 +60,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 			"center": "center",
 			"right": "right",
 		}),
-		function(y: Value, x: Value): Block {
+		function(y: string, x: string): Block {
 			return new Block([
 				new Declaration("background-position", y.toString() + " " + x.toString()),
 			]);
@@ -78,7 +77,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 			"center": "center",
 			"bottom": "bottom",
 		}),
-		function(x: Value, y: Value): Block {
+		function(x: string, y: string): Block {
 			return new Block([
 				new Declaration("background-position", x.toString() + " " + y.toString()),
 			]);
@@ -86,7 +85,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 	);
 	utils.fn1("bg-pos-x",
 		types.TypeLengthPercentage.newWithUnit(),
-		function(x: Value): Block {
+		function(x: string): Block {
 			return new Block([
 				new Declaration("background-position-x", x.toString()),
 			]);
@@ -94,7 +93,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 	);
 	utils.fn1("bg-pos-y",
 		types.TypeLengthPercentage.newWithUnit(),
-		function(y: Value): Block {
+		function(y: string): Block {
 			return new Block([
 				new Declaration("background-position-y", y.toString()),
 			]);
@@ -103,7 +102,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 	utils.fn2("bg-pos",
 		types.TypeLengthPercentage.newWithUnit(),
 		types.TypeLengthPercentage.newWithUnit(),
-		function(x: Value, y: Value): Block {
+		function(x: string, y: string): Block {
 			return new Block([
 				new Declaration("background-position", x.toString() + " " + y.toString()),
 			]);
@@ -130,7 +129,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 			new types.TypeLengthPercentage(1, "px"),
 			new types.TypeKeyword("auto"),
 		),
-		function(x: Value, y: Value): Block {
+		function(x: string, y: string): Block {
 			return new Block([
 				new Declaration("background-size", x.toString() + " " + y.toString()),
 			]);
@@ -139,7 +138,7 @@ export default function registerBackgroundUtils(utils: Utilities) {
 	utils.fn2("bg-checker",
 		new types.TypeLengthPercentage(1, "px"),
 		new types.TypeColor(),
-		function(size: Value, color: Value): Block {
+		function(size: string, color: string): Block {
 			let sizeData = size.toString();
 			let colorData = dataUrlEncode(color.toString());
 			return new Block([

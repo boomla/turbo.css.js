@@ -1,5 +1,4 @@
 import Utilities from "./Utilities";
-import Value from "./Value";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";
@@ -11,14 +10,14 @@ export default function registerFlexBoxUtils(utils: Utilities) {
 	utils.registerKeyword("flex-col-reverse", new Declaration("flex-direction", "column-reverse"))
 	
 	utils.fn1("flex-grow", new types.TypeFloat32(0),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("flex-grow", arg.toString()),
 			]);
 		},
 	)
 	utils.fn1("flex-shrink", new types.TypeFloat32(0),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("flex-shrink", arg.toString()),
 			]);
@@ -30,7 +29,7 @@ export default function registerFlexBoxUtils(utils: Utilities) {
 			new types.TypeKeyword("auto"),
 			types.TypeLengthPercentage.newWithUnit(),
 		),
-		function(basis: Value): Block {
+		function(basis: string): Block {
 			return new Block([
 				new Declaration("flex-basis", basis.toString()),
 			]);
@@ -43,21 +42,21 @@ export default function registerFlexBoxUtils(utils: Utilities) {
 			"initial": "0 1 auto",
 			"none": "none",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("flex", arg.toString()),
 			]);
 		},
 	)
 	utils.fn2("flex", new types.TypeFloat32(0), new types.TypeFloat32(0),
-		function(grow: Value, shrink: Value): Block {
+		function(grow: string, shrink: string): Block {
 			return new Block([
 				new Declaration("flex", grow.toString() + " " + shrink.toString() + " 0%"),
 			]);
 		},
 	)
 	utils.fn3("flex", new types.TypeFloat32(0), new types.TypeFloat32(0), types.TypeLengthPercentage.newWithUnit(),
-		function(grow: Value, shrink: Value, basis: Value): Block {
+		function(grow: string, shrink: string, basis: string): Block {
 			let basisStr = basis.toString();
 			if (basisStr === "0") {
 				basisStr = "0%"
@@ -73,7 +72,7 @@ export default function registerFlexBoxUtils(utils: Utilities) {
 			"wrap": "wrap",
 			"nowrap": "nowrap",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("flex-wrap", arg.toString()),
 			]);
@@ -83,7 +82,7 @@ export default function registerFlexBoxUtils(utils: Utilities) {
 	utils.registerKeyword("flex-wrap-reverse", new Declaration("flex-wrap", "wrap-reverse"))
 
 	utils.fn1("order", new types.TypeInt32(),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("order", arg.toString()),
 			]);
@@ -94,7 +93,7 @@ export default function registerFlexBoxUtils(utils: Utilities) {
 			"first": "-9999",
 			"last": "9999",
 		}),
-		function(arg: Value): Block {
+		function(arg: string): Block {
 			return new Block([
 				new Declaration("order", arg.toString()),
 			]);
@@ -122,7 +121,7 @@ export default function registerFlexBoxUtils(utils: Utilities) {
 			"baseline":   "baseline",
 			"stretch":    "stretch",
 		}),
-		function(justifyContent: Value, alignItems: Value): Block {
+		function(justifyContent: string, alignItems: string): Block {
 			return new Block([
 				new Declaration("justify-content", justifyContent.toString()),
 				new Declaration("align-items", alignItems.toString()),
@@ -153,7 +152,7 @@ export default function registerFlexBoxUtils(utils: Utilities) {
 			"around":     "space-around",
 			"evenly":     "space-evenly",
 		}),
-		function(justifyContent: Value, alignItems: Value, alignContent: Value): Block {
+		function(justifyContent: string, alignItems: string, alignContent: string): Block {
 			return new Block([
 				new Declaration("justify-content", justifyContent.toString()),
 				new Declaration("align-items", alignItems.toString()),

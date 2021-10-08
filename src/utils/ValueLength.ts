@@ -9,7 +9,7 @@ export default class ValueLength {
 		this.unitName = unitName;
 	}
 
-	toString(): string {
+	toCSS(): string {
 		if (this.value === 0) {
 			return "0";
 		}
@@ -21,5 +21,14 @@ export default class ValueLength {
 			this.unitName,
 		);
 	}
+    toClassName(defaultUnit?: UnitName): string {
+        if (this.value === 0) {
+            return "0";
+        }
+        if (defaultUnit === this.unitName) {
+            return this.value.toString();
+        }
+        return this.value.toString() + this.unitName;
+    }
 }
 
