@@ -1,5 +1,4 @@
 import TypeColor from './TypeColor';
-import ValueString from './ValueString';
 import ConfigStatic from './ConfigStatic';
 import { assert } from 'chai';
 
@@ -21,12 +20,16 @@ describe('TypeColor', function() {
 
 		let ok = function(colorDef: string, expValue: string) {
 			let strArgs = colorDef.split("-");
-			
-			let act = typ.parse(config, strArgs);
-			
-			let expRemainder = [] as Array<string>;
-			let exp = [ new ValueString(expValue), expRemainder ];
-			assert.deepEqual(exp, act, colorDef);
+
+			let actParsed = typ.parse(config, strArgs);
+			let actValue = actParsed?.[0].toCSS(config);
+
+			assert.equal(actValue, expValue, colorDef);
+
+			let actRemainder = actParsed?.[1];
+			let expRemainder: string[] = [];
+
+			assert.deepEqual(actRemainder, expRemainder, colorDef)
 		}
 		ok(
 			"hex-ABC",
@@ -51,6 +54,10 @@ describe('TypeColor', function() {
 		ok(
 			"rgb-10-20-30-40",
 			"rgba(10, 20, 30, 40%)",
+		)
+		ok(
+			"rgb-10-20-30-40.5",
+			"rgba(10, 20, 30, 40.5%)",
 		)
 		ok(
 			"hsl-90-50-100",
