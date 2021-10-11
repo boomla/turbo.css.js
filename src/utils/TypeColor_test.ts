@@ -27,9 +27,8 @@ describe('TypeColor', function() {
 			assert.equal(actValue, expValue, colorDef);
 
 			let actRemainder = actParsed?.[1];
-			let expRemainder: string[] = [];
 
-			assert.deepEqual(actRemainder, expRemainder, colorDef)
+			assert.isEmpty(actRemainder, colorDef);
 		}
 		ok(
 			"hex-ABC",
