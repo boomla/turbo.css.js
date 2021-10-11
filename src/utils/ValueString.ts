@@ -11,7 +11,7 @@ export default class ValueString {
 		return this.val;
 	}
 	negate(): Value {
-		throw new Error('unsupported method');
+		throw new Error(`string [${this.val}] cannot be negated`);
 	}
 	toClassName(): string {
 		return this.val;
