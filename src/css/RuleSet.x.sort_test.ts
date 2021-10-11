@@ -58,7 +58,7 @@ describe('RuleSet.sort()', function() {
 			"}\n" +
 			"";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 });
 

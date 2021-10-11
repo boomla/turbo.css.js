@@ -5,7 +5,7 @@ describe('ValueInt32', function() {
 	it('.toCSS()', function() {
 		let ok = function(value: ValueInt32, exp: string) {
 			let act = value.toCSS();
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 		ok(new ValueInt32(0), "0");
 		ok(new ValueInt32(13), "13");

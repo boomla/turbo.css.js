@@ -26,7 +26,7 @@ describe('TypeColor', function() {
 			
 			let expRemainder = [] as Array<string>;
 			let exp = [ new ValueString(expValue), expRemainder ];
-			assert.deepEqual(exp, act, colorDef);
+			assert.deepEqual(act, exp, colorDef);
 		}
 		ok(
 			"hex-ABC",

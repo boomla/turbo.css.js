@@ -13,7 +13,7 @@ describe('TypeKeywordValueMap', function() {
 				throw new Error(strArgs.toString());
 			}
 			let exp = [ expValue, expRemainder ];
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 		ok(
 			new TypeKeywordValueMap({

@@ -9,7 +9,7 @@ describe('SelectorList.format()', function() {
 			let indentation = "\t";
 			let newLine = "\n";
 			let act = selectorList.format(namespace, indentation, newLine);
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 
 		ok(

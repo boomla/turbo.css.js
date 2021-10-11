@@ -25,7 +25,7 @@ describe('TypeShadow', function() {
 				throw new Error(msg + " " + strArgs.toString());
 			}
 			let exp = [ expValue, expRemainder ];
-			assert.deepEqual(exp, act, msg);
+			assert.deepEqual(act, exp, msg);
 		};
 		ok("distance 1",
 			[ "1" ],
@@ -81,7 +81,7 @@ describe('TypeShadow', function() {
 			}
 			catch(e) {
 				let actErr = e.toString();
-				assert.equal(expErr, actErr, msg);
+				assert.equal(actErr, expErr, msg);
 			}
 		}
 		fail("unsupported distance 3",

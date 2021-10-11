@@ -22,7 +22,7 @@ describe('eatCssBlock()', function() {
 			"remainder",
 		];
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should parse background-image data url', function() {
 		let code = `
@@ -42,7 +42,7 @@ describe('eatCssBlock()', function() {
 			"remainder",
 		];
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 });
 

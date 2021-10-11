@@ -28,7 +28,7 @@ describe('Rule.format()', function() {
 			"\tprop: value;\n" +
 			"}\n";
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should format multiple selectors and declartions', function() {
 		let selectors = new SelectorList([
@@ -56,7 +56,7 @@ describe('Rule.format()', function() {
 			"\tmargin: 0;\n" +
 			"}\n";
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should namespace', function() {
 		let selectors = new SelectorList([
@@ -80,7 +80,7 @@ describe('Rule.format()', function() {
 			"\tprop: value;\n" +
 			"}\n";
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should support !important', function() {
 		let selectors = new SelectorList([
@@ -104,7 +104,7 @@ describe('Rule.format()', function() {
 			"\tprop: value!important;\n" +
 			"}\n";
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 });
 

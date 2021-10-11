@@ -13,7 +13,7 @@ describe('TypePercentage', function() {
 				throw new Error(msg + strArgs.toString());
 			}
 			let exp = [ expValue, expRemainder ];
-			assert.deepEqual(exp, act, msg);
+			assert.deepEqual(act, exp, msg);
 		};
 		let mismatch = function(msg: string, typ: TypePercentage, strArgs: Array<string>) {
 			let act = typ.parse(config, strArgs);

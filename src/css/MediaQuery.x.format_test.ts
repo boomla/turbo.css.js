@@ -33,7 +33,7 @@ describe('MediaQuery.format()', function() {
 			"\tprop: value;\n" +
 			"}\n";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 	it('format media type PRINT', function() {
 		let mq = new MediaQuery({
@@ -63,7 +63,7 @@ describe('MediaQuery.format()', function() {
 			"\t}\n" +
 			"}\n";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 	it('format media type SCREEN', function() {
 		let mq = new MediaQuery({
@@ -93,7 +93,7 @@ describe('MediaQuery.format()', function() {
 			"\t}\n" +
 			"}\n";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 	it('format with !important', function() {
 		let mq = new MediaQuery({
@@ -120,7 +120,7 @@ describe('MediaQuery.format()', function() {
 			"\tprop: value!important;\n" +
 			"}\n";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 });
 

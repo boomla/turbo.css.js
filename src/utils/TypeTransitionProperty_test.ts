@@ -15,7 +15,7 @@ describe('TypeTransitionProperty', function() {
 			}
 			let expRemainder = [] as Array<string>;
 			let exp = [ expValue, expRemainder ];
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		};
 		let mismatch = function(msg: string, strArgs: Array<string>) {
 			let typ = new TypeTransitionProperty();

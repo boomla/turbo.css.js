@@ -6,7 +6,7 @@ describe('ValueTime', function() {
 	it('.toCSS()', function() {
 		let ok = function(value: ValueTime, exp: string) {
 			let act = value.toCSS();
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 		ok(new ValueTime(0, "ms"), "0");
 		ok(new ValueTime(13, "ms"), "13ms");

@@ -76,7 +76,7 @@ describe('RuleSet.libMergeRuleSet()', function() {
 			),
 		]);
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 });
 

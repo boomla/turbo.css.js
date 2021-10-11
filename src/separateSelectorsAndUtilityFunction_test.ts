@@ -6,7 +6,7 @@ describe('separateSelectorsAndUtilityFunction()', function() {
 		let ok = function(className: string, expSelector: string, expUtilityFn: string) {
 			let act = separateSelectorsAndUtilityFunction(className);
 			let exp = [ expSelector, expUtilityFn ];
-			assert.deepEqual(exp, act, className);
+			assert.deepEqual(act, exp, className);
 		}
 		ok("foo", "", "foo");
 		ok("foo-bar", "", "foo-bar");
@@ -29,7 +29,7 @@ describe('separateSelectorsAndUtilityFunction()', function() {
 			}
 			catch(e) {
 				let actErr = e.toString();
-				assert.equal(expErr, actErr, className);
+				assert.equal(actErr, expErr, className);
 			}
 		}
 		fail("hover:", "Error: missing utility function call in class name [hover:]");

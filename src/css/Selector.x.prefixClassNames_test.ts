@@ -5,7 +5,7 @@ describe('Selector.prefixClassNames()', function() {
 	it('should prefix class names correctly', function() {
 		let ok = function(sel: Selector, ns: string, exp: Selector) {
 			let act = sel.prefixClassNames(ns);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		// No namespace

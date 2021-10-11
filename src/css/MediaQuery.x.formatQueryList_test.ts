@@ -5,7 +5,7 @@ describe('MediaQuery.formatQueryList()', function() {
 	it('format query list', function() {
 		let ok = function(testcase: string, mq: MediaQuery, exp: string) {
 			let act = mq.formatQueryList();
-			assert.equal(exp, act, testcase);
+			assert.equal(act, exp, testcase);
 		};
 		ok( "empty defaults",
 			new MediaQuery({}),
