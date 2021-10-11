@@ -22,8 +22,8 @@ describe('Scale', function () {
 			assert.equal(act, exp);
 		};
 		ok(new Scale(new ValueFloat32(0), new ValueFloat32(0)), "scale-0-0");
-		ok(new Scale(new ValueFloat32(1), new ValueFloat32(1)), "scale-1-1");
-		ok(new Scale(new ValueFloat32(-1), new ValueFloat32(-1)), "scale--1--1");
+		ok(new Scale(new ValueFloat32(1), new ValueFloat32(2)), "scale-1-2");
+		ok(new Scale(new ValueFloat32(-1), new ValueFloat32(-2)), "scale--1--2");
 	});
 });
 describe('Rotate', function () {
@@ -34,6 +34,7 @@ describe('Rotate', function () {
 		};
 		ok(new Rotate(new ValueAngle(0, "deg")), "rotate(0deg)");
 		ok(new Rotate(new ValueAngle(60, "deg")), "rotate(60deg)");
+		ok(new Rotate(new ValueAngle(-60, "deg")), "rotate(-60deg)");
 		ok(new Rotate(new ValueAngle(0.5, "turn")), "rotate(0.5turn)");
 	});
 	it('.toClassName()', function () {
@@ -43,6 +44,7 @@ describe('Rotate', function () {
 		};
 		ok(new Rotate(new ValueAngle(0, "deg")), "rotate-0");
 		ok(new Rotate(new ValueAngle(60, "deg")), "rotate-60");
+		ok(new Rotate(new ValueAngle(-60, "deg")), "rotate--60");
 		ok(new Rotate(new ValueAngle(0.5, "turn")), "rotate-0.5turn");
 	});
 });
@@ -54,14 +56,14 @@ describe('Translate', function () {
 		};
 		ok(new Translate(new ValueLength(0, "px"), new ValueLength(0, "px")), "translate(0, 0)");
 		ok(
-			new Translate(new ValueLength(1, "px"), new ValueLength(1, "px")),
-			"translate(1px, 1px)"
+			new Translate(new ValueLength(1, "px"), new ValueLength(2, "px")),
+			"translate(1px, 2px)"
 		);
 		ok(
-			new Translate(new ValueLength(-1, "px"), new ValueLength(-1, "px")),
-			"translate(-1px, -1px)"
+			new Translate(new ValueLength(-1, "px"), new ValueLength(-2, "px")),
+			"translate(-1px, -2px)"
 		);
-		ok(new Translate(new ValuePercentage(1), new ValuePercentage(1)), "translate(1%, 1%)");
+		ok(new Translate(new ValuePercentage(1), new ValuePercentage(2)), "translate(1%, 2%)");
 		ok(new Translate(new ValueLength(1, "px")), "translate(1px)");
 	});
 	it('.toClassName()', function () {
@@ -70,10 +72,10 @@ describe('Translate', function () {
 			assert.equal(act, exp);
 		};
 		ok(new Translate(new ValueLength(0, "px"), new ValueLength(0, "px")), "translate-0-0");
-		ok(new Translate(new ValueLength(1, "px"), new ValueLength(1, "px")), "translate-1-1");
-		ok(new Translate(new ValueLength(-1, "px"), new ValueLength(-1, "px")), "translate--1--1");
-		ok(new Translate(new ValueLength(1, "vh"), new ValueLength(1, "vh")), "translate-1vh-1vh");
-		ok(new Translate(new ValuePercentage(1), new ValuePercentage(1)), "translate-1%-1%");
+		ok(new Translate(new ValueLength(1, "px"), new ValueLength(2, "px")), "translate-1-2");
+		ok(new Translate(new ValueLength(-1, "px"), new ValueLength(-2, "px")), "translate--1--2");
+		ok(new Translate(new ValueLength(1, "vh"), new ValueLength(2, "vh")), "translate-1vh-2vh");
+		ok(new Translate(new ValuePercentage(1), new ValuePercentage(2)), "translate-1%-2%");
 		ok(new Translate(new ValueLength(1, "px")), "translate-1");
 	});
 });
@@ -84,10 +86,10 @@ describe('Skew', function () {
 			assert.equal(act, exp);
 		};
 		ok(new Skew(new ValueAngle(0, "deg"), new ValueAngle(0, "deg")), "skew(0deg, 0deg)");
-		ok(new Skew(new ValueAngle(60, "deg"), new ValueAngle(60, "deg")), "skew(60deg, 60deg)");
+		ok(new Skew(new ValueAngle(60, "deg"), new ValueAngle(70, "deg")), "skew(60deg, 70deg)");
 		ok(
-			new Skew(new ValueAngle(0.5, "turn"), new ValueAngle(0.5, "turn")),
-			"skew(0.5turn, 0.5turn)"
+			new Skew(new ValueAngle(0.1, "turn"), new ValueAngle(0.5, "turn")),
+			"skew(0.1turn, 0.5turn)"
 		);
 	});
 	it('.toClassName()', function () {
@@ -96,10 +98,11 @@ describe('Skew', function () {
 			assert.equal(act, exp);
 		};
 		ok(new Skew(new ValueAngle(0, "deg"), new ValueAngle(0, "deg")), "skew-0-0");
-		ok(new Skew(new ValueAngle(60, "deg"), new ValueAngle(60, "deg")), "skew-60-60");
+		ok(new Skew(new ValueAngle(60, "deg"), new ValueAngle(70, "deg")), "skew-60-70");
+		ok(new Skew(new ValueAngle(-60, "deg"), new ValueAngle(-70, "deg")), "skew--60--70");
 		ok(
-			new Skew(new ValueAngle(0.5, "turn"), new ValueAngle(0.5, "turn")),
-			"skew-0.5turn-0.5turn"
+			new Skew(new ValueAngle(0.1, "turn"), new ValueAngle(0.5, "turn")),
+			"skew-0.1turn-0.5turn"
 		);
 	});
 });
