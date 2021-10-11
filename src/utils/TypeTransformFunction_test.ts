@@ -49,10 +49,6 @@ describe('TypeTransformFunction', function() {
 			)
 		);
 
-		ok("translate-{length}",
-			[ "translate", "10" ],
-			new ValueTransformFunction(new Translate(new ValueLength(10, "px")))
-		);
 		ok("translate-{x}-{y}",
 			[ "translate", "10", "20" ],
 			new ValueTransformFunction(
@@ -69,15 +65,6 @@ describe('TypeTransformFunction', function() {
 				new Translate(new ValueLength(10, "px"), new ValueLength(20, "px"))
 			)
 		);
-        ok('multiple transform functions, single argument translate at the end',
-            [ 'scale', '50', '200', 'rotate', '90', 'skew', '10', '20', 'translate', '10' ],
-            new ValueTransformFunction(
-                new Scale(new ValueFloat32(50), new ValueFloat32(200)),
-                new Rotate(new ValueAngle(90, 'deg')),
-                new Skew(new ValueAngle(10, 'deg'), new ValueAngle(20, 'deg')),
-                new Translate(new ValueLength(10, 'px'))
-            )
-        );
 
 		mismatch("not a transform function",
 			[ "foo", "bar" ],
@@ -87,9 +74,6 @@ describe('TypeTransformFunction', function() {
 		);
 		mismatch("transform function does not support remainders",
 			[ "scale", "50", "foo" ],
-		);
-		mismatch("single argument translate is not at the end",
-			[ "translate", "10", "scale", "50" ]
 		);
 	});
 });

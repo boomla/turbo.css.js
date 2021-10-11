@@ -153,7 +153,7 @@ export function parseSkew(strArgs: Array<string>): [transformFunc: Skew, remaind
 }
 
 export function parseTranslate(strArgs: Array<string>): [transformFunc: Translate, remainder: Array<string>] | undefined {
-	if (strArgs.length < 2) {
+	if (strArgs.length < 3) {
 		return undefined;
 	}
 	if (strArgs[0] !== "translate") {
@@ -165,12 +165,6 @@ export function parseTranslate(strArgs: Array<string>): [transformFunc: Translat
 		return undefined;
 	}
 	let [ xValue, xUnit ] = resX;
-
-	if (strArgs.length < 3) {
-		const x = xUnit === '%' ? new ValuePercentage(xValue) : new ValueLength(xValue, xUnit);
-		let s = new Translate(x);
-		return [ s, strArgs.slice(2) ];
-	}
 
 	let resY = parseLengthPercentage(strArgs[2], "px");
 	if (resY === undefined) {
