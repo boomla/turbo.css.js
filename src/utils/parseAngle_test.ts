@@ -6,7 +6,7 @@ describe('parseAngle()', function() {
 	it('should parse floats', function() {
 		let ok = function(s: string, defaultUnit: UnitName, expAngleValue: number, expAngleUnit: UnitName) {
 			let act = parseAngle(s, defaultUnit);
-			let exp = [ expAngleValue, expAngleUnit ];
+			let exp: [ angleValue: number, angleUnit: UnitName ] = [ expAngleValue, expAngleUnit ];
 			assert.deepEqual(act, exp, s);
 		}
 		ok("2", "deg", 2, "deg");

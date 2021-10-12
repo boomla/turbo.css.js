@@ -6,7 +6,7 @@ describe('parseLengthPercentage()', function() {
 	it('should parse length or percentage values', function() {
 		let ok = function(s: string, defaultUnit: UnitName, expValue: number, expUnit: UnitName) {
 			let act = parseLengthPercentage(s, defaultUnit);
-			let exp = [ expValue, expUnit ];
+			let exp: [ lengthValue: number, lengthUnit: UnitName ] = [ expValue, expUnit ];
 			assert.deepEqual(act, exp, s);
 		}
 		ok("2", "px", 2, "px");

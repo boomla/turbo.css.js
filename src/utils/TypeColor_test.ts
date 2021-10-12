@@ -25,7 +25,7 @@ describe('TypeColor', function() {
 			let act = typ.parse(config, strArgs);
 			
 			let expRemainder = [] as Array<string>;
-			let exp = [ new ValueString(expValue), expRemainder ];
+			let exp: [ arg: ValueString, remainder: Array<string> ] = [ new ValueString(expValue), expRemainder ];
 			assert.deepEqual(act, exp, colorDef);
 		}
 		ok(
