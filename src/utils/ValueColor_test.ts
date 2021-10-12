@@ -120,6 +120,32 @@ describe('ValueColorPoint', function () {
 	});
 });
 
+describe('clamp', () => {
+	const ok = function(n: number, min: number, max: number, exp: number) {
+		let act = clamp(n, min, max);
+		assert.equal(act, exp);
+	}
+	it('do not clamp when in the interval', () => {
+		ok(5, 0, 10, 5);
+	});
+	it('clamp to min', () => {
+		ok(-1, 0, 10, 0);
+	});
+	it('clamp to max', () => {
+		ok(11, 0, 10, 10);
+	});
+	it('throw error when max is less than min', () => {
+		let actErr: string = "clamp should throw error";
+		let expErr = "Error: min (10) should not be greater than max (0)"
+		try {
+			clamp(5, 10, 0);
+		} catch(e) {
+			actErr = e.toString();
+		}
+		assert.equal(actErr, expErr);
+	});
+});
+
 describe('hex1', () => {
 	const ok = function(n: number, exp: string) {
 		let act = hex1(n);
