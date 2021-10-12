@@ -1,18 +1,29 @@
 import Config from "./Config";
 import Type from "./Type";
-import ValueString from './ValueString';
 import parseAngle from './parseAngle';
 import parseLengthPercentage from './parseLengthPercentage';
+import ValueTransformFunction, {
+	Rotate,
+	Scale,
+	Skew,
+	TransformFunction,
+	Translate,
+} from './ValueTransformFunction';
+import ValueFloat32 from './ValueFloat32';
+import ValueAngle from './ValueAngle';
+import ValueLength from './ValueLength';
+import ValuePercentage from './ValuePercentage';
+import Value from './Value';
 
 export default class TypeTransformFunction implements Type {
 	constructor() {
 		// NOP
 	}
 
-	parse(_config: Config, strArgs: Array<string>): [arg: ValueString, remainder: Array<string>] | undefined {
-		let s = "";
+	parse(_config: Config, strArgs: Array<string>): [arg: Value, remainder: Array<string>] | undefined {
+		let transformFunctions: Array<TransformFunction> = [];
 		let remainder = strArgs;
-		let res: [transformFunc: string, remainder: Array<string>] | undefined;
+		let res: [transformFunc: TransformFunction, remainder: Array<string>] | undefined;
 
 		for (let i=0; i<1000; i++) { // Avoid looping forever in case of a bug
 			if (remainder.length === 0) {
@@ -22,7 +33,7 @@ export default class TypeTransformFunction implements Type {
 			res = parseScale(remainder);
 			if (res !== undefined) {
 				let [ transformFunc, newRemainder ] = res;
-				s += " " + transformFunc;
+				transformFunctions.push(transformFunc);
 				remainder = newRemainder;
 				continue;
 			}
@@ -30,7 +41,7 @@ export default class TypeTransformFunction implements Type {
 			res = parseRotate(remainder);
 			if (res !== undefined) {
 				let [ transformFunc, newRemainder ] = res;
-				s += " " + transformFunc;
+				transformFunctions.push(transformFunc);
 				remainder = newRemainder;
 				continue;
 			}
@@ -38,7 +49,7 @@ export default class TypeTransformFunction implements Type {
 			res = parseTranslate(remainder);
 			if (res !== undefined) {
 				let [ transformFunc, newRemainder ] = res;
-				s += " " + transformFunc;
+				transformFunctions.push(transformFunc);
 				remainder = newRemainder;
 				continue;
 			}
@@ -46,7 +57,7 @@ export default class TypeTransformFunction implements Type {
 			res = parseSkew(remainder);
 			if (res !== undefined) {
 				let [ transformFunc, newRemainder ] = res;
-				s += " " + transformFunc;
+				transformFunctions.push(transformFunc);
 				remainder = newRemainder;
 				continue;
 			}
@@ -54,17 +65,17 @@ export default class TypeTransformFunction implements Type {
 			return undefined;
 		}
 
-		if (s.length === 0) {
+		if (transformFunctions.length === 0) {
 			return undefined;
 		}
 
-		let value = new ValueString(s.substring(1));
+		let value = new ValueTransformFunction(...transformFunctions);
 
 		return [ value, remainder ];
 	}
 }
 
-export function parseScale(strArgs: Array<string>): [transformFunc: string, remainder: Array<string>] | undefined {
+export function parseScale(strArgs: Array<string>): [transformFunc: Scale, remainder: Array<string>] | undefined {
 	if (strArgs.length < 2) {
 		return undefined;
 	}
@@ -76,29 +87,25 @@ export function parseScale(strArgs: Array<string>): [transformFunc: string, rema
 	if (f1.toString() !== strArgs[1]) {
 		return undefined;
 	}
-	// Apply unit
-	f1 = f1 * 0.01;
 
 	if (strArgs.length < 3) {
-		let s = "scale("+f1.toString()+")";
+		let s = new Scale(new ValueFloat32(f1), new ValueFloat32(f1));
 		return [ s, strArgs.slice(2) ];
 	}
 
 	let f2 = parseFloat(strArgs[2]);
 	if (f2.toString() !== strArgs[2]) {
 		// Not a float, maybe another transform function
-		let s = "scale("+f1.toString()+")";
+		let s = new Scale(new ValueFloat32(f1), new ValueFloat32(f1));
 		return [ s, strArgs.slice(2) ];
 	}
-	// Apply unit
-	f2 = f2 * 0.01
 
-	let s = "scale("+f1.toString()+", "+f2.toString()+")";
+	let s = new Scale(new ValueFloat32(f1), new ValueFloat32(f2));
 
 	return [ s, strArgs.slice(3) ];
 }
 
-export function parseRotate(strArgs: Array<string>): [transformFunc: string, remainder: Array<string>] | undefined {
+export function parseRotate(strArgs: Array<string>): [transformFunc: Rotate, remainder: Array<string>] | undefined {
 	if (strArgs.length < 2) {
 		return undefined;
 	}
@@ -112,12 +119,12 @@ export function parseRotate(strArgs: Array<string>): [transformFunc: string, rem
 	}
 	let [ angleValue, angleUnit ] = res;
 
-	let s = "rotate("+angleValue.toString()+angleUnit.toString()+")";
+	let s = new Rotate(new ValueAngle(angleValue, angleUnit));
 	
 	return [ s, strArgs.slice(2) ];
 }
 
-export function parseSkew(strArgs: Array<string>): [transformFunc: string, remainder: Array<string>] | undefined {
+export function parseSkew(strArgs: Array<string>): [transformFunc: Skew, remainder: Array<string>] | undefined {
 	if (strArgs.length < 3) {
 		return undefined;
 	}
@@ -137,13 +144,16 @@ export function parseSkew(strArgs: Array<string>): [transformFunc: string, remai
 	}
 	let [ yAngleValue, yAngleUnit ] = angleY;
 
-	let s = "skew("+xAngleValue.toString()+xAngleUnit.toString()+", "+yAngleValue+yAngleUnit+")";
+	let s = new Skew(
+		new ValueAngle(xAngleValue, xAngleUnit),
+		new ValueAngle(yAngleValue, yAngleUnit)
+	);
 	
 	return [ s, strArgs.slice(3) ];
 }
 
-export function parseTranslate(strArgs: Array<string>): [transformFunc: string, remainder: Array<string>] | undefined {
-	if (strArgs.length < 2) {
+export function parseTranslate(strArgs: Array<string>): [transformFunc: Translate, remainder: Array<string>] | undefined {
+	if (strArgs.length < 3) {
 		return undefined;
 	}
 	if (strArgs[0] !== "translate") {
@@ -156,18 +166,16 @@ export function parseTranslate(strArgs: Array<string>): [transformFunc: string, 
 	}
 	let [ xValue, xUnit ] = resX;
 
-	if (strArgs.length < 3) {
-		let s = "translate("+xValue.toString()+xUnit.toString()+")";
-		return [ s, strArgs.slice(2) ];
-	}
-
 	let resY = parseLengthPercentage(strArgs[2], "px");
 	if (resY === undefined) {
 		return undefined;
 	}
 	let [ yValue, yUnit ] = resY;
 
-	let s = "translate("+xValue.toString()+xUnit.toString()+", "+yValue.toString()+yUnit.toString()+")";
+	const x = xUnit === '%' ? new ValuePercentage(xValue) : new ValueLength(xValue, xUnit);
+	const y = yUnit === '%' ? new ValuePercentage(yValue) : new ValueLength(yValue, yUnit);
+
+	let s = new Translate(x, y);
 
 	return [ s, strArgs.slice(3) ];
 }
