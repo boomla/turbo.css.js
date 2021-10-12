@@ -1,8 +1,8 @@
-import TypeShadow from './TypeShadow';
-import ValueString from './ValueString';
-import ConfigStatic from './ConfigStatic';
+import TypeShadow from "./TypeShadow";
+import ValueShadow from "./ValueShadow";
+import ConfigStatic from "./ConfigStatic";
 import { ShadowData } from "./Config";
-import { assert } from 'chai';
+import { assert } from "chai";
 
 describe('TypeShadow', function() {
 	it('.parse()', function() {
@@ -19,7 +19,7 @@ describe('TypeShadow', function() {
 			},
 		});
 
-		let ok = function(msg: string, strArgs: Array<string>, expValue: ValueString, expRemainder: Array<string>) {
+		let ok = function(msg: string, strArgs: Array<string>, expValue: ValueShadow, expRemainder: Array<string>) {
 			let act = typ.parse(config, strArgs);
 			if (act === undefined) {
 				throw new Error(msg + " " + strArgs.toString());
@@ -29,37 +29,42 @@ describe('TypeShadow', function() {
 		};
 		ok("distance 1",
 			[ "1" ],
-			new ValueString("0 1px 3px -1px rgba(0,0,0,0.2)"),
+			new ValueShadow(1),
 			[],
 		)
 		ok("distance 2",
 			[ "2" ],
-			new ValueString("0 1px 4px -1px rgba(0,0,0,0.15)"),
+			new ValueShadow(2),
 			[],
 		)
 		ok("distance 4",
 			[ "4" ],
-			new ValueString("0 1px 4px -0.5px rgba(0,0,0,0.14)"),
+			new ValueShadow(4),
 			[],
 		)
 		ok("distance 8",
 			[ "8" ],
-			new ValueString("0 3px 8px -2px rgba(0,0,0,0.17)"),
+			new ValueShadow(8),
 			[],
 		)
 		ok("distance 16",
 			[ "16" ],
-			new ValueString("0 6px 15px -4px rgba(0,0,0,0.15)"),
+			new ValueShadow(16),
 			[],
 		)
 		ok("distance 32",
 			[ "32" ],
-			new ValueString("0 10px 24px -7px rgba(0,0,0,0.15)"),
+			new ValueShadow(32),
 			[],
 		)
+		ok("distance 1, darkness 20",
+			["1", "20"],
+			new ValueShadow(1, 20),
+			[],
+		);
 		ok("remainders are returned",
 			[ "4", "foo" ],
-			new ValueString("0 1px 4px -0.5px rgba(0,0,0,0.14)"),
+			new ValueShadow(4),
 			[ "foo" ],
 		)
 
