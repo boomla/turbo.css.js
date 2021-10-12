@@ -18,9 +18,9 @@ export class ValueColorRGB {
 		const a100 = (this.a * 100) / 255;
 		switch (this.mode) {
 			case "rgb":
-				return `rgb(${this.r.toString()}, ${this.g.toString()}, ${this.b.toString()})`;
+				return `rgb(${this.r}, ${this.g}, ${this.b})`;
 			case "rgba": {
-				return `rgba(${this.r.toString()}, ${this.g.toString()}, ${this.b.toString()}, ${a100.toString()}%)`;
+				return `rgba(${this.r}, ${this.g}, ${this.b}, ${a100}%)`;
 			}
 			case "hexRGB":
 				return (
@@ -70,7 +70,7 @@ export class ValueColorRGB {
 			case "rgb":
 				return `rgb-${this.r}-${this.g}-${this.b}`;
 			case "rgba": {
-				return `rgb-${this.r}-${this.g}-${this.b}-${a100.toString()}`;
+				return `rgb-${this.r}-${this.g}-${this.b}-${a100}`;
 			}
 			case "hexRGB":
 				return (
@@ -123,9 +123,9 @@ export class ValueColorHSL {
 	toCSS(): string {
 		switch (this.mode) {
 			case "hsl":
-				return `hsl(${this.h.toString()}deg, ${this.s.toString()}%, ${this.l.toString()}%)`;
+				return `hsl(${this.h}deg, ${this.s}%, ${this.l}%)`;
 			case "hsla":
-				return `hsla(${this.h.toString()}deg, ${this.s.toString()}%, ${this.l.toString()}%, ${this.a.toString()}%)`;
+				return `hsla(${this.h}deg, ${this.s}%, ${this.l}%, ${this.a}%)`;
 		}
 	}
 	negate(): Value {
