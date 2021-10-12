@@ -324,7 +324,7 @@ export class SelectorMode implements Selector {
 		return sheet.suffixFirstSegments("."+this.className);
 	}
 	toString(): string {
-		return "mode-"+this.className+":";
+		return this.className+":";
 	}
 }
 
