@@ -9,10 +9,10 @@ export class ValueColorRGB {
 		public readonly b: number,
 		public readonly a: number
 	) {
-		this.r = r < 0 ? 0 : 255 < r ? 255 : r;
-		this.g = g < 0 ? 0 : 255 < g ? 255 : g;
-		this.b = b < 0 ? 0 : 255 < b ? 255 : b;
-		this.a = a < 0 ? 0 : 255 < a ? 255 : a;
+		this.r = clamp(r, 0, 255);
+		this.g = clamp(g, 0, 255);
+		this.b = clamp(b, 0, 255);
+		this.a = clamp(a, 0, 255);
 	}
 	toCSS(): string {
 		const a100 = (this.a * 100) / 255;
@@ -216,12 +216,7 @@ export type ValueColor =
 	| ValueColorPoint;
 
 function opacityToHex(opacity: number): string | undefined {
-	if (opacity < 0) {
-		opacity = 0;
-	}
-	if (100 < opacity) {
-		opacity = 100;
-	}
+	opacity = clamp(opacity, 0, 100);
 	if (100 === opacity) {
 		return ""; // Do not add opacity to color code
 	}
@@ -234,4 +229,17 @@ function opacityToHex(opacity: number): string | undefined {
 	}
 
 	return opacityHex;
+}
+
+function clamp(x: number, min: number, max: number): number {
+	if (max < min) {
+		throw new Error(`min (${min}) should not be greater than max (${max})`);
+	}
+	if (x < min) {
+		x = min;
+	}
+	if (max < x) {
+		x = max;
+	}
+	return x;
 }
