@@ -5,12 +5,12 @@ import { ShadowData } from "./Config";
 
 const config = new ConfigStatic({
     shadows: {
-        1: new ShadowData("0 1px 3px -1px rgba(0,0,0,{opacity})", 0.2),
-        2: new ShadowData("0 1px 4px -1px rgba(0,0,0,{opacity})", 0.15),
-        4: new ShadowData("0 1px 4px -0.5px rgba(0,0,0,{opacity})", 0.14),
-        8: new ShadowData("0 3px 8px -2px rgba(0,0,0,{opacity})", 0.17),
-        16: new ShadowData("0 6px 15px -4px rgba(0,0,0,{opacity})", 0.15),
-        32: new ShadowData("0 10px 24px -7px rgba(0,0,0,{opacity})", 0.15),
+        1: new ShadowData("1px 0 0 0 rgba(0,0,0,{opacity})", 0.2),
+        2: new ShadowData("2px 0 0 0 rgba(0,0,0,{opacity})", 0.15),
+        4: new ShadowData("4px 0 0 0 rgba(0,0,0,{opacity})", 0.14),
+        8: new ShadowData("8px 0 0 0 rgba(0,0,0,{opacity})", 0.17),
+        16: new ShadowData("16px 0 0 0 rgba(0,0,0,{opacity})", 0.15),
+        32: new ShadowData("32px 0 0 0 rgba(0,0,0,{opacity})", 0.15),
     },
 });
 
@@ -24,18 +24,18 @@ let okToClassName = function (value: ValueShadow, exp: string) {
 };
 describe('ValueShadow', function () {
     it('toCSS, different distances', () => {
-        okToCSS(new ValueShadow(1), "0 1px 3px -1px rgba(0,0,0,0.2)");
-        okToCSS(new ValueShadow(2), "0 1px 4px -1px rgba(0,0,0,0.15)");
-        okToCSS(new ValueShadow(4), "0 1px 4px -0.5px rgba(0,0,0,0.14)");
-        okToCSS(new ValueShadow(8), "0 3px 8px -2px rgba(0,0,0,0.17)");
-        okToCSS(new ValueShadow(16), "0 6px 15px -4px rgba(0,0,0,0.15)");
-        okToCSS(new ValueShadow(32), "0 10px 24px -7px rgba(0,0,0,0.15)");
+        okToCSS(new ValueShadow(1), "1px 0 0 0 rgba(0,0,0,0.2)");
+        okToCSS(new ValueShadow(2), "2px 0 0 0 rgba(0,0,0,0.15)");
+        okToCSS(new ValueShadow(4), "4px 0 0 0 rgba(0,0,0,0.14)");
+        okToCSS(new ValueShadow(8), "8px 0 0 0 rgba(0,0,0,0.17)");
+        okToCSS(new ValueShadow(16), "16px 0 0 0 rgba(0,0,0,0.15)");
+        okToCSS(new ValueShadow(32), "32px 0 0 0 rgba(0,0,0,0.15)");
     });
     it('toCSS, different darknesses', () => {
-        okToCSS(new ValueShadow(1, 0), "0 1px 3px -1px rgba(0,0,0,0)");
-        okToCSS(new ValueShadow(1, 20), "0 1px 3px -1px rgba(0,0,0,0.2)");
-        okToCSS(new ValueShadow(1, 50), "0 1px 3px -1px rgba(0,0,0,0.5)");
-        okToCSS(new ValueShadow(1, 100), "0 1px 3px -1px rgba(0,0,0,1)");
+        okToCSS(new ValueShadow(1, 0), "1px 0 0 0 rgba(0,0,0,0)");
+        okToCSS(new ValueShadow(1, 20), "1px 0 0 0 rgba(0,0,0,0.2)");
+        okToCSS(new ValueShadow(1, 50), "1px 0 0 0 rgba(0,0,0,0.5)");
+        okToCSS(new ValueShadow(1, 100), "1px 0 0 0 rgba(0,0,0,1)");
     });
     it('toClassName', () => {
         okToClassName(new ValueShadow(1), "1");
