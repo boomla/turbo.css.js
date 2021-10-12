@@ -47,12 +47,12 @@ t1 transform-translate--20--30
 
 # EXAMPLE
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-Shift by 20px to the left and by 30px upwards.
+Shift by 50% to the left.
 ==================================================
 t1 transform-translate--50%-0%
 --------------------------------------------------
 .t1.transform-translate--50\%-0\% {
-	transform: translate(-50%, 0%);
+	transform: translate(-50%, 0);
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
