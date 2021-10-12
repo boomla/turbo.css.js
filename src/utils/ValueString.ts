@@ -1,3 +1,4 @@
+import Value from "./Value";
 
 export default class ValueString {
 	readonly val: string = "";
@@ -9,8 +10,8 @@ export default class ValueString {
 	toCSS(): string {
 		return this.val;
 	}
-	negate(): undefined {
-		return undefined;
+	negate(): Value {
+		throw new Error(`string [${this.val}] cannot be negated`);
 	}
 	toClassName(): string {
 		return this.val;

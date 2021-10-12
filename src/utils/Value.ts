@@ -3,7 +3,7 @@ import { UnitName } from "./UnitName";
 
 export default interface Value {
 	toCSS(config?: Config): string;
-	negate(): Value|undefined;
+	negate(): Value;
 	toClassName(defaultUnit?: UnitName): string;
 }
 
