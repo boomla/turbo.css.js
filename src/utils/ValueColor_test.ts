@@ -48,7 +48,7 @@ describe('ValueColorRGB', function () {
 		okToCSS(new ValueColorRGB("rgba", -1, -1, -1, -1), "rgba(0, 0, 0, 0%)");
 		okToCSS(new ValueColorRGB("rgba", 300, 300, 300, 101), "rgba(255, 255, 255, 100%)");
 	});
-	it('alpha should not matter when mode is hexRGB, hexRRGGBB, or rgb', () => {
+	it('alpha should not matter when mode is rgb', () => {
 		okToCSS(new ValueColorRGB("rgb", 0, 0, 0, 100), "rgb(0, 0, 0)");
 	});
 });
@@ -69,7 +69,7 @@ describe('ValueColorHex', () => {
 		okToCSS(new ValueColorHex("hexRRGGBBAA", -1, -1, -1, -1), "#00000000");
 		okToCSS(new ValueColorHex("hexRRGGBBAA", 300, 300, 300, 300), "#FFFFFFFF");
 	});
-	it('alpha should not matter when mode is hexRGB, hexRRGGBB, or rgb', () => {
+	it('alpha should not matter when mode is hexRGB, hexRRGGBB', () => {
 		okToCSS(new ValueColorHex("hexRGB", 0, 0, 0, 100), "#000");
 		okToCSS(new ValueColorHex("hexRRGGBB", 0, 0, 0, 100), "#000000");
 	});
