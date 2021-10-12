@@ -7,6 +7,7 @@ import {
 	ValueColorPoint,
 	ValueColorScale,
 	ValueColor,
+	ValueColorHex,
 } from './ValueColor';
 import Type from "./Type";
 
@@ -67,7 +68,6 @@ function parseColorRgba(_config: Config, strArgs: Array<string>): [arg: ValueCol
 	if (a.toString() !== strArgs[4]) {
 		return undefined;
 	}
-	a = (a * 255) / 100;
 
 	return [ new ValueColorRGB('rgba', r, g, b, a), strArgs.slice(length) ];
 }
@@ -96,7 +96,7 @@ function parseColorRgb(_config: Config, strArgs: Array<string>): [arg: ValueColo
 		return undefined;
 	}
 
-	return [ new ValueColorRGB('rgb', r, g, b, 255), strArgs.slice(length) ];
+	return [ new ValueColorRGB('rgb', r, g, b, 100), strArgs.slice(length) ];
 }
 
 // hsl-{r}-{g}-{b}-{a}
@@ -187,7 +187,7 @@ function parseColorHex(_config: Config, strArgs: Array<string>): [arg: ValueColo
 				const r = parseInt(lowerHexStr[0] + lowerHexStr[0], 16);
 				const g = parseInt(lowerHexStr[1] + lowerHexStr[1], 16);
 				const b = parseInt(lowerHexStr[2] + lowerHexStr[2], 16);
-				color = new ValueColorRGB('hexRGB', r, g, b, 255);
+				color = new ValueColorHex('hexRGB', r, g, b, 255);
 			}
 			break;
 		case 4:
@@ -196,7 +196,7 @@ function parseColorHex(_config: Config, strArgs: Array<string>): [arg: ValueColo
 				const g = parseInt(lowerHexStr[1] + lowerHexStr[1], 16);
 				const b = parseInt(lowerHexStr[2] + lowerHexStr[2], 16);
 				const a = parseInt(lowerHexStr[3] + lowerHexStr[3], 16);
-				color = new ValueColorRGB('hexRGBA', r, g, b, a);
+				color = new ValueColorHex('hexRGBA', r, g, b, a);
 			}
 			break;
 		case 6:
@@ -204,7 +204,7 @@ function parseColorHex(_config: Config, strArgs: Array<string>): [arg: ValueColo
 				const r = parseInt(lowerHexStr.slice(0, 2), 16);
 				const g = parseInt(lowerHexStr.slice(2, 4), 16);
 				const b = parseInt(lowerHexStr.slice(4, 6), 16);
-				color = new ValueColorRGB('hexRRGGBB', r, g, b, 255);
+				color = new ValueColorHex('hexRRGGBB', r, g, b, 255);
 			}
 			break;
 		case 8:
@@ -213,7 +213,7 @@ function parseColorHex(_config: Config, strArgs: Array<string>): [arg: ValueColo
 				const g = parseInt(lowerHexStr.slice(2, 4), 16);
 				const b = parseInt(lowerHexStr.slice(4, 6), 16);
 				const a = parseInt(lowerHexStr.slice(6, 8), 16);
-				color = new ValueColorRGB('hexRRGGBBAA', r, g, b, a);
+				color = new ValueColorHex('hexRRGGBBAA', r, g, b, a);
 			}
 			break;
 		default:

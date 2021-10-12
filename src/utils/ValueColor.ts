@@ -3,7 +3,40 @@ import Value from "./Value";
 
 export class ValueColorRGB {
 	constructor(
-		public readonly mode: "rgb" | "rgba" | "hexRGB" | "hexRGBA" | "hexRRGGBB" | "hexRRGGBBAA",
+		public readonly mode: "rgb" | "rgba",
+		public readonly r: number,
+		public readonly g: number,
+		public readonly b: number,
+		public readonly a: number
+	) {
+		this.r = clamp(r, 0, 255);
+		this.g = clamp(g, 0, 255);
+		this.b = clamp(b, 0, 255);
+		this.a = clamp(a, 0, 100);
+	}
+	toCSS(): string {
+		switch (this.mode) {
+			case "rgb":
+				return `rgb(${this.r}, ${this.g}, ${this.b})`;
+			case "rgba":
+				return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a}%)`;
+		}
+	}
+	negate(): Value {
+		throw new Error(`color [${this.toClassName()}] cannot be negated`);
+	}
+	toClassName(): string {
+		switch (this.mode) {
+			case "rgb":
+				return `rgb-${this.r}-${this.g}-${this.b}`;
+			case "rgba":
+				return `rgb-${this.r}-${this.g}-${this.b}-${this.a}`;
+		}
+	}
+}
+export class ValueColorHex {
+	constructor(
+		public readonly mode: "hexRGB" | "hexRGBA" | "hexRRGGBB" | "hexRRGGBBAA",
 		public readonly r: number,
 		public readonly g: number,
 		public readonly b: number,
@@ -15,13 +48,7 @@ export class ValueColorRGB {
 		this.a = clamp(a, 0, 255);
 	}
 	toCSS(): string {
-		const a100 = (this.a * 100) / 255;
 		switch (this.mode) {
-			case "rgb":
-				return `rgb(${this.r}, ${this.g}, ${this.b})`;
-			case "rgba": {
-				return `rgba(${this.r}, ${this.g}, ${this.b}, ${a100}%)`;
-			}
 			case "hexRGB":
 				return (
 					"#" +
@@ -58,13 +85,7 @@ export class ValueColorRGB {
 		throw new Error(`color [${this.toClassName()}] cannot be negated`);
 	}
 	toClassName(): string {
-		const a100 = (this.a * 100) / 255;
 		switch (this.mode) {
-			case "rgb":
-				return `rgb-${this.r}-${this.g}-${this.b}`;
-			case "rgba": {
-				return `rgb-${this.r}-${this.g}-${this.b}-${a100}`;
-			}
 			case "hexRGB":
 				return (
 					"hex-" +

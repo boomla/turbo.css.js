@@ -5,6 +5,7 @@ import {
 	hex2,
 	ValueColor,
 	ValueColorCurrent,
+	ValueColorHex,
 	ValueColorHSL,
 	ValueColorPoint,
 	ValueColorRGB,
@@ -33,37 +34,50 @@ let okToClassName = function (value: ValueColor, exp: string) {
 	let act = value.toClassName();
 	assert.equal(act, exp);
 };
+
 describe('ValueColorRGB', function () {
 	it('toCSS', () => {
-		okToCSS(new ValueColorRGB("hexRGB", 170, 204, 238, 255), "#ACE");
-		okToCSS(new ValueColorRGB("hexRRGGBB", 171, 205, 239, 255), "#ABCDEF");
-		okToCSS(new ValueColorRGB("hexRGBA", 170, 204, 238, 85), "#ACE5");
-		okToCSS(new ValueColorRGB("hexRRGGBBAA", 171, 205, 239, 106), "#ABCDEF6A");
-		okToCSS(new ValueColorRGB("rgb", 100, 101, 102, 255), "rgb(100, 101, 102)");
-		okToCSS(new ValueColorRGB("rgba", 100, 101, 102, 124.95), "rgba(100, 101, 102, 49%)");
+		okToCSS(new ValueColorRGB("rgb", 100, 101, 102, 100), "rgb(100, 101, 102)");
+		okToCSS(new ValueColorRGB("rgba", 100, 101, 102, 49), "rgba(100, 101, 102, 49%)");
 	});
 	it('toClassName', () => {
-		okToClassName(new ValueColorRGB("hexRGB", 170, 204, 238, 255), "hex-ACE");
-		okToClassName(new ValueColorRGB("hexRRGGBB", 171, 205, 239, 255), "hex-ABCDEF");
-		okToClassName(new ValueColorRGB("hexRGBA", 170, 204, 238, 85), "hex-ACE5");
-		okToClassName(new ValueColorRGB("hexRRGGBBAA", 171, 205, 239, 106), "hex-ABCDEF6A");
-		okToClassName(new ValueColorRGB("rgb", 100, 101, 102, 255), "rgb-100-101-102");
-		okToClassName(new ValueColorRGB("rgba", 100, 101, 102, 124.95), "rgb-100-101-102-49");
+		okToClassName(new ValueColorRGB("rgb", 100, 101, 102, 100), "rgb-100-101-102");
+		okToClassName(new ValueColorRGB("rgba", 100, 101, 102, 49), "rgb-100-101-102-49");
 	});
-	it('constructor should clamp values to the [0, 255] interval', () => {
-		okToCSS(new ValueColorRGB("hexRRGGBBAA", -1, -1, -1, -1), "#00000000");
-		okToCSS(new ValueColorRGB("hexRRGGBBAA", 300, 300, 300, 300), "#FFFFFFFF");
+	it('constructor should clamp values', () => {
+		okToCSS(new ValueColorRGB("rgba", -1, -1, -1, -1), "rgba(0, 0, 0, 0%)");
+		okToCSS(new ValueColorRGB("rgba", 300, 300, 300, 101), "rgba(255, 255, 255, 100%)");
 	});
 	it('alpha should not matter when mode is hexRGB, hexRRGGBB, or rgb', () => {
-		okToCSS(new ValueColorRGB("hexRGB", 0, 0, 0, 100), "#000");
-		okToCSS(new ValueColorRGB("hexRRGGBB", 0, 0, 0, 100), "#000000");
 		okToCSS(new ValueColorRGB("rgb", 0, 0, 0, 100), "rgb(0, 0, 0)");
 	});
+});
+describe('ValueColorHex', () => {
+	it('toCSS', () => {
+		okToCSS(new ValueColorHex("hexRGB", 170, 204, 238, 255), "#ACE");
+		okToCSS(new ValueColorHex("hexRRGGBB", 171, 205, 239, 255), "#ABCDEF");
+		okToCSS(new ValueColorHex("hexRGBA", 170, 204, 238, 85), "#ACE5");
+		okToCSS(new ValueColorHex("hexRRGGBBAA", 171, 205, 239, 106), "#ABCDEF6A");
+	});
+	it('toClassName', () => {
+		okToClassName(new ValueColorHex("hexRGB", 170, 204, 238, 255), "hex-ACE");
+		okToClassName(new ValueColorHex("hexRRGGBB", 171, 205, 239, 255), "hex-ABCDEF");
+		okToClassName(new ValueColorHex("hexRGBA", 170, 204, 238, 85), "hex-ACE5");
+		okToClassName(new ValueColorHex("hexRRGGBBAA", 171, 205, 239, 106), "hex-ABCDEF6A");
+	});
+	it('constructor should clamp values', () => {
+		okToCSS(new ValueColorHex("hexRRGGBBAA", -1, -1, -1, -1), "#00000000");
+		okToCSS(new ValueColorHex("hexRRGGBBAA", 300, 300, 300, 300), "#FFFFFFFF");
+	});
+	it('alpha should not matter when mode is hexRGB, hexRRGGBB, or rgb', () => {
+		okToCSS(new ValueColorHex("hexRGB", 0, 0, 0, 100), "#000");
+		okToCSS(new ValueColorHex("hexRRGGBB", 0, 0, 0, 100), "#000000");
+	});
 	it('left padding with zeros in hexRRGGBB and hexRRGGBBAA modes', () => {
-		okToCSS(new ValueColorRGB("hexRRGGBB", 1, 1, 1, 1), "#010101");
-		okToCSS(new ValueColorRGB("hexRRGGBBAA", 1, 1, 1, 1), "#01010101");
-		okToClassName(new ValueColorRGB("hexRRGGBB", 1, 1, 1, 1), "hex-010101");
-		okToClassName(new ValueColorRGB("hexRRGGBBAA", 1, 1, 1, 1), "hex-01010101");
+		okToCSS(new ValueColorHex("hexRRGGBB", 1, 1, 1, 1), "#010101");
+		okToCSS(new ValueColorHex("hexRRGGBBAA", 1, 1, 1, 1), "#01010101");
+		okToClassName(new ValueColorHex("hexRRGGBB", 1, 1, 1, 1), "hex-010101");
+		okToClassName(new ValueColorHex("hexRRGGBBAA", 1, 1, 1, 1), "hex-01010101");
 	});
 });
 describe('ValueColorHSL', function () {
