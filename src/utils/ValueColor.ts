@@ -165,7 +165,7 @@ export class ValueColorScale {
 	toCSS(config: Config): string {
 		const color = config.getColorScaleShade(this.name, this.shade);
 		if (color === undefined) {
-			throw new Error("invalid color scale name");
+			throw new Error(`invalid color scale name [${this.name}]`);
 		}
 		return color + opacityToHex(this.opacity);
 	}
@@ -187,7 +187,7 @@ export class ValueColorPoint {
 	toCSS(config: Config): string {
 		const color = config.getColorPoint(this.name);
 		if (color === undefined) {
-			throw new Error("invalid color point name");
+			throw new Error(`invalid color point name [${this.name}]`);
 		}
 		return color + opacityToHex(this.opacity);
 	}
