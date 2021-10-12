@@ -215,6 +215,7 @@ export class ValueColorTransparent {
 
 export type ValueColor =
 	| ValueColorRGB
+	| ValueColorHex
 	| ValueColorHSL
 	| ValueColorCurrent
 	| ValueColorTransparent
