@@ -62,7 +62,7 @@ export class ValueColorRGB {
 		}
 	}
 	negate(): Value {
-		throw new Error("unsupported method");
+		throw new Error(`color [${this.toClassName()}] cannot be negated`);
 	}
 	toClassName(): string {
 		const a100 = (this.a * 100) / 255;
@@ -129,7 +129,7 @@ export class ValueColorHSL {
 		}
 	}
 	negate(): Value {
-		throw new Error("unsupported method");
+		throw new Error(`color [${this.toClassName()}] cannot be negated`);
 	}
 	toClassName(): string {
 		if (this.mode === "hsla") {
@@ -143,7 +143,7 @@ export class ValueColorCurrent {
 		return "currentColor";
 	}
 	negate(): Value {
-		throw new Error("unsupported method");
+		throw new Error(`color [${this.toClassName()}] cannot be negated`);
 	}
 	toClassName(): string {
 		return "current";
@@ -163,7 +163,7 @@ export class ValueColorScale {
 		return color + opacityToHex(this.opacity);
 	}
 	negate(): Value {
-		throw new Error("unsupported method");
+		throw new Error(`color [${this.toClassName()}] cannot be negated`);
 	}
 	toClassName(): string {
 		if (this.opacity === 100 && this.shade !== 500) {
@@ -185,7 +185,7 @@ export class ValueColorPoint {
 		return color + opacityToHex(this.opacity);
 	}
 	negate(): Value {
-		throw new Error("unsupported method");
+		throw new Error(`color [${this.toClassName()}] cannot be negated`);
 	}
 	toClassName(): string {
 		if (this.opacity === 100) {
@@ -200,7 +200,7 @@ export class ValueColorTransparent {
 		return "transparent";
 	}
 	negate(): Value {
-		throw new Error("unsupported method");
+		throw new Error(`color [${this.toClassName()}] cannot be negated`);
 	}
 	toClassName(): string {
 		return "transparent";
