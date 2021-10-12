@@ -199,7 +199,6 @@ export class ValueColorPoint {
 			return this.name;
 		}
 		return [this.name, this.opacity].join("-");
-		// TODO?: if opacity is 0, return transparent?
 	}
 }
 export class ValueColorTransparent {
