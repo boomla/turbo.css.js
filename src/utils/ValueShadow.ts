@@ -11,7 +11,7 @@ export default class ValueShadow {
 		return boxShadow;
 	}
 	negate(): Value {
-		throw new Error("unsupported method");
+		throw new Error(`can not negate shadow ${this.toClassName()}`);
 	}
 	toClassName(): string {
 		return this.distance.toString() + (this.darkness ? `-${this.darkness.toString()}` : "");
