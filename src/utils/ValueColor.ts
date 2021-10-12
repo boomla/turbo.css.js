@@ -25,39 +25,32 @@ export class ValueColorRGB {
 			case "hexRGB":
 				return (
 					"#" +
-					this.r.toString(16).toUpperCase()[0] +
-					this.g.toString(16).toUpperCase()[0] +
-					this.b.toString(16).toUpperCase()[0]
+					hex1(this.r) +
+					hex1(this.g) +
+					hex1(this.b)
 				);
 			case "hexRGBA":
 				return (
 					"#" +
-					this.r.toString(16).toUpperCase()[0] +
-					this.g.toString(16).toUpperCase()[0] +
-					this.b.toString(16).toUpperCase()[0] +
-					this.a.toString(16).toUpperCase()[0]
+					hex1(this.r) +
+					hex1(this.g) +
+					hex1(this.b) +
+					hex1(this.a)
 				);
 			case "hexRRGGBB":
 				return (
 					"#" +
-					(this.r < 16 ? "0" : "") +
-					this.r.toString(16).toUpperCase() +
-					(this.g < 16 ? "0" : "") +
-					this.g.toString(16).toUpperCase() +
-					(this.b < 16 ? "0" : "") +
-					this.b.toString(16).toUpperCase()
+					hex2(this.r) +
+					hex2(this.g) +
+					hex2(this.b)
 				);
 			case "hexRRGGBBAA":
 				return (
 					"#" +
-					(this.r < 16 ? "0" : "") +
-					this.r.toString(16).toUpperCase() +
-					(this.g < 16 ? "0" : "") +
-					this.g.toString(16).toUpperCase() +
-					(this.b < 16 ? "0" : "") +
-					this.b.toString(16).toUpperCase() +
-					(this.a < 16 ? "0" : "") +
-					this.a.toString(16).toUpperCase()
+					hex2(this.r) +
+					hex2(this.g) +
+					hex2(this.b) +
+					hex2(this.a)
 				);
 		}
 	}
@@ -75,39 +68,32 @@ export class ValueColorRGB {
 			case "hexRGB":
 				return (
 					"hex-" +
-					this.r.toString(16).toLowerCase()[0] +
-					this.g.toString(16).toLowerCase()[0] +
-					this.b.toString(16).toLowerCase()[0]
+					hex1(this.r) +
+					hex1(this.g) +
+					hex1(this.b)
 				);
 			case "hexRGBA":
 				return (
 					"hex-" +
-					this.r.toString(16).toLowerCase()[0] +
-					this.g.toString(16).toLowerCase()[0] +
-					this.b.toString(16).toLowerCase()[0] +
-					this.a.toString(16).toLowerCase()[0]
+					hex1(this.r) +
+					hex1(this.g) +
+					hex1(this.b) +
+					hex1(this.a)
 				);
 			case "hexRRGGBB":
 				return (
 					"hex-" +
-					(this.r < 16 ? "0" : "") +
-					this.r.toString(16).toLowerCase() +
-					(this.g < 16 ? "0" : "") +
-					this.g.toString(16).toLowerCase() +
-					(this.b < 16 ? "0" : "") +
-					this.b.toString(16).toLowerCase()
+					hex2(this.r) +
+					hex2(this.g) +
+					hex2(this.b)
 				);
 			case "hexRRGGBBAA":
 				return (
 					"hex-" +
-					(this.r < 16 ? "0" : "") +
-					this.r.toString(16).toLowerCase() +
-					(this.g < 16 ? "0" : "") +
-					this.g.toString(16).toLowerCase() +
-					(this.b < 16 ? "0" : "") +
-					this.b.toString(16).toLowerCase() +
-					(this.a < 16 ? "0" : "") +
-					this.a.toString(16).toLowerCase()
+					hex2(this.r) +
+					hex2(this.g) +
+					hex2(this.b) +
+					hex2(this.a)
 				);
 		}
 	}
@@ -231,7 +217,7 @@ function opacityToHex(opacity: number): string | undefined {
 	return opacityHex;
 }
 
-function clamp(x: number, min: number, max: number): number {
+export function clamp(x: number, min: number, max: number): number {
 	if (max < min) {
 		throw new Error(`min (${min}) should not be greater than max (${max})`);
 	}
@@ -242,4 +228,13 @@ function clamp(x: number, min: number, max: number): number {
 		x = max;
 	}
 	return x;
+}
+
+export function hex1(n: number): string {
+	n = clamp(n, 0, 255);
+	return Math.floor(n/16).toString(16).toUpperCase();
+}
+export function hex2(n: number): string {
+	n = clamp(n, 0, 255);
+	return (n < 16 ? "0" : "") + Math.floor(n).toString(16).toUpperCase();
 }

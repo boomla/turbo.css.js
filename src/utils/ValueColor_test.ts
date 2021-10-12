@@ -1,5 +1,8 @@
 import { assert } from "chai";
 import {
+	clamp,
+	hex1,
+	hex2,
 	ValueColor,
 	ValueColorCurrent,
 	ValueColorHSL,
@@ -40,10 +43,10 @@ describe('ValueColorRGB', function () {
 		okToCSS(new ValueColorRGB("rgba", 100, 101, 102, 124.95), "rgba(100, 101, 102, 49%)");
 	});
 	it('toClassName', () => {
-		okToClassName(new ValueColorRGB("hexRGB", 170, 204, 238, 255), "hex-ace");
-		okToClassName(new ValueColorRGB("hexRRGGBB", 171, 205, 239, 255), "hex-abcdef");
-		okToClassName(new ValueColorRGB("hexRGBA", 170, 204, 238, 85), "hex-ace5");
-		okToClassName(new ValueColorRGB("hexRRGGBBAA", 171, 205, 239, 106), "hex-abcdef6a");
+		okToClassName(new ValueColorRGB("hexRGB", 170, 204, 238, 255), "hex-ACE");
+		okToClassName(new ValueColorRGB("hexRRGGBB", 171, 205, 239, 255), "hex-ABCDEF");
+		okToClassName(new ValueColorRGB("hexRGBA", 170, 204, 238, 85), "hex-ACE5");
+		okToClassName(new ValueColorRGB("hexRRGGBBAA", 171, 205, 239, 106), "hex-ABCDEF6A");
 		okToClassName(new ValueColorRGB("rgb", 100, 101, 102, 255), "rgb-100-101-102");
 		okToClassName(new ValueColorRGB("rgba", 100, 101, 102, 124.95), "rgb-100-101-102-49");
 	});
@@ -114,5 +117,46 @@ describe('ValueColorPoint', function () {
 		okToClassName(new ValueColorPoint("linkVisited", 100), "linkVisited");
 		okToClassName(new ValueColorPoint("linkVisited", 50), "linkVisited-50");
 		okToClassName(new ValueColorPoint("heading", 100), "heading");
+	});
+});
+
+describe('hex1', () => {
+	const ok = function(n: number, exp: string) {
+		let act = hex1(n);
+		assert.equal(act, exp);
+	}
+	it('return the digit on the second position (16)', () => {
+		ok(1, '0'); // 0x01
+		ok(15, '0'); // 0x0F
+		ok(16, '1'); // 0x10
+		ok(128, '8'); // 0x80
+		ok(255, 'F'); // 0xFF
+	});
+	it('clamp to [0, 255]', () => {
+		ok(-1, '0');
+		ok(300, 'F');
+	});
+	it('fractions should not matter', () => {
+		ok(15.5, '0');
+	});
+});
+describe('hex2', () => {
+	const ok = function(n: number, exp: string) {
+		let act = hex2(n);
+		assert.equal(act, exp);
+	}
+	it('return the digits on the first two positions, pad with 0 if necessary', () => {
+		ok(1, '01'); // 0x01
+		ok(15, '0F'); // 0x0F
+		ok(16, '10'); // 0x10
+		ok(128, '80'); // 0x80
+		ok(255, 'FF'); // 0xFF
+	});
+	it('clamp to [0, 255]', () => {
+		ok(-1, '00');
+		ok(300, 'FF');
+	});
+	it('fractions should not matter', () => {
+		ok(15.5, '0F');
 	});
 });
