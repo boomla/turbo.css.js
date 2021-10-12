@@ -15,7 +15,7 @@ describe('TypeLengthPercentage', function() {
 				throw new Error(msg + strArgs.toString());
 			}
 			let exp = [ expValue, expRemainder ];
-			assert.deepEqual(exp, act, msg);
+			assert.deepEqual(act, exp, msg);
 		};
 		let mismatch = function(msg: string, typ: TypeLengthPercentage, strArgs: Array<string>) {
 			let act = typ.parse(config, strArgs);
@@ -76,7 +76,7 @@ describe('TypeLengthPercentage', function() {
 				throw new Error(msg + strArgs.toString());
 			}
 			let exp = [ expValue, expRemainder ];
-			assert.deepEqual(exp, act, msg);
+			assert.deepEqual(act, exp, msg);
 		};
 		let mismatch = function(msg: string, typ: TypeLengthPercentage, strArgs: Array<string>) {
 			let act = typ.parse(config, strArgs);

@@ -25,7 +25,7 @@ describe('Turbo', function() {
 			"}\n"+
 			"</style>";
 
-		assert.equal(expHead, actHead)
+		assert.equal(actHead, expHead)
 	});
 	it('should eval library', function() {
 		let namespace = "NS_";
@@ -62,7 +62,7 @@ describe('Turbo', function() {
 			"}\n"+
 			"</style>";
 
-		assert.equal(expHead, actHead)
+		assert.equal(actHead, expHead)
 	});
 	it('should handle mode- classes correctly', function() {
 		let namespace = "NS_";
@@ -93,7 +93,7 @@ describe('Turbo', function() {
 			"}\n"+
 			"</style>";
 
-		assert.equal(expHead, actHead)
+		assert.equal(actHead, expHead)
 	});
 	it('should support !important', function() {
 		let namespace = "";
@@ -115,7 +115,7 @@ describe('Turbo', function() {
 			"	height: 8px!important;\n"+
 			"}\n";
 
-		assert.equal(expCss, actCss)
+		assert.equal(actCss, expCss)
 	});
 	it('should preserve space suffix', function() {
 		let namespace = "";
@@ -147,7 +147,7 @@ describe('Turbo', function() {
 			"}\n"+
 			"</style>";
 
-		assert.equal(expHead, actHead)
+		assert.equal(actHead, expHead)
 	});
 	it('should rewrite multiple Turbo snippets embedded in code', function() {
 		let namespace = "NS_";
@@ -172,7 +172,7 @@ describe('Turbo', function() {
 			"}\n"+
 			"</style>";
 
-		assert.equal(expHead, actHead)
+		assert.equal(actHead, expHead)
 	});
 	it('should generate browser prefixed variants for slider', function() {
 		let namespace = "";
@@ -197,7 +197,7 @@ describe('Turbo', function() {
 			"}\n"+
 			"";
 
-		assert.equal(expCss, actCss)
+		assert.equal(actCss, expCss)
 	});
 });
 

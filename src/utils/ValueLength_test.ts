@@ -6,7 +6,7 @@ describe('ValueLength', function() {
 	it('.toCSS()', function() {
 		let ok = function(value: ValueLength, exp: string) {
 			let act = value.toCSS();
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 		ok(new ValueLength(0, "px"), "0");
 		ok(new ValueLength(13, "px"), "13px");

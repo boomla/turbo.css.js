@@ -5,7 +5,7 @@ describe('Selector.addCombinator()', function() {
 	it('should add a combinator to an existing selector', function() {
 		let ok = function(sel: Selector, combinator: string, exp: Selector) {
 			let act = sel.addCombinator(combinator);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		// Single segment

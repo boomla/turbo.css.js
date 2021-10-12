@@ -6,7 +6,7 @@ describe('SelectorList.suffixFirstSegments()', function() {
 	it('should suffix the first segment in each selector', function() {
 		let ok = function(selectorList: SelectorList, suffix: string, exp: SelectorList) {
 			let act = selectorList.suffixFirstSegments(suffix);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		ok(
@@ -53,7 +53,7 @@ describe('SelectorList.suffixFirstSegments()', function() {
 
 		let okMultipleSuffixes = function(selectorList: SelectorList, suffixes: Array<string>, exp: SelectorList) {
 			let act = selectorList.suffixFirstSegments(...suffixes);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 		okMultipleSuffixes(
 			new SelectorList([

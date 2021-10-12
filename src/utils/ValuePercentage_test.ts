@@ -6,7 +6,7 @@ describe('ValuePercentage', function() {
 	it('.toCSS()', function() {
 		let ok = function(value: ValuePercentage, exp: string) {
 			let act = value.toCSS();
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 		ok(new ValuePercentage(0), "0");
 		ok(new ValuePercentage(13), "13%");

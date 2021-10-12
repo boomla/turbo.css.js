@@ -5,7 +5,7 @@ describe('Selector.addTag()', function() {
 	it('should add a tag selector', function() {
 		let ok = function(sel: Selector, exp: Selector) {
 			let act = sel.addTag("div");
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 		let fail = function(sel: Selector, expErr: string) {
 			try {

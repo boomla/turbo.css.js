@@ -6,7 +6,7 @@ describe('splitArgParts()', function() {
 		let ok = function(className: string, expParts: Array<string>, expNegative: boolean) {
 			let act = splitArgParts(className);
 			let exp = [ expParts, expNegative ];
-			assert.deepEqual(exp, act, className);
+			assert.deepEqual(act, exp, className);
 		}
 		let okPositive = function(className: string, ...expParts: Array<string>) {
 			ok(className, expParts, false);

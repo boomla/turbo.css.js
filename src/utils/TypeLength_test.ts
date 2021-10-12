@@ -13,7 +13,7 @@ describe('TypeLength', function() {
 				throw new Error(msg + strArgs.toString());
 			}
 			let exp = [ expValue, expRemainder ];
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		};
 		ok("unitless number",
 			new TypeLength(1, "px"),

@@ -13,7 +13,7 @@ describe('TypeTime', function() {
 				throw new Error(msg + strArgs.toString());
 			}
 			let exp = [ expValue, expRemainder ];
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		};
 		let mismatch = function(msg: string, typ: TypeTime, strArgs: Array<string>) {
 			let act = typ.parse(config, strArgs);

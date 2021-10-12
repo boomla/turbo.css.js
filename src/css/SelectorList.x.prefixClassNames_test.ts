@@ -6,7 +6,7 @@ describe('SelectorList.prefixClassNames()', function() {
 	it('should prefix class names in each selector', function() {
 		let ok = function(selectorList: SelectorList, namespace: string, exp: SelectorList) {
 			let act = selectorList.prefixClassNames(namespace);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		ok(

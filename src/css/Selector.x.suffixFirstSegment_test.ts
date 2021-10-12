@@ -5,7 +5,7 @@ describe('Selector.suffixFirstSegment()', function() {
 	it('should apply suffix to the first selector segment', function() {
 		let ok = function(sel: Selector, suffix: string, exp: Selector) {
 			let act = sel.suffixFirstSegment(suffix);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		// Single segment

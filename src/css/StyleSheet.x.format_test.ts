@@ -55,7 +55,7 @@ describe('StyleSheet.format()', function() {
 			"\t}\n" +
 			"}\n";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 	it('format stylesheet with !important', function() {
 		let sheet = new StyleSheet([
@@ -103,7 +103,7 @@ describe('StyleSheet.format()', function() {
 			"\t}\n" +
 			"}\n";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 });
 
