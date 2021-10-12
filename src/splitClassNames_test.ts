@@ -5,7 +5,7 @@ describe('splitClassNames()', function() {
 	it('should split class names', function() {
 		let ok = function(classes: string, ...exp: Array<string>) {
 			let act = splitClassNames(classes);
-			assert.deepEqual(exp, act, classes);
+			assert.deepEqual(act, exp, classes);
 		}
 		ok(
 			"foo",

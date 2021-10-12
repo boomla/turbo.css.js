@@ -30,7 +30,7 @@ describe('LibrarySource.parse()', function() {
 			],
 		});
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should parse single-line library code snippet', function() {
 		let code = `t1 .btn { h-32 px-16 font-16 }`;
@@ -51,7 +51,7 @@ describe('LibrarySource.parse()', function() {
 			],
 		});
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should ignore comments', function() {
 		let code = `// Comment
@@ -80,7 +80,7 @@ describe('LibrarySource.parse()', function() {
 			],
 		});
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should parse private utilities', function() {
 		let code = `
@@ -108,7 +108,7 @@ describe('LibrarySource.parse()', function() {
 			],
 		});
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should parse utililty with dash', function() {
 		let code = `
@@ -132,7 +132,7 @@ describe('LibrarySource.parse()', function() {
 			],
 		});
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should parse multiple utililties', function() {
 		let code = `
@@ -165,7 +165,7 @@ describe('LibrarySource.parse()', function() {
 			],
 		});
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 	it('should parse custom CSS', function() {
 		let code = `
@@ -190,7 +190,7 @@ describe('LibrarySource.parse()', function() {
 			],
 		});
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 });
 

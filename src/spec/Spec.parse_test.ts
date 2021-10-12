@@ -140,7 +140,7 @@ describe('Spec.parse()', function() {
 			],
 		});
 
-		assert.deepEqual(exp, act);
+		assert.deepEqual(act, exp);
 	});
 });
 

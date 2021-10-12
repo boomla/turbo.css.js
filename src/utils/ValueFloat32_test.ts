@@ -5,7 +5,7 @@ describe('ValueFloat32', function() {
 	it('.toCSS()', function() {
 		let ok = function(value: ValueFloat32, exp: string) {
 			let act = value.toCSS();
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 		ok(new ValueFloat32(0), "0");
 		ok(new ValueFloat32(1.23), "1.23");

@@ -5,7 +5,7 @@ describe('Selector.less()', function() {
 	it('should sort selectors correctly', function() {
 		let ok = function(sel: Selector, exp: string) {
 			let act = sel.sortOrderFormat();
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 
 		ok(Selector.new(".foo"), ".foo");

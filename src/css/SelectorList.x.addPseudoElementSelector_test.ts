@@ -6,7 +6,7 @@ describe('SelectorList.addPseudoElementSelector()', function() {
 	it('should add pseudo element selector to each selector', function() {
 		let ok = function(selectorList: SelectorList, pseudoElementSelector: string, exp: SelectorList) {
 			let act = selectorList.addPseudoElementSelector(pseudoElementSelector);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		ok(

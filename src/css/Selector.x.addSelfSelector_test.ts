@@ -5,7 +5,7 @@ describe('Selector.addSelfSelector()', function() {
 	it('should add self selector', function() {
 		let ok = function(sel: Selector, exp: Selector) {
 			let act = sel.addSelfSelector();
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		ok(

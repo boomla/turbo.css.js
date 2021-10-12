@@ -18,7 +18,7 @@ describe('RuleSet.format()', function() {
 		let act = ruleSet.format(namespace, indentation, indentWith, newLine, important);
 
 		let exp = "";
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 	it('should format RuleSet with one rule', function() {
 		let ruleSet = new RuleSet([
@@ -44,7 +44,7 @@ describe('RuleSet.format()', function() {
 			"\tprop: value;\n" +
 			"}\n";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 	it('should format RuleSet with many rules', function() {
 		let ruleSet = new RuleSet([
@@ -93,7 +93,7 @@ describe('RuleSet.format()', function() {
 			"}\n" +
 			"";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 	it('should format RuleSet with indentation', function() {
 		let ruleSet = new RuleSet([
@@ -131,7 +131,7 @@ describe('RuleSet.format()', function() {
 			"\t\t}\n" +
 			"";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 	it('should format RuleSet with !important', function() {
 		let ruleSet = new RuleSet([
@@ -157,7 +157,7 @@ describe('RuleSet.format()', function() {
 			"\tprop: value!important;\n" +
 			"}\n";
 
-		assert.equal(exp, act);
+		assert.equal(act, exp);
 	});
 });
 

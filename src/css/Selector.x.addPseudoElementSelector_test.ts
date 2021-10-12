@@ -5,7 +5,7 @@ describe('Selector.addPseudoElementSelector()', function() {
 	it('should append pseudo element selector to a selector', function() {
 		let ok = function(sel: Selector, pseudoElementSelector: string, exp: Selector) {
 			let act = sel.addPseudoElementSelector(pseudoElementSelector);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		// Single segment

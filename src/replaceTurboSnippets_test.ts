@@ -27,7 +27,7 @@ describe('replaceTurboSnippets', function() {
 				let act = replaceTurboSnippets(`<div class="`+example.code+`">hello</div>`, function(_match: string): string {
 					return "";
 				})
-				assert.equal(exp, act);
+				assert.equal(act, exp);
 			}
 		}
 	});

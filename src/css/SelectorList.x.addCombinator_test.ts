@@ -6,7 +6,7 @@ describe('SelectorList.addCombinator()', function() {
 	it('should add combinator to each selector', function() {
 		let ok = function(selectorList: SelectorList, combinator: string, exp: SelectorList) {
 			let act = selectorList.addCombinator(combinator);
-			assert.deepEqual(exp, act);
+			assert.deepEqual(act, exp);
 		}
 
 		ok(

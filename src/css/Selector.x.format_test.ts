@@ -12,14 +12,14 @@ describe('Selector.format()', function() {
 		catch (e) {
 			let expErr = "Error: empty selector is invalid, can not format it";
 			let actErr = e.toString();
-			assert.equal(expErr, actErr);
+			assert.equal(actErr, expErr);
 		}
 	});
 	it('should format selector without a namespace correctly', function() {
 		let ok = function(sel: Selector, exp: string) {
 			let namespace = "";
 			let act = sel.format(namespace);
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 
 		ok(
@@ -39,7 +39,7 @@ describe('Selector.format()', function() {
 		let ok = function(sel: Selector, exp: string) {
 			let namespace = "";
 			let act = sel.format(namespace);
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 
 		ok(
@@ -63,7 +63,7 @@ describe('Selector.format()', function() {
 		let ok = function(sel: Selector, exp: string) {
 			let namespace = "ns_";
 			let act = sel.format(namespace);
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 
 		ok(
@@ -83,7 +83,7 @@ describe('Selector.format()', function() {
 		let ok = function(sel: Selector, exp: string) {
 			let namespace = "";
 			let act = sel.format(namespace);
-			assert.equal(exp, act);
+			assert.equal(act, exp);
 		}
 
 		ok(
