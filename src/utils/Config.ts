@@ -1,4 +1,4 @@
-import { BrowserRewriteRules } from "../css/BrowserRewriteRules";
+import type { BrowserRewriteRules } from "../css/BrowserRewriteRules";
 
 export default interface Config {
 	getColorPoint(colorPointName: string): string | undefined;

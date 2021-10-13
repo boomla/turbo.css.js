@@ -1,6 +1,6 @@
-import Config from "./Config";
+import type Config from "./Config";
 import ValueFloat32 from "./ValueFloat32";
-import Type from "./Type";
+import type Type from "./Type";
 
 export default class TypeFloat32 implements Type {
 	readonly min: number|undefined;

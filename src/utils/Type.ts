@@ -1,5 +1,5 @@
-import Value from "./Value";
-import Config from "./Config";
+import type Value from "./Value";
+import type Config from "./Config";
 
 export default interface Type {
 	// Parse parses the provided arguments and returns a list of parsed argument Values,

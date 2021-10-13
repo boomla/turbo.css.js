@@ -1,7 +1,7 @@
-import Block from './Block';
-import Declaration from './Declaration';
+import type Block from './Block';
+import type Declaration from './Declaration';
 import Order from './Order';
-import SelectorList from './SelectorList';
+import type SelectorList from './SelectorList';
 
 export default class Rule {
 	readonly selectors: SelectorList;

@@ -1,4 +1,4 @@
-import Block from "./css/Block";
+import type Block from "./css/Block";
 import Order from "./css/Order";
 import LibrarySource from "./LibrarySource";
 

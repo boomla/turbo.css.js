@@ -1,5 +1,5 @@
 import parseLengthPercentage from './parseLengthPercentage';
-import { UnitName } from './UnitName';
+import type { UnitName } from './UnitName';
 import { assert } from 'chai';
 
 describe('parseLengthPercentage()', function() {

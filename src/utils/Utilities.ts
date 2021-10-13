@@ -1,9 +1,9 @@
 import Signature from "./Signature";
-import Call from "./Call";
-import Type from "./Type";
+import type Call from "./Call";
+import type Type from "./Type";
 import Block from "../css/Block";
 import Order from "../css/Order";
-import Declaration from "../css/Declaration";
+import type Declaration from "../css/Declaration";
 
 import registerBackgroundUtils from "./Utils.BACKGROUND";
 import registerBorderUtils from "./Utils.BORDER";

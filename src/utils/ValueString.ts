@@ -1,4 +1,4 @@
-import Value from "./Value";
+import type Value from "./Value";
 
 export default class ValueString {
 	readonly val: string = "";

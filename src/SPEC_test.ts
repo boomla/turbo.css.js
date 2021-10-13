@@ -1,6 +1,6 @@
 import * as glob from 'glob';
 import * as fs from 'fs';
-import StyleSheet from "./css/StyleSheet";
+import type StyleSheet from "./css/StyleSheet";
 import { Spec } from "./spec/Spec";
 import ConfigStatic from "./utils/ConfigStatic";
 import { NoCompatConfig } from "./CONFIG";

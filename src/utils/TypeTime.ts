@@ -1,7 +1,7 @@
-import Config from "./Config";
-import Type from "./Type";
+import type Config from "./Config";
+import type Type from "./Type";
 import ValueTime from './ValueTime';
-import { UnitTime } from './UnitTime';
+import type { UnitTime } from './UnitTime';
 
 export default class TypeTime implements Type {
 	constructor() {

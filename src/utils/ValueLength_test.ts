@@ -1,6 +1,6 @@
 import ValueLength from './ValueLength';
 import { assert } from 'chai';
-import { UnitName } from './UnitName';
+import type { UnitName } from './UnitName';
 
 describe('ValueLength', function() {
 	it('.toCSS()', function() {

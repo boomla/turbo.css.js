@@ -1,5 +1,5 @@
 import Declaration from './Declaration';
-import Rule from './Rule';
+import type Rule from './Rule';
 
 export default function prefixOrderDeclarations(rule: Rule): Array<Rule> {
 	let newRule = rule.mapDeclarations(function(decl: Declaration): Array<Declaration> {

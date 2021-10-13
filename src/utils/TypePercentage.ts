@@ -1,5 +1,5 @@
-import Config from "./Config";
-import Type from "./Type";
+import type Config from "./Config";
+import type Type from "./Type";
 import ValuePercentage from './ValuePercentage';
 
 export default class TypePercentage implements Type {

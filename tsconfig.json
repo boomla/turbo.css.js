@@ -31,7 +31,8 @@
 		"strictNullChecks": true,
 		"strictPropertyInitialization": true,
 		"strictBindCallApply": true,
-		"strictFunctionTypes": true
+		"strictFunctionTypes": true,
+		"importsNotUsedAsValues": "error"
 	},
 	"include": [
 		"./src"

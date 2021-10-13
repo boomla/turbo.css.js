@@ -1,4 +1,4 @@
-import Selector from './Selector';
+import type Selector from './Selector';
 
 export default class SelectorList {
 	readonly selectors: Array<Selector>;

@@ -1,4 +1,4 @@
-import { UnitName } from "./UnitName";
+import type { UnitName } from "./UnitName";
 
 export default function parseAngle(s: string, defaultUnit: UnitName): [angleValue: number, angleUnit: UnitName] | undefined {
 	let unit: UnitName;

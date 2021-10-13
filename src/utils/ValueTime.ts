@@ -1,5 +1,5 @@
-import { UnitName } from './UnitName';
-import { UnitTime } from './UnitTime';
+import type { UnitName } from './UnitName';
+import type { UnitTime } from './UnitTime';
 
 export default class ValueTime {
 	readonly value: number;

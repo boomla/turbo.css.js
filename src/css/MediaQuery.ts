@@ -1,7 +1,7 @@
-import Rule from './Rule';
+import type Rule from './Rule';
 import RuleSet from './RuleSet';
 import Order from './Order';
-import Declaration from './Declaration';
+import type Declaration from './Declaration';
 
 export enum MediaType {
 	ALL     = 0,

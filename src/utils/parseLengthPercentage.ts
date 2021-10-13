@@ -1,4 +1,4 @@
-import { UnitName } from "./UnitName";
+import type { UnitName } from "./UnitName";
 
 const UNITS: Array<UnitName> = [
 	"px",

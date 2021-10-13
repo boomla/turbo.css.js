@@ -1,6 +1,6 @@
 import ValueAngle from './ValueAngle';
 import { assert } from 'chai';
-import { UnitName } from './UnitName';
+import type { UnitName } from './UnitName';
 
 describe('ValueAngle', function () {
 	it('.toCSS()', function () {

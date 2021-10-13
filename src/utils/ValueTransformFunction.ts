@@ -1,9 +1,9 @@
-import { UnitName } from "./UnitName";
-import ValueFloat32 from "./ValueFloat32";
-import ValueLength from "./ValueLength";
-import ValuePercentage from "./ValuePercentage";
-import ValueAngle from "./ValueAngle";
-import Value from "./Value";
+import type { UnitName } from "./UnitName";
+import type ValueFloat32 from "./ValueFloat32";
+import type ValueLength from "./ValueLength";
+import type ValuePercentage from "./ValuePercentage";
+import type ValueAngle from "./ValueAngle";
+import type Value from "./Value";
 
 export interface TransformFunction {
 	toCSS(def?: UnitName): string;

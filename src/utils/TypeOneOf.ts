@@ -1,6 +1,6 @@
-import Config from "./Config";
-import Value from "./Value";
-import Type from "./Type";
+import type Config from "./Config";
+import type Value from "./Value";
+import type Type from "./Type";
 
 export default class TypeOneOf implements Type {
 	readonly types: Array<Type>;

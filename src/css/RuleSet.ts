@@ -1,6 +1,6 @@
 import Rule from './Rule';
-import Declaration from './Declaration';
-import Order from './Order';
+import type Declaration from './Declaration';
+import type Order from './Order';
 
 export default class RuleSet {
 	readonly rules: Array<Rule>;

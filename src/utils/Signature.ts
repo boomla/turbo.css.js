@@ -1,6 +1,6 @@
-import Type from "./Type";
-import Config from "./Config";
-import Value from "./Value";
+import type Type from "./Type";
+import type Config from "./Config";
+import type Value from "./Value";
 
 export default class Signature {
 	types: Array<Type>;

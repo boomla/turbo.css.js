@@ -1,5 +1,5 @@
-import Config from "./Config";
-import Type from "./Type";
+import type Config from "./Config";
+import type Type from "./Type";
 import parseAngle from './parseAngle';
 import parseLengthPercentage from './parseLengthPercentage';
 import ValueTransformFunction, {
@@ -13,7 +13,7 @@ import ValueFloat32 from './ValueFloat32';
 import ValueAngle from './ValueAngle';
 import ValueLength from './ValueLength';
 import ValuePercentage from './ValuePercentage';
-import Value from './Value';
+import type Value from './Value';
 
 export default class TypeTransformFunction implements Type {
 	constructor() {

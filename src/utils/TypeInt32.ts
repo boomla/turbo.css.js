@@ -1,5 +1,5 @@
-import Config from "./Config";
-import Type from "./Type";
+import type Config from "./Config";
+import type Type from "./Type";
 import ValueInt32 from './ValueInt32';
 
 export default class TypeInt32 implements Type {

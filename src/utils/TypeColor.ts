@@ -1,4 +1,4 @@
-import Config from "./Config";
+import type Config from "./Config";
 import {
 	ValueColorRGB,
 	ValueColorHSL,
@@ -9,7 +9,7 @@ import {
 	ValueColor,
 	ValueColorHex,
 } from './ValueColor';
-import Type from "./Type";
+import type Type from "./Type";
 
 const COLOR_PARSERS: Array<Parser> = [
 	parseColorRgba,

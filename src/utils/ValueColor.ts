@@ -1,5 +1,5 @@
-import Config from "./Config";
-import Value from "./Value";
+import type Config from "./Config";
+import type Value from "./Value";
 
 export class ValueColorRGB {
 	constructor(

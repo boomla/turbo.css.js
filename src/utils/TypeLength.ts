@@ -1,7 +1,7 @@
-import Config from "./Config";
-import Type from "./Type";
+import type Config from "./Config";
+import type Type from "./Type";
 import ValueLength from './ValueLength';
-import { UnitName } from './UnitName';
+import type { UnitName } from './UnitName';
 
 export default class TypeLength implements Type {
 	readonly defaultUnit: ValueLength;

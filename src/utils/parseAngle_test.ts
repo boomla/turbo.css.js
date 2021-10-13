@@ -1,5 +1,5 @@
 import parseAngle from './parseAngle';
-import { UnitName } from './UnitName';
+import type { UnitName } from './UnitName';
 import { assert } from 'chai';
 
 describe('parseAngle()', function() {

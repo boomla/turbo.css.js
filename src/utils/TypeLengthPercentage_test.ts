@@ -1,7 +1,7 @@
 import TypeLengthPercentage from './TypeLengthPercentage';
 import ValuePercentage from './ValuePercentage';
 import ValueLength from './ValueLength';
-import Value from './Value';
+import type Value from './Value';
 import ConfigStatic from './ConfigStatic';
 import { assert } from 'chai';
 

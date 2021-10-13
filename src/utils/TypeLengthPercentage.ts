@@ -1,10 +1,10 @@
-import Config from "./Config";
-import Type from "./Type";
+import type Config from "./Config";
+import type Type from "./Type";
 import TypeLength from "./TypeLength";
 import TypePercentage from "./TypePercentage";
-import Value from './Value';
+import type Value from './Value';
 import ValueLength from './ValueLength';
-import { UnitName } from './UnitName';
+import type { UnitName } from './UnitName';
 
 export default class TypeLengthPercentage implements Type {
 	readonly defaultUnit: ValueLength;

@@ -1,4 +1,4 @@
-import Utilities from "./Utilities";
+import type Utilities from "./Utilities";
 import * as types from "./Types";
 import Block from "../css/Block";
 import Declaration from "../css/Declaration";

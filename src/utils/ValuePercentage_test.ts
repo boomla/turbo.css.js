@@ -1,6 +1,6 @@
 import ValuePercentage from './ValuePercentage';
 import { assert } from 'chai';
-import { UnitName } from './UnitName';
+import type { UnitName } from './UnitName';
 
 describe('ValuePercentage', function() {
 	it('.toCSS()', function() {

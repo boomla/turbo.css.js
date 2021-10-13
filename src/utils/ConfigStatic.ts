@@ -1,5 +1,6 @@
-import { BrowserRewriteRules } from "../css/BrowserRewriteRules";
-import Config, { ShadowData } from "./Config";
+import type { BrowserRewriteRules } from "../css/BrowserRewriteRules";
+import type Config from "./Config";
+import type { ShadowData } from "./Config";
 
 export default class ConfigStatic implements Config {
 	readonly colorPoints: { [key: string]: string } = {};

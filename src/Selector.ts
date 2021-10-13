@@ -1,4 +1,4 @@
-import StyleSheet from "./css/StyleSheet";
+import type StyleSheet from "./css/StyleSheet";
 import Declaration from "./css/Declaration";
 import { MediaType, Hoverable } from "./css/MediaQuery";
 

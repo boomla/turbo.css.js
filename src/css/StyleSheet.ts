@@ -1,8 +1,8 @@
-import MediaQuery from './MediaQuery';
+import type MediaQuery from './MediaQuery';
 import Declaration from './Declaration';
-import Rule from './Rule';
+import type Rule from './Rule';
 import Order from './Order';
-import { BrowserRewriteRules } from './BrowserRewriteRules';
+import type { BrowserRewriteRules } from './BrowserRewriteRules';
 
 export default class StyleSheet {
 	readonly mediaQueries: Array<MediaQuery> = [];

@@ -1,4 +1,4 @@
-import Config from "./utils/Config";
+import type Config from "./utils/Config";
 import separateSelectorsAndUtilityFunction from "./separateSelectorsAndUtilityFunction";
 import parseSelectorExpression from "./parseSelectorExpression";
 import utilityClassNameToCssSelector from "./utilityClassNameToCssSelector";
@@ -10,8 +10,8 @@ import LibrarySource from "./LibrarySource";
 import { LIBRARY_U1 } from "./LIBRARY_U1";
 import Namespace from "./Namespace";
 import Utilities from "./utils/Utilities";
-import Value from "./utils/Value";
-import Block from "./css/Block";
+import type Value from "./utils/Value";
+import type Block from "./css/Block";
 import Order from "./css/Order";
 import Selector from "./css/Selector";
 import SelectorList from "./css/SelectorList";

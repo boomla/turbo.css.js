@@ -1,6 +1,6 @@
 import ValueTime from './ValueTime';
 import { assert } from 'chai';
-import { UnitName } from './UnitName';
+import type { UnitName } from './UnitName';
 
 describe('ValueTime', function() {
 	it('.toCSS()', function() {

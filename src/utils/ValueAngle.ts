@@ -1,4 +1,4 @@
-import { UnitName } from "./UnitName";
+import type { UnitName } from "./UnitName";
 
 export default class ValueAngle {
 	readonly value: number;

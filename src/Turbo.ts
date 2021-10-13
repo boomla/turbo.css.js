@@ -1,4 +1,4 @@
-import Config from "./utils/Config";
+import type Config from "./utils/Config";
 import { DefaultConfig, NoCompatConfig } from "./CONFIG";
 import Compiler from "./Compiler";
 import StyleSheet from "./css/StyleSheet";
