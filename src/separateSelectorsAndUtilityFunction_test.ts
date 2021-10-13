@@ -27,7 +27,10 @@ describe('separateSelectorsAndUtilityFunction()', function() {
 				separateSelectorsAndUtilityFunction(className);
 				throw new Error("expected an error for class name ["+className+"]");
 			}
-			catch(e) {
+			catch(e: unknown) {
+				if ( ! (e instanceof Error)) {
+					throw new Error('unexpected error #zsd8fh28h9a7rhfg867w3r9shyegjd62');
+				}
 				let actErr = e.toString();
 				assert.equal(actErr, expErr, className);
 			}

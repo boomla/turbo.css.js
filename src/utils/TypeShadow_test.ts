@@ -84,7 +84,10 @@ describe('TypeShadow', function() {
 				typ.parse(config, strArgs);
 				throw new Error("expected an error for parsing "+strArgs.toString());
 			}
-			catch(e) {
+			catch(e: unknown) {
+				if ( ! (e instanceof Error)) {
+					throw new Error('unexpected error #das89fha9werh8a9wfe9ah2837rhdfg8');
+				}
 				let actErr = e.toString();
 				assert.equal(actErr, expErr, msg);
 			}

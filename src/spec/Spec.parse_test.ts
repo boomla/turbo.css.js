@@ -7,7 +7,10 @@ describe('Spec.parse()', function() {
 			sp.Spec.parse("")
 			throw new Error("expected an error");
 		}
-		catch (e) {
+		catch(e: unknown) {
+			if ( ! (e instanceof Error)) {
+				throw new Error('unexpected error #sdh8f672g8dj8s97edfgw834r9a78srf');
+			}
 			let expErr = "Error: invalid Turbo spec, missing header [# TURBO-SPEC-FORMAT-V1\n]";
 			let actErr = e.toString();
 			if (expErr !== actErr) {

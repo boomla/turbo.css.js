@@ -12,8 +12,11 @@ describe('Selector.addTag()', function() {
 				sel.addTag("div");
 				throw new Error("expected an error for ["+sel.format("")+"]");
 			}
-			catch (e) {
-				let actErr = e.toString();
+			catch(err: unknown) {
+				if ( ! (err instanceof Error)) {
+					throw new Error('unexpected error #sdf872zrh8uasybndf67wg4ta89wherf');
+				}
+				let actErr = err.toString();
 				if (actErr != expErr) {
 					throw new Error("\nselector ["+sel.format("")+"]\nexpErr ["+expErr+"]\nactErr ["+actErr+"]");
 				}

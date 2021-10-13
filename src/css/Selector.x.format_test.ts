@@ -9,7 +9,10 @@ describe('Selector.format()', function() {
 			sel.format(namespace);
 			throw new Error("expected an error");
 		}
-		catch (e) {
+		catch(e: unknown) {
+			if ( ! (e instanceof Error)) {
+				throw new Error('unexpected error #e8dfhwelfkn382fhyse7fh83wasererf');
+			}
 			let expErr = "Error: empty selector is invalid, can not format it";
 			let actErr = e.toString();
 			assert.equal(actErr, expErr);

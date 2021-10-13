@@ -43,7 +43,10 @@ describe('SPEC', function() {
 					let compiler = Compiler.newNoCompatCompiler();
 					[ , sheet] = compiler.compile(example.code);
 				}
-				catch(e) {
+				catch(e: unknown) {
+					if ( ! (e instanceof Error)) {
+						throw new Error('unexpected error #sdifha9serh873ht9sywhef8aw1rserf');
+					}
 					errors.push(example.description+"\ncode ["+example.code+"]\nerror: "+e.toString());
 					failCount++;
 					continue;
@@ -53,7 +56,10 @@ describe('SPEC', function() {
 				try {
 					act = sheet.sort().format(T1, namespace, indentWith, newLine, important);
 				}
-				catch(e) {
+				catch(e: unknown) {
+					if ( ! (e instanceof Error)) {
+						throw new Error('unexpected error #sdiuhfa9whern892hfna9wehfa3w89rf');
+					}
 					errors.push(example.description+"\ncode ["+example.code+"]\nerror: "+e.toString());
 					failCount++;
 					continue;
@@ -85,7 +91,10 @@ describe('SPEC', function() {
 					failCount++;
 					continue;
 				}
-				catch(e) {
+				catch(e: unknown) {
+					if ( ! (e instanceof Error)) {
+						throw new Error('unexpected error #isdufgha9wreh89y7shfd9e4th978ase');
+					}
 					let expErr = example.expErr;
 					let actErr = e.toString();
 					if (expErr !== actErr) {
@@ -131,7 +140,10 @@ describe('SPEC', function() {
 					try {
 						compiler = compiler.eval("<anonymous>", exampleLib.globalCode);
 					}
-					catch(e) {
+					catch(e: unknown) {
+						if ( ! (e instanceof Error)) {
+							throw new Error('unexpected error #dafgh87awhrfj9asy7fgrh8s34t93sd8');
+						}
 						errors.push(exampleLib.description+"\ncode ["+exampleLib.code+"]\nerror: "+e.toString());
 						failCount++;
 						continue;
@@ -142,7 +154,10 @@ describe('SPEC', function() {
 				try {
 					[ , sheet] = compiler.compile(exampleLib.code);
 				}
-				catch(e) {
+				catch(e: unknown) {
+					if ( ! (e instanceof Error)) {
+						throw new Error('unexpected error #sd9fha9w8efh8a37hg9yswh7ef34tedf');
+					}
 					errors.push(exampleLib.description+"\ncode ["+exampleLib.code+"]\nerror: "+e.toString());
 					failCount++;
 					continue;
@@ -152,7 +167,10 @@ describe('SPEC', function() {
 				try {
 					act = sheet.sort().format(T1, namespace, indentWith, newLine, important);
 				}
-				catch(e) {
+				catch(e: unknown) {
+					if ( ! (e instanceof Error)) {
+						throw new Error('unexpected error #aigh9wefn89sarg9df7ghas9sernf9s8');
+					}
 					errors.push(exampleLib.description+"\ncode ["+exampleLib.code+"]\nerror: "+e.toString());
 					failCount++;
 					continue;
@@ -215,7 +233,10 @@ describe('SPEC', function() {
 					failCount++;
 					continue;
 				}
-				catch(e) {
+				catch(e: unknown) {
+					if ( ! (e instanceof Error)) {
+						throw new Error('unexpected error #sdfghba89werhnawf987h34r9hasdfg7');
+					}
 					let expErr = exampleLibThatFails.expErr;
 					let actErr = e.toString();
 					if (expErr !== actErr) {

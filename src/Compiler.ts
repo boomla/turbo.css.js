@@ -306,8 +306,11 @@ export default class Compiler {
 				try {
 					args = util.signature.parseArgs(this.config, argParts, isNegative);
 				}
-				catch(e) {
-					let errMsg = e.toString();
+				catch(err: unknown) {
+					if ( ! (err instanceof Error)) {
+						throw new Error('unexpected error #aOsdugHa8zerh28fEsa834eZtb78fnsd');
+					}
+					let errMsg = err.toString();
 					if (errMsg.startsWith("Error: ")) {
 						errMsg = errMsg.substring(("Error: ").length);
 					}

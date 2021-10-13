@@ -153,7 +153,11 @@ describe('clamp', () => {
 		let expErr = "Error: min (10) should not be greater than max (0)"
 		try {
 			clamp(5, 10, 0);
-		} catch(e) {
+		}
+		catch(e: unknown) {
+			if ( ! (e instanceof Error)) {
+				throw new Error('unexpected error #aosdufn9asd9fh7283ndsidnf8w89etn');
+			}
 			actErr = e.toString();
 		}
 		assert.equal(actErr, expErr);
