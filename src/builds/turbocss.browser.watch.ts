@@ -1,5 +1,6 @@
 import Turbo from "../Turbo";
 import BASE_CSS_MIN from "../base-css/BASE_CSS_MIN";
+import extractTurboExpressionsFromClassAttr from '../helper/extractTurboExpressionsFromClassAttr';
 
 function compileAndWatch() {
 	let namespace = "";
@@ -35,9 +36,14 @@ function compileAndWatch() {
 
 	const add = function(el: Element) {
 		let classAttr = el.getAttribute('class');
-		if (classAttr) {
+		if ( ! classAttr) {
+			return;
+		}
+
+		let turboExpressions = extractTurboExpressionsFromClassAttr(classAttr);
+		for(let i=0; i<turboExpressions.length; i++) {
 			try {
-				turbo.add(classAttr);
+				turbo.add(turboExpressions[i]);
 			}
 			catch(e) {
 				console.log(e);
