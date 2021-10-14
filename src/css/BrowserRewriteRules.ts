@@ -1,5 +1,5 @@
-import Declaration from './Declaration';
-import Rule from './Rule';
+import type Declaration from './Declaration';
+import type Rule from './Rule';
 
 export interface BrowserRewriteRules {
 	propertyPrefixes: { [key: string]: Array<string> };
