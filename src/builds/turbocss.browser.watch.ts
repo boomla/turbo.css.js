@@ -40,14 +40,16 @@ function compileAndWatch() {
 			return;
 		}
 
-		let turboExpressions = extractTurboExpressionsFromClassAttr(classAttr);
-		for(let i=0; i<turboExpressions.length; i++) {
-			try {
-				turbo.add(turboExpressions[i]);
-			}
-			catch(e) {
-				console.log(e);
-			}
+		let turboExpression = extractTurboExpressionsFromClassAttr(classAttr);
+		if ( ! turboExpression) {
+			return;
+		}
+		
+		try {
+			turbo.add(turboExpression);
+		}
+		catch(e) {
+			console.log(e);
 		}
 	};
 
