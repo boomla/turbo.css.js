@@ -199,5 +199,38 @@ describe('Turbo', function() {
 
 		assert.equal(actCss, expCss)
 	});
+	describe('.addClassAttr()', () => {
+		function ok(originalClassAttr: string, exp: string) {
+			let namespace = "NS-";
+			let turbo = new Turbo(NoCompatConfig, namespace);
+			let act = turbo.addClassAttr(originalClassAttr);
+			assert.equal(act, exp);
+		}
+
+		it('should keep t1 class if it stands on its own', () => {
+			ok(
+				"t1",
+				"t1",
+			);
+		});
+		it('should keep t1-* classes', () => {
+			ok(
+				"t1 t1-start t1-all w-2 h-8",
+				"t1 t1-start t1-all NS-w-2 NS-h-8",
+			);
+		});
+		it('should merge multiple Turbo code blocks', () => {
+			ok(
+				"t1 w-2 ; t1 h-8",
+				"t1 NS-w-2 NS-h-8",
+			);
+		});
+		it('should move non-Turbo classes to the end', () => {
+			ok(
+				"foo t1 w-2 ; bar t1 h-8 ; baz",
+				"t1 NS-w-2 NS-h-8 ; foo bar baz",
+			);
+		});
+	});
 });
 

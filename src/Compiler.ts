@@ -84,6 +84,10 @@ export default class Compiler {
 	}
 
 	addRewrite(sheet: StyleSheet, namespace: string, classes: string): [newCompiler: Compiler, newSheet: StyleSheet, rewrittenClasses: string] {
+		if (classes === T1) {
+			return [ this, sheet, T1 ];
+		}
+
 		let compiler: Compiler = this;
 		let classNames: Array<string>;
 		[ compiler, sheet, classNames ] = compiler.add(sheet, classes);

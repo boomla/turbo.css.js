@@ -3,6 +3,7 @@ import { DefaultConfig, NoCompatConfig } from "./CONFIG";
 import Compiler from "./Compiler";
 import StyleSheet from "./css/StyleSheet";
 import replaceTurboSnippets from "./replaceTurboSnippets";
+import normalizeAndSplitClassNames from "./helper/normalizeAndSplitClassNames";
 
 export default class Turbo {
 	namespace: string;
@@ -33,8 +34,8 @@ export default class Turbo {
 		this.compiler = this.compiler.eval(path, code);
 	}
 
-	// add() registers a Turbo snippet in the Turbo compiler instance.
-	// It returns the processed snippet, with namespacing applied if necessary.
+	// add() registers a Turbo code block in the Turbo compiler instance.
+	// It returns the processed code block, with namespacing applied if necessary.
 	add(classes: string): string {
 		let [compiler, sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, classes);
 		this.compiler = compiler;
@@ -42,13 +43,36 @@ export default class Turbo {
 		return namespacedClasses;
 	}
 
-	// addSource() source code in any language that contains Turbo snippets.
-	// It extracts all such Turbo snippets, registers them in the Turbo
+	// addClassAttr() registers a HTMLElement's class attribute in the Turbo compiler instance.
+	// The class attribute may contain zero or more Turbo code blocks.
+	// A Turbo code blocks starts with the [t1] class, followed by zero or more Turbo classes,
+	// followed by either a terminating semicolon or the end of the class attribute.
+	// Class names before, after and between Turbo code blocks are ignored.
+	// It returns the class attribute normalized into a single Turbo code block that is at the
+	// start of the class attribute, with namespacing applied if necessary.
+	addClassAttr(classAttr: string): string {
+		let [ turboClasses, otherClasses ] = normalizeAndSplitClassNames(classAttr);
+		let turboCodeBlock = turboClasses.join(' ');
+
+		let [compiler, sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, turboCodeBlock);
+		this.compiler = compiler;
+		this.sheet = sheet;
+
+		if (otherClasses.length === 0) {
+			return namespacedClasses;
+		}
+		if (namespacedClasses === '') {
+			return otherClasses.join(' ');
+		}
+		return namespacedClasses + ' ; ' + otherClasses.join(' ');
+	}
+
+	// addSource() source code in any language that contains Turbo code blocks.
+	// It extracts all such Turbo code blocks, registers them in the Turbo
 	// compiler instance and applies namespacing if necessary.
 	addSource(source: string): string {
-		let turbo = this;
-		return replaceTurboSnippets(source, function(snippet: string): string {
-			return turbo.add(snippet);
+		return replaceTurboSnippets(source, (snippet: string) => {
+			return this.add(snippet);
 		});
 	}
 

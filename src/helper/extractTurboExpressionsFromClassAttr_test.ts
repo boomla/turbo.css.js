@@ -24,7 +24,7 @@ describe('extractTurboExpressionsFromClassAttr()', function() {
 	)
 	ok('should support empty turbo expression',
 		't1',
-		'',
+		't1',
 	)
 	ok('should support empty class attribute',
 		'',
@@ -33,6 +33,10 @@ describe('extractTurboExpressionsFromClassAttr()', function() {
 	ok('should support class attribute containing no Turbo classes',
 		'foo bar baz',
 		'',
+	)
+	ok('should support multiple [t1] classes',
+		't1 t1 w-10',
+		't1 w-10',
 	)
 });
 
