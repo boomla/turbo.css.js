@@ -1,6 +1,7 @@
 import type StyleSheet from "./css/StyleSheet";
 import Declaration from "./css/Declaration";
-import { MediaType, Hoverable } from "./css/MediaQuery";
+import { MediaType } from "./css/MediaQuery";
+import { Hoverable } from "./css/MediaQuery";
 
 export interface Selector {
 	applyTo(sheet: StyleSheet): StyleSheet;

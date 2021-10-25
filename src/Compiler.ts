@@ -20,7 +20,8 @@ import Rule from "./css/Rule";
 import RuleSet from "./css/RuleSet";
 import MediaQuery from "./css/MediaQuery";
 import StyleSheet from "./css/StyleSheet";
-import { DefaultConfig, NoCompatConfig } from "./CONFIG";
+import { DefaultConfig } from "./CONFIG";
+import { NoCompatConfig } from "./CONFIG";
 import T1 from "./T1";
 
 const MAX_STACK_LEVEL = 32;

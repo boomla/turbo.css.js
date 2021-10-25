@@ -1,17 +1,15 @@
 import { assert } from "chai";
-import {
-	clamp,
-	hex1,
-	hex2,
-	ValueColor,
-	ValueColorCurrent,
-	ValueColorHex,
-	ValueColorHSL,
-	ValueColorPoint,
-	ValueColorRGB,
-	ValueColorScale,
-	ValueColorTransparent,
-} from "./ValueColor";
+import { clamp } from "./ValueColor";
+import { hex1 } from "./ValueColor";
+import { hex2 } from "./ValueColor";
+import { ValueColorCurrent } from "./ValueColor";
+import { ValueColorHex } from "./ValueColor";
+import { ValueColorHSL } from "./ValueColor";
+import { ValueColorPoint } from "./ValueColor";
+import { ValueColorRGB } from "./ValueColor";
+import { ValueColorScale } from "./ValueColor";
+import { ValueColorTransparent } from "./ValueColor";
+import type { ValueColor } from "./ValueColor";
 import ConfigStatic from "./ConfigStatic";
 
 const config = new ConfigStatic({

@@ -1,42 +1,40 @@
-import {
-	Selector,
-	SelectorDomEmpty,
-	SelectorDomNotEmpty,
-	SelectorDomEven,
-	SelectorDomOdd,
-	SelectorDomFirst,
-	SelectorDomNotFirst,
-	SelectorDomLast,
-	SelectorDomNotLast,
-	SelectorActive,
-	SelectorFocus,
-	SelectorHover,
-	SelectorVisited,
-	SelectorChecked,
-	SelectorUnchecked,
-	SelectorEnabled,
-	SelectorDisabled,
-	SelectorValid,
-	SelectorInvalid,
-	SelectorAfter,
-	SelectorBefore,
-	SelectorPlaceholder,
-	SelectorSelection,
-	SelectorThumb,
-	SelectorDevicePrint,
-	SelectorDeviceScreen,
-	SelectorDeviceSpeech,
-	SelectorDeviceHoverable,
-	SelectorDeviceNotHoverable,
-	SelectorViewportWidth,
-	SelectorTag,
-	SelectorMode,
-	SelectorChild,
-	SelectorAfterSibling,
-	SelectorNextSibling,
-	SelectorSelf,
-	SelectorDescendant
-} from "./Selector";
+import type { Selector } from './Selector';
+import { SelectorDomEmpty } from './Selector';
+import { SelectorDomNotEmpty } from './Selector';
+import { SelectorDomEven } from './Selector';
+import { SelectorDomOdd } from './Selector';
+import { SelectorDomFirst } from './Selector';
+import { SelectorDomNotFirst } from './Selector';
+import { SelectorDomLast } from './Selector';
+import { SelectorDomNotLast } from './Selector';
+import { SelectorActive } from './Selector';
+import { SelectorFocus } from './Selector';
+import { SelectorHover } from './Selector';
+import { SelectorVisited } from './Selector';
+import { SelectorChecked } from './Selector';
+import { SelectorUnchecked } from './Selector';
+import { SelectorEnabled } from './Selector';
+import { SelectorDisabled } from './Selector';
+import { SelectorValid } from './Selector';
+import { SelectorInvalid } from './Selector';
+import { SelectorAfter } from './Selector';
+import { SelectorBefore } from './Selector';
+import { SelectorPlaceholder } from './Selector';
+import { SelectorSelection } from './Selector';
+import { SelectorThumb } from './Selector';
+import { SelectorDevicePrint } from './Selector';
+import { SelectorDeviceScreen } from './Selector';
+import { SelectorDeviceSpeech } from './Selector';
+import { SelectorDeviceHoverable } from './Selector';
+import { SelectorDeviceNotHoverable } from './Selector';
+import { SelectorViewportWidth } from './Selector';
+import { SelectorTag } from './Selector';
+import { SelectorMode } from './Selector';
+import { SelectorChild } from './Selector';
+import { SelectorAfterSibling } from './Selector';
+import { SelectorNextSibling } from './Selector';
+import { SelectorSelf } from './Selector';
+import { SelectorDescendant } from './Selector';
 
 let selectorMap: { [key: string]: Selector } = {
 	"empty": new SelectorDomEmpty(),

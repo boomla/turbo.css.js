@@ -1,14 +1,12 @@
 import type Config from "./Config";
-import {
-	ValueColorRGB,
-	ValueColorHSL,
-	ValueColorCurrent,
-	ValueColorTransparent,
-	ValueColorPoint,
-	ValueColorScale,
-	ValueColor,
-	ValueColorHex,
-} from './ValueColor';
+import { ValueColorRGB } from './ValueColor';
+import { ValueColorHSL } from './ValueColor';
+import { ValueColorCurrent } from './ValueColor';
+import { ValueColorTransparent } from './ValueColor';
+import { ValueColorPoint } from './ValueColor';
+import { ValueColorScale } from './ValueColor';
+import { ValueColorHex } from './ValueColor';
+import type { ValueColor } from './ValueColor';
 import type Type from "./Type";
 
 const COLOR_PARSERS: Array<Parser> = [

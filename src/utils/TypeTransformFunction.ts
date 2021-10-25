@@ -2,13 +2,12 @@ import type Config from "./Config";
 import type Type from "./Type";
 import parseAngle from './parseAngle';
 import parseLengthPercentage from './parseLengthPercentage';
-import ValueTransformFunction, {
-	Rotate,
-	Scale,
-	Skew,
-	TransformFunction,
-	Translate,
-} from './ValueTransformFunction';
+import ValueTransformFunction from './ValueTransformFunction';
+import { Rotate } from './ValueTransformFunction';
+import { Scale } from './ValueTransformFunction';
+import { Skew } from './ValueTransformFunction';
+import type { TransformFunction } from './ValueTransformFunction';
+import { Translate } from './ValueTransformFunction';
 import ValueFloat32 from './ValueFloat32';
 import ValueAngle from './ValueAngle';
 import ValueLength from './ValueLength';

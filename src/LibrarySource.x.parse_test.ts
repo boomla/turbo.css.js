@@ -1,4 +1,5 @@
-import LibrarySource, { UtilityDefinition } from './LibrarySource';
+import LibrarySource from './LibrarySource';
+import { UtilityDefinition } from './LibrarySource';
 import Declaration from "./css/Declaration";
 import Block from "./css/Block";
 import { assert } from 'chai';

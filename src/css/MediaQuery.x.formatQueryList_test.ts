@@ -1,4 +1,6 @@
-import MediaQuery, { MediaType, Hoverable } from './MediaQuery';
+import MediaQuery from './MediaQuery';
+import { MediaType } from './MediaQuery';
+import { Hoverable } from './MediaQuery';
 import { assert } from 'chai';
 
 describe('MediaQuery.formatQueryList()', function() {

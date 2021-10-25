@@ -1,5 +1,6 @@
 import Turbo from './Turbo';
-import { DefaultConfig, NoCompatConfig } from "./CONFIG";
+import { DefaultConfig } from "./CONFIG";
+import { NoCompatConfig } from "./CONFIG";
 import { assert } from 'chai';
 
 describe('Turbo', function() {

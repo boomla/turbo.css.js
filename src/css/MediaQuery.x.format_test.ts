@@ -1,4 +1,5 @@
-import MediaQuery, { MediaType } from './MediaQuery';
+import MediaQuery from './MediaQuery';
+import { MediaType } from './MediaQuery';
 import Rule from './Rule';
 import RuleSet from './RuleSet';
 import Declaration from './Declaration';
