@@ -18,6 +18,7 @@ describe('SelectorSegment.prefixClassNames()', function() {
 		test(".mode-open", ".mode-open");
 		test(".mode-open\\:foo", ".NS-mode-open\\:foo");
 		test(".mode-open\\:foo.mode-open", ".NS-mode-open\\:foo.mode-open");
+		test(".-mode-open", ".-mode-open");
 		test("div.foo", "div.NS-foo");
 		test("div.foo:hover", "div.NS-foo:hover");
 		test("div", "div");

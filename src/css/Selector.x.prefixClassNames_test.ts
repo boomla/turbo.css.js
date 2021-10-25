@@ -44,6 +44,12 @@ describe('Selector.prefixClassNames()', function() {
 			"NS_",
 			Selector.new(".mode-foo"),
 		)
+		// Do not namespace .-mode-* class names
+		ok(
+			Selector.new(".-mode-foo"),
+			"NS_",
+			Selector.new(".-mode-foo"),
+		)
 		ok(
 			Selector.new(".mode-foo", ".bar"),
 			"NS_",

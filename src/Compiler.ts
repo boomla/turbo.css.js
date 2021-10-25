@@ -165,7 +165,7 @@ export default class Compiler {
 	compileOne(ns: Namespace, className: string, definedName: string, stackLevel: number): [newCompiler: Compiler, newSheet: StyleSheet] {
 		let [ selectorExpression, utilityFn ] = separateSelectorsAndUtilityFunction(className);
 
-		if (utilityFn.startsWith("mode-") || (utilityFn === "t1-start") || (utilityFn === "t1-all")) {
+		if (utilityFn.startsWith("mode-") || utilityFn.startsWith("-mode-") || (utilityFn === "t1-start") || (utilityFn === "t1-all")) {
 			return [ this, new StyleSheet() ];
 		}
 
