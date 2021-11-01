@@ -253,7 +253,16 @@ export default class Compiler {
 
 		let userDefinedUtil = libNs.names[utilityFn];
 		if ( ! userDefinedUtil) {
-			throw new Error("library ["+libName+"] contains no class name ["+utilityFn+"]");
+			// Assume empty style definitions for every user defined class name in the [s] library
+			if (libName === "s") {
+				userDefinedUtil = {
+					utils: [],
+					block: undefined,
+					orderForRawCss: new Order(),
+				};
+			} else {
+				throw new Error("library ["+libName+"] contains no class name ["+utilityFn+"]");
+			}
 		}
 
 		let name = className;
