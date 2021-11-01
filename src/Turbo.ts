@@ -15,9 +15,12 @@ export default class Turbo {
 	static defaultConfig: Config = DefaultConfig;
 	static noCompatConfig: Config = NoCompatConfig;
 
-	constructor(config?: Config, namespace?: string, important?: boolean) {
+	constructor(config?: Config, contextPath?: string, namespace?: string, important?: boolean) {
 		if (config === undefined) {
 			config = DefaultConfig;
+		}
+		if (contextPath === undefined) {
+			contextPath = "";
 		}
 		if (namespace === undefined) {
 			namespace = "";
@@ -27,7 +30,7 @@ export default class Turbo {
 		}
 		this.namespace = namespace;
 		this.important = important;
-		this.compiler = new Compiler(config);
+		this.compiler = new Compiler(config, contextPath);
 		this.sheet = new StyleSheet();
 	}
 

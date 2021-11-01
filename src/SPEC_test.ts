@@ -109,32 +109,36 @@ describe('SPEC', function() {
 
 
 			for (let exampleLib of spec.exampleLibraries) {
-				let compiler = new Compiler(new ConfigStatic({
-					colorPoints: NoCompatConfig.colorPoints,
-					colorScales: NoCompatConfig.colorScales,
-					shadows: NoCompatConfig.shadows,
-					commonBrowsers: NoCompatConfig.commonBrowsers,
-					resolveLibraryFn: function(_contextPath: string, libName: string): string | undefined {
-						let libPath = "/" + libName + ".turbo";
+				let contextPath = "";
+				let compiler = new Compiler(
+					new ConfigStatic({
+						colorPoints: NoCompatConfig.colorPoints,
+						colorScales: NoCompatConfig.colorScales,
+						shadows: NoCompatConfig.shadows,
+						commonBrowsers: NoCompatConfig.commonBrowsers,
+						resolveLibraryFn: function(_contextPath: string, libName: string): string | undefined {
+							let libPath = "/" + libName + ".turbo";
 
-						for (let lib of exampleLib.libraries) {
-							if (lib.filename === libPath) {
-								return libPath;
+							for (let lib of exampleLib.libraries) {
+								if (lib.filename === libPath) {
+									return libPath;
+								}
 							}
-						}
 
-						return undefined;
-					},
-					loadLibraryFn: function(libPath: string): string {
-						for (let lib of exampleLib.libraries) {
-							if (lib.filename === libPath) {
-								return lib.source;
+							return undefined;
+						},
+						loadLibraryFn: function(libPath: string): string {
+							for (let lib of exampleLib.libraries) {
+								if (lib.filename === libPath) {
+									return lib.source;
+								}
 							}
-						}
 
-						throw new Error("unexpected libPath #1 ["+libPath+"]");
-					},
-				}));
+							throw new Error("unexpected libPath #1 ["+libPath+"]");
+						},
+					}),
+					contextPath,
+				);
 
 				if (exampleLib.globalCode.trim() !== "") {
 					try {
@@ -195,32 +199,36 @@ describe('SPEC', function() {
 
 			for (let exampleLibThatFails of spec.exampleLibrariesThatFail) {
 				try {
-					let compiler = new Compiler(new ConfigStatic({
-						colorPoints: NoCompatConfig.colorPoints,
-						colorScales: NoCompatConfig.colorScales,
-						shadows: NoCompatConfig.shadows,
-						commonBrowsers: NoCompatConfig.commonBrowsers,
-						resolveLibraryFn: function(_contextPath: string, libName: string): string | undefined {
-							let libPath = "/" + libName + ".turbo";
+					let contextPath = "";
+					let compiler = new Compiler(
+						new ConfigStatic({
+							colorPoints: NoCompatConfig.colorPoints,
+							colorScales: NoCompatConfig.colorScales,
+							shadows: NoCompatConfig.shadows,
+							commonBrowsers: NoCompatConfig.commonBrowsers,
+							resolveLibraryFn: function(_contextPath: string, libName: string): string | undefined {
+								let libPath = "/" + libName + ".turbo";
 
-							for (let lib of exampleLibThatFails.libraries) {
-								if (lib.filename === libPath) {
-									return libPath;
+								for (let lib of exampleLibThatFails.libraries) {
+									if (lib.filename === libPath) {
+										return libPath;
+									}
 								}
-							}
 
-							return undefined;
-						},
-						loadLibraryFn: function(libPath: string): string {
-							for (let lib of exampleLibThatFails.libraries) {
-								if (lib.filename === libPath) {
-									return lib.source;
+								return undefined;
+							},
+							loadLibraryFn: function(libPath: string): string {
+								for (let lib of exampleLibThatFails.libraries) {
+									if (lib.filename === libPath) {
+										return lib.source;
+									}
 								}
-							}
 
-							throw new Error("unexpected libPath #2 ["+libPath+"]");
-						},
-					}));
+								throw new Error("unexpected libPath #2 ["+libPath+"]");
+							},
+						}),
+						contextPath,
+					);
 
 					if (exampleLibThatFails.globalCode.trim() !== "") {
 						compiler = compiler.eval("<anonymous>", exampleLibThatFails.globalCode);

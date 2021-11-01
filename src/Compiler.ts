@@ -49,25 +49,31 @@ export default class Compiler {
 	resolveCache: { [contextPath_libName: string]: string };
 
 
-	constructor(config: Config) {
+	constructor(config: Config, contextPath: string) {
 		this.config = config;
 		this.utilities = new Utilities();
 		this.utilities.registerBaseUtilities();
-		this.globalNamespace = new Namespace("");
+		this.globalNamespace = new Namespace(contextPath);
 		this.libraries = {};
 		this.imports = {};
 		this.dependedBy = {};
 		this.resolveCache = {};
 	}
-	static newDefaultCompiler(): Compiler {
-		return new Compiler(DefaultConfig);
+	static newDefaultCompiler(contextPath?: string): Compiler {
+		if (contextPath === undefined) {
+			contextPath = "";
+		}
+		return new Compiler(DefaultConfig, contextPath);
 	}
-	static newNoCompatCompiler(): Compiler {
-		return new Compiler(NoCompatConfig);
+	static newNoCompatCompiler(contextPath?: string): Compiler {
+		if (contextPath === undefined) {
+			contextPath = "";
+		}
+		return new Compiler(NoCompatConfig, contextPath);
 	}
 
 	clone(): Compiler {
-		let newCompiler = new Compiler(this.config);
+		let newCompiler = new Compiler(this.config, this.globalNamespace.path);
 		newCompiler.utilities = this.utilities;
 		newCompiler.globalNamespace = this.globalNamespace.clone();
 		Object.assign(newCompiler.libraries, this.libraries);

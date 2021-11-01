@@ -5,8 +5,9 @@ import { assert } from 'chai';
 
 describe('Turbo', function() {
 	it('should generate all the code that is required to be added to the html head', function() {
+		let contextPath = "";
 		let namespace = "NS_";
-		let turbo = new Turbo(NoCompatConfig, namespace);
+		let turbo = new Turbo(NoCompatConfig, contextPath, namespace);
 		
 		let actNamespacedClasses = turbo.add("t1 t1-start t1-all w-2 h-8");
 		
@@ -29,8 +30,9 @@ describe('Turbo', function() {
 		assert.equal(actHead, expHead)
 	});
 	it('should eval library', function() {
+		let contextPath = "";
 		let namespace = "NS_";
-		let turbo = new Turbo(NoCompatConfig, namespace);
+		let turbo = new Turbo(NoCompatConfig, contextPath, namespace);
 		
 		turbo.eval("ui.turbo", `
 			t1
@@ -66,8 +68,9 @@ describe('Turbo', function() {
 		assert.equal(actHead, expHead)
 	});
 	it('should handle mode-* classes correctly', function() {
+		let contextPath = "";
 		let namespace = "NS_";
-		let turbo = new Turbo(NoCompatConfig, namespace);
+		let turbo = new Turbo(NoCompatConfig, contextPath, namespace);
 		
 		turbo.eval("ui.turbo", `
 			t1
@@ -97,8 +100,9 @@ describe('Turbo', function() {
 		assert.equal(actHead, expHead)
 	});
 	it('should handle -mode-* classes correctly', function() {
+		let contextPath = "";
 		let namespace = "NS_";
-		let turbo = new Turbo(NoCompatConfig, namespace);
+		let turbo = new Turbo(NoCompatConfig, contextPath, namespace);
 		
 		turbo.eval("ui.turbo", `
 			t1
@@ -128,9 +132,10 @@ describe('Turbo', function() {
 		assert.equal(actHead, expHead)
 	});
 	it('should support !important', function() {
+		let contextPath = "";
 		let namespace = "";
 		let important = true;
-		let turbo = new Turbo(NoCompatConfig, namespace, important);
+		let turbo = new Turbo(NoCompatConfig, contextPath, namespace, important);
 		
 		let actNamespacedClasses = turbo.add("t1 w-2 h-8");
 		
@@ -150,9 +155,10 @@ describe('Turbo', function() {
 		assert.equal(actCss, expCss)
 	});
 	it('should preserve space suffix', function() {
+		let contextPath = "";
 		let namespace = "";
 		let important = true;
-		let turbo = new Turbo(NoCompatConfig, namespace, important);
+		let turbo = new Turbo(NoCompatConfig, contextPath, namespace, important);
 		
 		let actNamespacedClasses = turbo.add("t1 w-2 h-8 ");
 		
@@ -160,8 +166,9 @@ describe('Turbo', function() {
 		assert.equal(actNamespacedClasses, expNamespacedClasses);
 	});
 	it('should rewrite Turbo embedded in other code', function() {
+		let contextPath = "";
 		let namespace = "NS_";
-		let turbo = new Turbo(NoCompatConfig, namespace);
+		let turbo = new Turbo(NoCompatConfig, contextPath, namespace);
 		
 		let source = `<div class="t1 w-10 ; foo">hello</div>`
 		let actSource = turbo.addSource(source);
@@ -182,8 +189,9 @@ describe('Turbo', function() {
 		assert.equal(actHead, expHead)
 	});
 	it('should rewrite multiple Turbo snippets embedded in code', function() {
+		let contextPath = "";
 		let namespace = "NS_";
-		let turbo = new Turbo(NoCompatConfig, namespace);
+		let turbo = new Turbo(NoCompatConfig, contextPath, namespace);
 		
 		let source = `<div class="t1 w-10 ; foo">hello</div><div class="t1 h-10 ; bar">world</div>`
 		let actSource = turbo.addSource(source);
@@ -207,8 +215,9 @@ describe('Turbo', function() {
 		assert.equal(actHead, expHead)
 	});
 	it('should generate browser prefixed variants for slider', function() {
+		let contextPath = "";
 		let namespace = "";
-		let turbo = new Turbo(DefaultConfig, namespace);
+		let turbo = new Turbo(DefaultConfig, contextPath, namespace);
 		
 		let actNamespacedClasses = turbo.add("t1 thumb:bg-c-black");
 		
@@ -233,8 +242,9 @@ describe('Turbo', function() {
 	});
 	describe('.addClassAttr()', () => {
 		function ok(originalClassAttr: string, exp: string) {
+			let contextPath = "";
 			let namespace = "NS-";
-			let turbo = new Turbo(NoCompatConfig, namespace);
+			let turbo = new Turbo(NoCompatConfig, contextPath, namespace);
 			let act = turbo.addClassAttr(originalClassAttr);
 			assert.equal(act, exp);
 		}
