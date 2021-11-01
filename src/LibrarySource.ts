@@ -20,16 +20,22 @@ export default class LibrarySource {
 		code = code.replace(regexpComment2, "");
 		code = code.trim();
 
-		let match = code.match(regexpTurboV1);
-		if (match) {
-			code = code.substring(3);
+		if (code === "t1") {
+			// Support libraries only containing [t1]
+			code = "";
 		}
 		else {
-			let codePart = code;
-			if (100 < codePart.length) {
-				codePart = codePart.substring(0, 100) + "...";
+			let match = code.match(regexpTurboV1);
+			if (match) {
+				code = code.substring(3);
 			}
-			throw new Error("missing Turbo version identifier [t1] in ["+codePart+"]");
+			else {
+				let codePart = code;
+				if (100 < codePart.length) {
+					codePart = codePart.substring(0, 100) + "...";
+				}
+				throw new Error("missing Turbo version identifier [t1] in ["+codePart+"]");
+			}
 		}
 
 

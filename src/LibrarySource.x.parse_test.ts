@@ -193,5 +193,17 @@ describe('LibrarySource.parse()', function() {
 
 		assert.deepEqual(act, exp);
 	});
+	it('should support empty library with [t1] on its own', function() {
+		let code = `t1`;
+
+		let act = LibrarySource.parse("path", code);
+
+		let exp = new LibrarySource({
+			path: "path",
+			utils: [],
+		});
+
+		assert.deepEqual(act, exp);
+	});
 });
 
