@@ -851,3 +851,64 @@ Error: stack overflow [32]
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
+# EXAMPLE LIBRARY
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+User defined utility class names are sorted in
+ASCII order in the generated CSS.
+==================================================
+[/ui.turbo]
+t1
+.A1 {
+	w-1
+}
+.A2 {
+	w-1
+}
+.a1 {
+	w-1
+}
+.a2 {
+	w-1
+}
+.apple {
+	w-1
+}
+.Apple {
+	w-1
+}
+.zulu {
+	w-1
+}
+.Zulu {
+	w-1
+}
+--------------------------------------------------
+--------------------------------------------------
+t1 ui.A1 ui.A2 ui.a1 ui.a2 ui.apple ui.Apple ui.zulu ui.Zulu
+--------------------------------------------------
+.t1.ui\.A1 {
+	width: 1px;
+}
+.t1.ui\.A2 {
+	width: 1px;
+}
+.t1.ui\.Apple {
+	width: 1px;
+}
+.t1.ui\.Zulu {
+	width: 1px;
+}
+.t1.ui\.a1 {
+	width: 1px;
+}
+.t1.ui\.a2 {
+	width: 1px;
+}
+.t1.ui\.apple {
+	width: 1px;
+}
+.t1.ui\.zulu {
+	width: 1px;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
