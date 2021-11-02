@@ -854,7 +854,7 @@ Error: stack overflow [32]
 # EXAMPLE LIBRARY
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 User defined utility class names are sorted in
-ASCII order in the generated CSS.
+definition order in the generated CSS.
 ==================================================
 [/ui.turbo]
 t1
@@ -870,16 +870,16 @@ t1
 .a2 {
 	w-1
 }
-.apple {
-	w-1
-}
-.Apple {
-	w-1
-}
 .zulu {
 	w-1
 }
 .Zulu {
+	w-1
+}
+.apple {
+	w-1
+}
+.Apple {
 	w-1
 }
 --------------------------------------------------
@@ -892,23 +892,82 @@ t1 ui.A1 ui.A2 ui.a1 ui.a2 ui.apple ui.Apple ui.zulu ui.Zulu
 .t1.ui\.A2 {
 	width: 1px;
 }
-.t1.ui\.Apple {
-	width: 1px;
-}
-.t1.ui\.Zulu {
-	width: 1px;
-}
 .t1.ui\.a1 {
 	width: 1px;
 }
 .t1.ui\.a2 {
 	width: 1px;
 }
-.t1.ui\.apple {
-	width: 1px;
-}
 .t1.ui\.zulu {
 	width: 1px;
 }
+.t1.ui\.Zulu {
+	width: 1px;
+}
+.t1.ui\.apple {
+	width: 1px;
+}
+.t1.ui\.Apple {
+	width: 1px;
+}
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE LIBRARY
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+The order of user defined utility class names
+does not depend on the contained classes.
+(Test case 1)
+==================================================
+[/ui.turbo]
+t1
+.A1 {
+	mt-16
+}
+.a1 {
+	w-full
+	p-16
+}
+--------------------------------------------------
+--------------------------------------------------
+t1 ui.A1 ui.a1
+--------------------------------------------------
+.t1.ui\.A1 {
+	margin-top: 16px;
+}
+.t1.ui\.a1 {
+	width: 100%;
+	padding: 16px;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE LIBRARY
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+The order of user defined utility class names
+does not depend on the contained classes.
+(Test case 2)
+==================================================
+[/ui.turbo]
+t1
+.A1 {
+	mt-16
+}
+.a1 {
+	p-16
+	w-full
+}
+--------------------------------------------------
+--------------------------------------------------
+t1 ui.A1 ui.a1
+--------------------------------------------------
+.t1.ui\.A1 {
+	margin-top: 16px;
+}
+.t1.ui\.a1 {
+	padding: 16px;
+	width: 100%;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 

@@ -206,7 +206,7 @@ export default class Compiler {
 				let escapedClassName = utilityClassNameToCssSelector(name);
 				let selector = new Selector([ new SelectorSegment(escapedClassName) ]);
 				let selectors = new SelectorList([ selector ]);
-				let rule = new Rule(selectors, userDefinedUtil.block, userDefinedUtil.orderForRawCss);
+				let rule = new Rule(selectors, userDefinedUtil.block, userDefinedUtil.userSpaceUtilityOrder);
 				let ruleSet = new RuleSet([ rule ]);
 				let mq = new MediaQuery({
 					ruleSet: ruleSet,
@@ -226,8 +226,7 @@ export default class Compiler {
 				let [ newCompiler, sheet ] = this.compileAll(ns, new StyleSheet(), userDefinedUtil.utils, name, stackLevel + 1);
 
 				// Update order to represent a higher level utility function
-				let order = sheet.getMaxOrder();
-				sheet = sheet.setOrder(order.append(1));
+				sheet = sheet.setOrder(userDefinedUtil.userSpaceUtilityOrder);
 
 				return [ newCompiler, sheet ];
 			}
@@ -264,7 +263,8 @@ export default class Compiler {
 				userDefinedUtil = {
 					utils: [],
 					block: undefined,
-					orderForRawCss: new Order(),
+					// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
+					userSpaceUtilityOrder: new Order(0, Object.keys(libNs.names).length),
 				};
 			} else {
 				throw new Error("library ["+libName+"] contains no class name ["+utilityFn+"]");
@@ -281,7 +281,7 @@ export default class Compiler {
 			let escapedClassName = utilityClassNameToCssSelector(name);
 			let selector = new Selector([ new SelectorSegment(escapedClassName) ]);
 			let selectors = new SelectorList([ selector ]);
-			let rule = new Rule(selectors, userDefinedUtil.block, userDefinedUtil.orderForRawCss);
+			let rule = new Rule(selectors, userDefinedUtil.block, userDefinedUtil.userSpaceUtilityOrder);
 			let ruleSet = new RuleSet([ rule ]);
 			let mq = new MediaQuery({
 				ruleSet: ruleSet,
@@ -299,8 +299,7 @@ export default class Compiler {
 		[ compiler, sheet ] = compiler.compileAll(libNs, new StyleSheet([]), userDefinedUtil.utils, name, stackLevel);
 
 		// Update order to represent a higher level utility function
-		let order = sheet.getMaxOrder();
-		sheet = sheet.setOrder(order.append(1));
+		sheet = sheet.setOrder(userDefinedUtil.userSpaceUtilityOrder);
 
 		return [ compiler, sheet ];
 	}
@@ -382,7 +381,7 @@ export default class Compiler {
 				utils: utilityDefinition.utils,
 				block: utilityDefinition.block,
 				// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
-				orderForRawCss: new Order(0, i),
+				userSpaceUtilityOrder: new Order(0, i),
 			};
 			i++;
 		}
@@ -421,7 +420,7 @@ export default class Compiler {
 		// Apply defaults
 		switch (libName) {
 			case "u1": {
-				libNs.applyDefaults(LIBRARY_U1);
+				libNs = libNs.applyDefaults(LIBRARY_U1);
 				break;
 			}
 		}

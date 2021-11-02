@@ -5,7 +5,7 @@ import LibrarySource from "./LibrarySource";
 interface UserSpaceUtility {
 	utils: Array<string> | undefined;
 	block: Block | undefined;
-	orderForRawCss: Order;
+	userSpaceUtilityOrder: Order;
 }
 
 export default class Namespace {
@@ -36,7 +36,7 @@ export default class Namespace {
 				utils: utilityDefinition.utils,
 				block: utilityDefinition.block,
 				// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
-				orderForRawCss: new Order(0, i),
+				userSpaceUtilityOrder: new Order(0, i),
 			}
 			i++;
 		}
@@ -50,19 +50,45 @@ export default class Namespace {
 		return new Namespace(this.path, names);
 	}
 
-	applyDefaults(defaultNs: Namespace) {
-		// Note: ordering of user-defined utilities is calculated automatically,
-		// no need to consider here.
+	applyDefaults(defaultNs: Namespace): Namespace {
+		let names: { [key: string]: UserSpaceUtility } = {};
+		let i = 0;
 
-		let keys = Object.keys(defaultNs.names);
-
-		for (let key of keys) {
-			if (this.names.hasOwnProperty(key)) {
+		// First add the NOT overridden defaults
+		let defaultKeys = Object.keys(defaultNs.names);
+		for (let key of defaultKeys) {
+			if (this.names[key]) {
 				continue;
 			}
-			this.names[key] = defaultNs.names[key];
+			let utilityDefinition = defaultNs.names[key];
+
+			names[key] = {
+				utils: utilityDefinition.utils,
+				block: utilityDefinition.block,
+				// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
+				userSpaceUtilityOrder: new Order(0, i),
+			};
+
+			i++;
 		}
+
+
+		// Then we append the overrides
+		let thisKeys = Object.keys(this.names);
+		for (let key of thisKeys) {
+			let utilityDefinition = this.names[key];
+
+			names[key] = {
+				utils: utilityDefinition.utils,
+				block: utilityDefinition.block,
+				// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
+				userSpaceUtilityOrder: new Order(0, i),
+			};
+
+			i++;
+		}
+
+		return new Namespace(this.path, names);
 	}
 };
-
 
