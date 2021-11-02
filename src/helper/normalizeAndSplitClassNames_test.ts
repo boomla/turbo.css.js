@@ -63,5 +63,12 @@ describe('normalizeAndSplitClassNames()', function() {
 			[],
 		);
 	});
+	it('should support new lines and other white spaces', () => {
+		ok(
+			't1\n\r\tw-10',
+			[ 't1', 'w-10' ],
+			[],
+		);
+	});
 });
 

@@ -1,9 +1,10 @@
+import splitClassNames from '../splitClassNames';
 
 export default function normalizeAndSplitClassNames(classAttr: string): [ /* turboClasses: */ string[], /* otherClasses */ string[] ] {
 	let turboClasses: Set<string> = new Set();
 	let otherClasses: Array<string> = [];
 
-	let list = classAttr.split(' ');
+	let list = splitClassNames(classAttr);
 
 	let inTurboExpression = false;
 	for (let i=0; i<list.length; i++) {
