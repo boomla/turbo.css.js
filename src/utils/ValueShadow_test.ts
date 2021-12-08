@@ -40,6 +40,7 @@ describe('ValueShadow', function () {
     it('toClassName', () => {
         okToClassName(new ValueShadow(1), "1");
         okToClassName(new ValueShadow(2), "2");
+        okToClassName(new ValueShadow(1, 0), "1-0");
         okToClassName(new ValueShadow(1, 20), "1-20");
         okToClassName(new ValueShadow(1, 100), "1-100");
     });

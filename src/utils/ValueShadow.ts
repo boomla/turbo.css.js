@@ -14,6 +14,6 @@ export default class ValueShadow {
 		throw new Error(`can not negate shadow ${this.toClassName()}`);
 	}
 	toClassName(): string {
-		return this.distance.toString() + (this.darkness ? `-${this.darkness.toString()}` : "");
+		return this.distance.toString() + ((this.darkness !== undefined) ? `-${this.darkness.toString()}` : "");
 	}
 }
