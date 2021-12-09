@@ -1,4 +1,7 @@
 import Turbo from "../Turbo";
+import type Config from "../utils/Config";
+import { DefaultConfig } from "../CONFIG";
+import ConfigStatic from "../utils/ConfigStatic";
 import BASE_CSS_MIN from "../base-css/BASE_CSS_MIN";
 import extractTurboExpressionsFromClassAttr from '../helper/extractTurboExpressionsFromClassAttr';
 
@@ -6,7 +9,25 @@ function compileAndWatch() {
 	let contextPath = "";
 	let namespace = "";
 	let important = true;
-	let turbo = new Turbo(undefined, contextPath, namespace, important);
+
+	let config: Config|undefined = undefined;
+
+	if ((window as any).turboLoadLibrary !== undefined) {
+		let loadLibraryFn = (window as any).turboLoadLibrary as (libPath: string) => string;
+
+		config = new ConfigStatic({
+			colorPoints: DefaultConfig.colorPoints,
+			colorScales: DefaultConfig.colorScales,
+			shadows: DefaultConfig.shadows,
+			commonBrowsers: DefaultConfig.commonBrowsers,
+			resolveLibraryFn: function(_contextPath: string, libName: string): string | undefined {
+				return libName;
+			},
+			loadLibraryFn: loadLibraryFn,
+		})
+	}
+	
+	let turbo = new Turbo(config, contextPath, namespace, important);
 
 	let head = document.getElementsByTagName('head')[0];
 
@@ -62,7 +83,7 @@ function compileAndWatch() {
 	}
 
 	// Hot-compile on changes
-	const config = {
+	const observerConfig = {
 		attributes: true,
 		attributeFilter: [ "class" ],
 		childList: true,
@@ -103,7 +124,7 @@ function compileAndWatch() {
 	};
 
 	const observer = new MutationObserver(callback);
-	observer.observe(document.documentElement, config);
+	observer.observe(document.documentElement, observerConfig);
 
 	// Update styles upon init
 	updateStyle();
