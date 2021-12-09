@@ -3,9 +3,10 @@ import BASE_CSS_MIN from "../base-css/BASE_CSS_MIN";
 import extractTurboExpressionsFromClassAttr from '../helper/extractTurboExpressionsFromClassAttr';
 
 function compileAndWatch() {
+	let contextPath = "";
 	let namespace = "";
 	let important = true;
-	let turbo = new Turbo(undefined, namespace, important);
+	let turbo = new Turbo(undefined, contextPath, namespace, important);
 
 	let head = document.getElementsByTagName('head')[0];
 
