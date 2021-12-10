@@ -56,14 +56,29 @@ describe('Selector.prefixClassNames()', function() {
 			Selector.new(".mode-foo", ".NS_bar"),
 		)
 		ok(
+			Selector.new(".-mode-foo", ".bar"),
+			"NS_",
+			Selector.new(".-mode-foo", ".NS_bar"),
+		)
+		ok(
 			Selector.new(".foo.mode-bar"),
 			"NS_",
 			Selector.new(".NS_foo.mode-bar"),
 		)
 		ok(
+			Selector.new(".foo.-mode-bar"),
+			"NS_",
+			Selector.new(".NS_foo.-mode-bar"),
+		)
+		ok(
 			Selector.new(".mode-bar\\:foo.mode-bar"),
 			"NS_",
 			Selector.new(".NS_mode-bar\\:foo.mode-bar"),
+		)
+		ok(
+			Selector.new(".-mode-bar\\:foo.-mode-bar"),
+			"NS_",
+			Selector.new(".NS_-mode-bar\\:foo.-mode-bar"),
 		)
 	});
 });

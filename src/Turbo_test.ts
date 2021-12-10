@@ -113,8 +113,8 @@ describe('Turbo', function() {
 			}
 		`)
 
-		let actNamespacedClasses = turbo.add("t1 -mode-open hidden mode-open:block");
-		let expNamespacedClasses = "t1 -mode-open NS_hidden NS_mode-open:block";
+		let actNamespacedClasses = turbo.add("t1 -mode-open mode-open:block -mode-open:hidden");
+		let expNamespacedClasses = "t1 -mode-open NS_mode-open:block NS_-mode-open:hidden";
 		assert.equal(actNamespacedClasses, expNamespacedClasses);
 
 		let actHead = turbo.head()
@@ -124,7 +124,7 @@ describe('Turbo', function() {
 			".t1.NS_mode-open\\:block.mode-open {\n"+
 			"	display: block;\n"+
 			"}\n"+
-			".t1.NS_hidden {\n"+
+			".t1.NS_-mode-open\\:hidden.-mode-open {\n"+
 			"	display: none;\n"+
 			"}\n"+
 			"</style>";

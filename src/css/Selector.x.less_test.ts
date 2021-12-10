@@ -45,6 +45,7 @@ describe('Selector.less()', function() {
 		ok(Selector.new(".invalid\\:foo"),     ".\x7f-d6\\:foo");
 		
 		ok(Selector.new(".mode-open\\:foo"),   ".\x7f-e1-open\\:foo");
+		ok(Selector.new(".-mode-open\\:foo"),  ".\x7f-e2-open\\:foo");
 
 
 		// CSS pseudo selectors

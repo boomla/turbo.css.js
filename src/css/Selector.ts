@@ -216,6 +216,7 @@ function replaceSelectors(segment: string): string {
 	segment = replaceSelector(segment, "invalid\\:",     "\x7f-d6\\:");
 	segment = replaceSelector(segment, "valid\\:",       "\x7f-d5\\:");
 	
+	segment = replaceSelector(segment, "-mode-",         "\x7f-e2-");
 	segment = replaceSelector(segment, "mode-",          "\x7f-e1-");
 
 

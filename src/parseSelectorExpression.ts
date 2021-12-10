@@ -133,7 +133,7 @@ let selectorMap: { [key: string]: Selector } = {
 	"video":      new SelectorTag("video"),
 }
 
-let regexpMode = /^mode-[a-zA-Z0-9\-]+\:/;
+let regexpMode = /^-?mode-[a-zA-Z0-9\-]+\:/;
 let regexpDescendant = /^\/(\.\.\/)+/;
 
 export default function parseSelectorExpression(selectorExpression: string): Array<Selector> {

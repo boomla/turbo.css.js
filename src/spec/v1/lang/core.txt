@@ -76,6 +76,7 @@ valid:block
 invalid:block
 
 mode-open:block
+-mode-open:block
 --------------------------------------------------
 .t1.block {
 	display: block;
@@ -154,6 +155,9 @@ mode-open:block
 .t1.mode-open\:block.mode-open {
 	display: block;
 }
+.t1.-mode-open\:block.-mode-open {
+	display: block;
+}
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
@@ -210,9 +214,9 @@ t1 mode-open mode-open:block
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Ignore standalon -mode-* classes
 ==================================================
-t1 -mode-open mode-open:block
+t1 -mode-open -mode-open:block
 --------------------------------------------------
-.t1.mode-open\:block.mode-open {
+.t1.-mode-open\:block.-mode-open {
 	display: block;
 }
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

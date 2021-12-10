@@ -94,10 +94,10 @@ export default class SelectorSegment {
 }
 
 function applyNamespace(part: string, namespace: string): string {
-	// .mode-*
-	if (part.startsWith(".mode-")) {
+	// .mode-* and .-mode-*
+	if (part.startsWith(".mode-") || part.startsWith(".-mode-")) {
 		for (let i=6; i<part.length-1; i++) {
-			// If the className contains `\\:`, mode it is a conditional
+			// If the className contains `\\:`, it is a conditional mode
 			// selector within the class name, not a standalone class name.
 			// In that case, do namespace it.
 			if (part[i] === '\\' && part[i+1] === ':') {
@@ -105,13 +105,8 @@ function applyNamespace(part: string, namespace: string): string {
 			}
 		}
 
-		// Do not namespace standalone mode-* class names
+		// Do not namespace standalone mode-* and -mode-* class names
 		return ".";
-	}
-
-	// .-mode-* classes do not need to be namespaced
-	if (part.startsWith(".-mode-")) {
-		return "."
 	}
 
 	// Namespace other classes

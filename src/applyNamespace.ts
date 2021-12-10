@@ -1,9 +1,9 @@
 
 export default function applyNamespace(className: string, namespace: string): string {
-	// mode-* classes
-	if (className.startsWith("mode-")) {
+	// mode-* and -mode-* classes
+	if (className.startsWith("mode-") || className.startsWith("-mode-")) {
 		for (let i=5; i<className.length; i++) {
-			// If the className contains `:`, mode is a conditional
+			// If the className contains `:`, it is a conditional mode
 			// selector within the class name, not a standalone class name.
 			// In that case, do namespace it.
 			if (className[i] === ':') {
@@ -11,15 +11,10 @@ export default function applyNamespace(className: string, namespace: string): st
 			}
 		}
 
-		// Do not namespace standalone mode-* class names
+		// Do not namespace standalone mode-* and -mode-* class names
 		return className;
 	}
 	
-	// Do not namespace -mode-* classes
-	if (className.startsWith("-mode-")) {
-		return className;
-	}
-
 	return namespace + className;
 }
 
