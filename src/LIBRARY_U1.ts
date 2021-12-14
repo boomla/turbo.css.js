@@ -722,5 +722,8 @@ let libName = "u1";
 let libPath = "<STDLIB:u1>";
 const LIBRARY_U1 = Namespace.evalLibrary(libName, libPath, LIBRARY_U1_SRC);
 
-export { LIBRARY_U1 };
+export {
+	LIBRARY_U1,
+	LIBRARY_U1_SRC,
+};
 
