@@ -90,5 +90,12 @@ export default class Namespace {
 
 		return new Namespace(this.path, names);
 	}
+
+	// publicClassNames returns a list of all class names defined by the library
+	// that are public - that is, do not start with an underscore [_].
+	publicClassNames(): Array<string> {
+		const classNames = Object.keys(this.names);
+		return classNames.filter((name) => ! name.startsWith('_'));
+	}
 };
 
