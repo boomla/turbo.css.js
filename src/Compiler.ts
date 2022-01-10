@@ -264,8 +264,8 @@ export default class Compiler {
 				userDefinedUtil = {
 					utils: [],
 					block: undefined,
-					// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
-					userSpaceUtilityOrder: new Order(0, Object.keys(libNs.names).length),
+					// s-classes shall override base utilities, so we introduce them as having 1st level order
+					userSpaceUtilityOrder: new Order(Object.keys(libNs.names).length),
 				};
 			} else {
 				throw new Error("library ["+libName+"] contains no class name ["+utilityFn+"]");
@@ -382,7 +382,7 @@ export default class Compiler {
 				utils: utilityDefinition.utils,
 				block: utilityDefinition.block,
 				// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
-				userSpaceUtilityOrder: new Order(0, i),
+				userSpaceUtilityOrder: new Order(0, 0, i),
 			};
 			i++;
 		}

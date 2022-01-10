@@ -102,6 +102,29 @@ t1 h-40 ui.btn
 
 # EXAMPLE LIBRARY
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+The special library [s] is sorted after system
+utilities in the generated CSS.
+==================================================
+[/s.turbo]
+t1
+.btn {
+	h-32
+}
+--------------------------------------------------
+--------------------------------------------------
+t1 h-40 s.btn
+--------------------------------------------------
+.t1.h-40 {
+	height: 40px;
+}
+.t1.s\.btn {
+	height: 32px;
+}
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+# EXAMPLE LIBRARY
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 Comments are supported. Comments must be preceeded
 by a whitespace char: space, tab or new-line.
 They can also be the at the start of the file.

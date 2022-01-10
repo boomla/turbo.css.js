@@ -3,7 +3,7 @@
 // Base utility classes are sorted in definition order, for example
 // `border-top` is more specific than `border`, thus the `bt` utility
 // shall sort after `b` thus overwriting it.
-// User-space utilities shall be sorted after the utilities they have
+// User-space utilities shall be sorted before the utilities they have
 // been composed of. This is acheived by creating an Order having more
 // elements.
 // For example, base utilities have an Order of length 1. User space

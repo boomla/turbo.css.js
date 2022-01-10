@@ -74,7 +74,7 @@ export default class Utilities {
 			let util = {
 				signature: signature,
 				fn: fn,
-				order: new Order(Object.keys(this.utilities).length + 1),
+				order: new Order(0, Object.keys(this.utilities).length + 1),
 			};
 			this.utilities[name] = [ util ];
 		}

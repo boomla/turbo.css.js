@@ -20,7 +20,7 @@ export default class Namespace {
 		this.names = names;
 	}
 
-	static evalLibrary(_libName: string, libPath: string, code: string): Namespace {
+	static evalLibrary(libName: string, libPath: string, code: string): Namespace {
 		let libSrc = LibrarySource.parse(libPath, code);
 
 		let names = {} as { [key: string]: UserSpaceUtility };
@@ -31,12 +31,18 @@ export default class Namespace {
 			if (util) {
 				throw new Error("class ["+utilityDefinition.name+"] is defined multiple times in library ["+libPath+"]");
 			}
+
+			// User space utililties shall be overridable by base utilities, so we introduce them as having 3rd level order
+			// -- except for s library classes, which shall override hardcoded base utilities, so we introduce them as
+			//    having 1st level order
+			const order = (libName === 's')
+				? new Order(i)
+				: new Order(0, 0, i);
 			
 			names[utilityDefinition.name] = {
 				utils: utilityDefinition.utils,
 				block: utilityDefinition.block,
-				// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
-				userSpaceUtilityOrder: new Order(0, i),
+				userSpaceUtilityOrder: order,
 			}
 			i++;
 		}

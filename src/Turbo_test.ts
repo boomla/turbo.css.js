@@ -1,6 +1,7 @@
 import Turbo from './Turbo';
 import { DefaultConfig } from "./CONFIG";
 import { NoCompatConfig } from "./CONFIG";
+import type { BrowserRewriteRules } from "css/BrowserRewriteRules";
 import { assert } from 'chai';
 
 describe('Turbo', function() {
@@ -273,6 +274,59 @@ describe('Turbo', function() {
 				"t1 NS-w-2 NS-h-8 ; foo bar baz",
 			);
 		});
+	});
+	it('should sort s-library class definitions after base class definitions', function() {
+		class TestConfig {
+			getColorPoint(_colorPointName: string): string | undefined {
+				throw new Error('getColorPoint()');
+			}
+			getColorScaleShade(_colorScaleName: string, _shade: number): string | undefined {
+				throw new Error('getColorScaleShade()');
+			}
+			getShadow(_distance: number, _darkness: number): string {
+				throw new Error('getShadow()');
+			}
+			browserRewriteRules(): BrowserRewriteRules {
+				return {
+					propertyPrefixes: {},
+					declarationMap: {},
+					rewriteRuleFuncs: [],
+				};
+			}
+			resolveLibrary(_contextPath: string, libName: string): string | undefined {
+				return libName;
+			}
+			loadLibrary(_libPath: string): string {
+				return `
+					t1
+					.btn {
+						w-32
+					}
+				`;
+			}
+		}
+
+		let contextPath = "";
+		let namespace = "NS_";
+		let turbo = new Turbo(new TestConfig(), contextPath, namespace);
+		
+		let actNamespacedClasses = turbo.add("t1 s.btn w-40");
+		
+		let expNamespacedClasses = "t1 NS_s.btn NS_w-40";
+		assert.equal(actNamespacedClasses, expNamespacedClasses);
+
+		let actCss = turbo.css()
+
+		let expCss = "" +
+			".t1.NS_w-40 {\n"+
+			"	width: 40px;\n"+
+			"}\n"+
+			".t1.NS_s\\.btn {\n"+
+			"	width: 32px;\n"+
+			"}\n"+
+			"";
+
+		assert.equal(actCss, expCss)
 	});
 });
 
