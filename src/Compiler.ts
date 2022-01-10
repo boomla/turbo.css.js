@@ -381,7 +381,7 @@ export default class Compiler {
 			newCompiler.globalNamespace.names[utilityDefinition.name] = {
 				utils: utilityDefinition.utils,
 				block: utilityDefinition.block,
-				// User space utililties shall be overridable by base utilities, so we introduce them as having 2nd level order
+				// User space utililties shall be overridable by base utilities, so we introduce them as having 3rd level order
 				userSpaceUtilityOrder: new Order(0, 0, i),
 			};
 			i++;
