@@ -26,7 +26,7 @@ export default class TypeLengthPercentage implements Type {
 		let res = TypeLength.parseLength(strArgs, this.defaultUnit)
 		if (res !== undefined) {
 			let [ arg, remainder, explicitUnit ] = res;
-			let unitRequirementFullfilled = explicitUnit || ( ! this.requireUnit);
+			let unitRequirementFullfilled = explicitUnit || ( ! this.requireUnit) || (arg.value === 0);
 			if (unitRequirementFullfilled) {
 				return [ arg, remainder ];
 			}

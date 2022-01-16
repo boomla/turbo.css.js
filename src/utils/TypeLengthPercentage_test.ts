@@ -73,7 +73,7 @@ describe('TypeLengthPercentage', function() {
 		let ok = function(msg: string, typ: TypeLengthPercentage, strArgs: Array<string>, expValue: Value, expRemainder: Array<string>) {
 			let act = typ.parse(config, strArgs);
 			if (act === undefined) {
-				throw new Error(msg + strArgs.toString());
+				throw new Error(msg + ' ' + strArgs.toString());
 			}
 			let exp = [ expValue, expRemainder ];
 			assert.deepEqual(act, exp, msg);
@@ -93,6 +93,12 @@ describe('TypeLengthPercentage', function() {
 			TypeLengthPercentage.newWithUnit(),
 			[ "2%", "3" ],
 			new ValuePercentage(2),
+			[ "3" ],
+		)
+		ok("unit not required for zero",
+			TypeLengthPercentage.newWithUnit(),
+			[ "0", "3" ],
+			new ValueLength(0, "px"),
 			[ "3" ],
 		)
 		mismatch("unit not provided",

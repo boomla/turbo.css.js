@@ -21,6 +21,12 @@ describe('TypeLength', function() {
 			new ValueLength(1.23, "px"),
 			[],
 		);
+		ok("unitless zero number",
+			new TypeLength(1, "px"),
+			[ "0" ],
+			new ValueLength(0, "px"),
+			[],
+		);
 		ok("remainders are returned",
 			new TypeLength(1, "px"),
 			[ "1", "2" ],
