@@ -467,6 +467,9 @@ export default class Compiler {
 		let lastPath = reverseImportChain[reverseImportChain.length - 1];
 
 		let importingLibs = this.dependedBy[lastPath];
+		if (importingLibs === undefined) {
+			return; // No dependencies exist, valid for non-lib root contexts
+		}
 		for (let importingLibPath of importingLibs) {
 			if (importingLibPath === "") {
 				continue;
