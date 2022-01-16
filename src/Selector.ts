@@ -40,7 +40,7 @@ export class SelectorDescendant implements Selector {
 		return sheet.addCombinator(" ");
 	}
 	toString(): string {
-		return "_";
+		return "/../";
 	}
 }
 
