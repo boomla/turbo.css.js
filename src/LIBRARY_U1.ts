@@ -651,6 +651,7 @@ const LIBRARY_U1_SRC = `t1
 
 .textContainerNoColors {
 	font-sans
+	break-words
 
 	@/../p:font-16
 	@/../p:my-16
