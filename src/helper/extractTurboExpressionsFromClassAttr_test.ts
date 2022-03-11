@@ -3,7 +3,7 @@ import { assert } from 'chai';
 
 describe('extractTurboExpressionsFromClassAttr()', function() {
 	function ok(msg: string, classAttr: string, exp: string) {
-		let act = extractTurboExpressionsFromClassAttr(classAttr);
+		let act = extractTurboExpressionsFromClassAttr('t1', classAttr);
 		assert.equal(act, exp, msg);
 	}
 	ok('should extract a single expression',

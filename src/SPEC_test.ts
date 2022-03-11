@@ -41,7 +41,7 @@ describe('SPEC', function() {
 				let sheet: StyleSheet;
 				try {
 					let compiler = Compiler.newNoCompatCompiler();
-					[ , sheet] = compiler.compile(example.code);
+					[ , sheet] = compiler.compile(T1, example.code);
 				}
 				catch(e: unknown) {
 					if ( ! (e instanceof Error)) {
@@ -84,7 +84,7 @@ describe('SPEC', function() {
 			for (let example of spec.examplesThatFail) {
 				try {
 					let compiler = Compiler.newNoCompatCompiler();
-					compiler.compile(example.code)
+					compiler.compile(T1, example.code)
 
 					// Should not reach this point
 					errors.push(example.description+"\ncode ["+example.code+"]\nexpected an error: "+example.expErr);
@@ -156,7 +156,7 @@ describe('SPEC', function() {
 
 				let sheet: StyleSheet;
 				try {
-					[ , sheet] = compiler.compile(exampleLib.code);
+					[ , sheet] = compiler.compile(T1, exampleLib.code);
 				}
 				catch(e: unknown) {
 					if ( ! (e instanceof Error)) {
@@ -234,7 +234,7 @@ describe('SPEC', function() {
 						compiler = compiler.eval("<anonymous>", exampleLibThatFails.globalCode);
 					}
 
-					compiler.compile(exampleLibThatFails.code);
+					compiler.compile(T1, exampleLibThatFails.code);
 
 					// Should not reach this
 					errors.push(exampleLibThatFails.description+"\ncode ["+exampleLibThatFails.code+"]\nexpected an error: "+exampleLibThatFails.expErr);

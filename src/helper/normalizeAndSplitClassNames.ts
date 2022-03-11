@@ -1,6 +1,6 @@
 import splitClassNames from '../splitClassNames';
 
-export default function normalizeAndSplitClassNames(classAttr: string): [ /* turboClasses: */ string[], /* otherClasses */ string[] ] {
+export default function normalizeAndSplitClassNames(masterClass: string, classAttr: string): [ /* turboClasses: */ string[], /* otherClasses */ string[] ] {
 	let turboClasses: Set<string> = new Set();
 	let otherClasses: Array<string> = [];
 
@@ -14,7 +14,7 @@ export default function normalizeAndSplitClassNames(classAttr: string): [ /* tur
 		}
 
 		if ( ! inTurboExpression) {
-			if (className === 't1') {
+			if (className === masterClass) {
 				inTurboExpression = true;
 				turboClasses.add(className)
 			}

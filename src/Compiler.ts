@@ -22,7 +22,6 @@ import MediaQuery from "./css/MediaQuery";
 import StyleSheet from "./css/StyleSheet";
 import { DefaultConfig } from "./CONFIG";
 import { NoCompatConfig } from "./CONFIG";
-import T1 from "./T1";
 import isLibraryClassName from "./isLibraryClassName";
 
 const MAX_STACK_LEVEL = 32;
@@ -85,22 +84,22 @@ export default class Compiler {
 		return newCompiler;
 	}
 
-	format(sheet: StyleSheet, namespace: string, indentWith: string, newLine: string, important: boolean): string {
+	format(masterClass: string, sheet: StyleSheet, namespace: string, indentWith: string, newLine: string, important: boolean): string {
 		sheet = sheet.sort();
 		sheet = sheet.applyBrowserPrefixes(this.config.browserRewriteRules())
-		return sheet.format(T1, namespace, indentWith, newLine, important);
+		return sheet.format(masterClass, namespace, indentWith, newLine, important);
 	}
 
-	addRewrite(sheet: StyleSheet, namespace: string, classes: string): [newCompiler: Compiler, newSheet: StyleSheet, rewrittenClasses: string] {
-		if (classes === T1) {
-			return [ this, sheet, T1 ];
+	addRewrite(masterClass: string, sheet: StyleSheet, namespace: string, classes: string): [newCompiler: Compiler, newSheet: StyleSheet, rewrittenClasses: string] {
+		if (classes === masterClass) {
+			return [ this, sheet, masterClass ];
 		}
 
 		let compiler: Compiler = this;
 		let classNames: Array<string>;
-		[ compiler, sheet, classNames ] = compiler.add(sheet, classes);
+		[ compiler, sheet, classNames ] = compiler.add(masterClass, sheet, classes);
 		
-		let namespacedClasses = T1 + " " + compiler.namespaceClasses(namespace, classNames);
+		let namespacedClasses = masterClass + " " + compiler.namespaceClasses(masterClass, namespace, classNames);
 
 		if (classes.endsWith(" ")) {
 			namespacedClasses += " ";
@@ -109,22 +108,22 @@ export default class Compiler {
 		return [ compiler, sheet, namespacedClasses ];
 	}
 
-	add(sheet: StyleSheet, classes: string): [newCompiler: Compiler, newSheet: StyleSheet, classNames: Array<string>] {
+	add(masterClass: string, sheet: StyleSheet, classes: string): [newCompiler: Compiler, newSheet: StyleSheet, classNames: Array<string>] {
 		let classNames = splitClassNames(classes);
 		
-		let utilityClassNames = eatT1(classNames);
+		let utilityClassNames = eatT1(masterClass, classNames);
 		if ( ! utilityClassNames) {
-			throw new Error("missing Turbo version identifier [t1] in ["+classes+"]");
+			throw new Error("missing Turbo version identifier ["+masterClass+"] in ["+classes+"]");
 		}
 
 		let compiler: Compiler = this;
 		let stackLevel = 0;
-		[ compiler, sheet ] = compiler.compileAll(compiler.globalNamespace, sheet, utilityClassNames, "", stackLevel);
+		[ compiler, sheet ] = compiler.compileAll(masterClass, compiler.globalNamespace, sheet, utilityClassNames, "", stackLevel);
 		
 		return [ compiler, sheet, utilityClassNames ];
 	}
 
-	namespaceClassNames(namespace: string, classNames: Array<string>): Array<string> {
+	namespaceClassNames(masterClass: string, namespace: string, classNames: Array<string>): Array<string> {
 		if (namespace === "") {
 			return classNames;
 		}
@@ -134,7 +133,7 @@ export default class Compiler {
 			if (className === "") {
 				continue;
 			}
-			if ((className === "t1-start") || (className === "t1-all")) {
+			if ((className === masterClass+"-start") || (className === masterClass+"-all")) {
 				namespacedClassNames.push(className);
 				continue;
 			}
@@ -144,16 +143,16 @@ export default class Compiler {
 		return namespacedClassNames;
 	}
 
-	namespaceClasses(namespace: string, classNames: Array<string>): string {
-		return this.namespaceClassNames(namespace, classNames).join(" ");
+	namespaceClasses(masterClass: string, namespace: string, classNames: Array<string>): string {
+		return this.namespaceClassNames(masterClass, namespace, classNames).join(" ");
 	}
 
-	compile(code: string): [ newCompiler: Compiler, newSheet: StyleSheet ] {
-		let [ compiler, sheet,  ] = this.add(new StyleSheet(), code);
+	compile(masterClass: string, code: string): [ newCompiler: Compiler, newSheet: StyleSheet ] {
+		let [ compiler, sheet,  ] = this.add(masterClass, new StyleSheet(), code);
 		return [ compiler, sheet ];
 	}
 
-	compileAll(ns: Namespace, sheet: StyleSheet, classNames: Array<string>, definedName: string, stackLevel: number): [newCompiler: Compiler, newSheet: StyleSheet] {
+	compileAll(masterClass: string, ns: Namespace, sheet: StyleSheet, classNames: Array<string>, definedName: string, stackLevel: number): [newCompiler: Compiler, newSheet: StyleSheet] {
 		let compiler: Compiler;
 		compiler = this;
 		let oneSheet: StyleSheet;
@@ -163,17 +162,17 @@ export default class Compiler {
 				continue;
 			}
 			
-			[ compiler, oneSheet ] = compiler.compileOne(ns, className, definedName, stackLevel);
+			[ compiler, oneSheet ] = compiler.compileOne(masterClass, ns, className, definedName, stackLevel);
 			sheet = sheet.libMergeStyleSheet(oneSheet);
 		}
 
 		return [ compiler, sheet ];
 	}
 
-	compileOne(ns: Namespace, className: string, definedName: string, stackLevel: number): [newCompiler: Compiler, newSheet: StyleSheet] {
+	compileOne(masterClass: string, ns: Namespace, className: string, definedName: string, stackLevel: number): [newCompiler: Compiler, newSheet: StyleSheet] {
 		let [ selectorExpression, utilityFn ] = separateSelectorsAndUtilityFunction(className);
 
-		if (utilityFn.startsWith("mode-") || utilityFn.startsWith("-mode-") || (utilityFn === "t1-start") || (utilityFn === "t1-all")) {
+		if (utilityFn.startsWith("mode-") || utilityFn.startsWith("-mode-") || (utilityFn === masterClass+"-start") || (utilityFn === masterClass+"-all")) {
 			return [ this, new StyleSheet() ];
 		}
 
@@ -181,9 +180,9 @@ export default class Compiler {
 		let compiler: Compiler;
 		let [ libName, libUtilityFn, isLibClass ] = isLibraryClassName(utilityFn);
 		if (isLibClass) {
-			[ compiler, sheet ] = this.libraryClassNameToSheet(ns, libName, libUtilityFn, className, definedName);
+			[ compiler, sheet ] = this.libraryClassNameToSheet(masterClass, ns, libName, libUtilityFn, className, definedName);
 		} else {
-			[ compiler, sheet ] = this.utilityClassNameToSheet(ns, utilityFn, className, definedName, stackLevel);
+			[ compiler, sheet ] = this.utilityClassNameToSheet(masterClass, ns, utilityFn, className, definedName, stackLevel);
 		}
 
 		let selectorObjects = parseSelectorExpression(selectorExpression);
@@ -194,7 +193,7 @@ export default class Compiler {
 		return [ compiler, sheet ];
 	}
 
-	utilityClassNameToSheet(ns: Namespace, utilityFn: string, className: string, definedName: string, stackLevel: number): [ newCompiler: Compiler, newSheet: StyleSheet ] {
+	utilityClassNameToSheet(masterClass: string, ns: Namespace, utilityFn: string, className: string, definedName: string, stackLevel: number): [ newCompiler: Compiler, newSheet: StyleSheet ] {
 		let userDefinedUtil = ns.names[utilityFn];
 		if (userDefinedUtil) {
 			let name = className;
@@ -224,7 +223,7 @@ export default class Compiler {
 					throw new Error("stack overflow ["+MAX_STACK_LEVEL+"]");
 				}
 
-				let [ newCompiler, sheet ] = this.compileAll(ns, new StyleSheet(), userDefinedUtil.utils, name, stackLevel + 1);
+				let [ newCompiler, sheet ] = this.compileAll(masterClass, ns, new StyleSheet(), userDefinedUtil.utils, name, stackLevel + 1);
 
 				// Update order to represent a higher level utility function
 				sheet = sheet.setOrder(userDefinedUtil.userSpaceUtilityOrder);
@@ -254,7 +253,7 @@ export default class Compiler {
 		return [ this, new StyleSheet([ mq ]) ];
 	}
 
-	libraryClassNameToSheet(ns: Namespace, libName: string, utilityFn: string, className: string, definedName: string): [ newCompiler: Compiler, newSheet: StyleSheet ] {
+	libraryClassNameToSheet(masterClass: string, ns: Namespace, libName: string, utilityFn: string, className: string, definedName: string): [ newCompiler: Compiler, newSheet: StyleSheet ] {
 		let [ compiler, libNs ] = this.loadLibrary(ns, libName);
 
 		let userDefinedUtil = libNs.names[utilityFn];
@@ -297,7 +296,7 @@ export default class Compiler {
 
 		let sheet: StyleSheet;
 		let stackLevel = 0;
-		[ compiler, sheet ] = compiler.compileAll(libNs, new StyleSheet([]), userDefinedUtil.utils, name, stackLevel);
+		[ compiler, sheet ] = compiler.compileAll(masterClass, libNs, new StyleSheet([]), userDefinedUtil.utils, name, stackLevel);
 
 		// Update order to represent a higher level utility function
 		sheet = sheet.setOrder(userDefinedUtil.userSpaceUtilityOrder);

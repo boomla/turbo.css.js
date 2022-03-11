@@ -3,7 +3,7 @@ import { assert } from 'chai';
 
 describe('normalizeAndSplitClassNames()', function() {
 	function ok(classAttr: string, expTurboClasses: string[], expOtherClasses: string[]) {
-		let act = normalizeAndSplitClassNames(classAttr);
+		let act = normalizeAndSplitClassNames('t1', classAttr);
 		let exp = [ expTurboClasses, expOtherClasses ];
 		assert.deepEqual(act, exp);
 	}

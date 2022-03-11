@@ -1,6 +1,7 @@
 import type Config from "./utils/Config";
 import { DefaultConfig } from "./CONFIG";
 import { NoCompatConfig } from "./CONFIG";
+import T1 from "./T1";
 import Compiler from "./Compiler";
 import StyleSheet from "./css/StyleSheet";
 import replaceTurboSnippets from "./replaceTurboSnippets";
@@ -11,11 +12,12 @@ export default class Turbo {
 	important: boolean;
 	compiler: Compiler;
 	sheet: StyleSheet;
+	masterClass: string;
 
 	static defaultConfig: Config = DefaultConfig;
 	static noCompatConfig: Config = NoCompatConfig;
 
-	constructor(config?: Config, contextPath?: string, namespace?: string, important?: boolean) {
+	constructor(config?: Config, contextPath?: string, namespace?: string, important?: boolean, masterClass?: string) {
 		if (config === undefined) {
 			config = DefaultConfig;
 		}
@@ -28,8 +30,12 @@ export default class Turbo {
 		if (important === undefined) {
 			important = false;
 		}
+		if (masterClass === undefined) {
+			masterClass = T1;
+		}
 		this.namespace = namespace;
 		this.important = important;
+		this.masterClass = masterClass;
 		this.compiler = new Compiler(config, contextPath);
 		this.sheet = new StyleSheet();
 	}
@@ -41,7 +47,7 @@ export default class Turbo {
 	// add() registers a Turbo code block in the Turbo compiler instance.
 	// It returns the processed code block, with namespacing applied if necessary.
 	add(classes: string): string {
-		let [compiler, sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, classes);
+		let [compiler, sheet, namespacedClasses] = this.compiler.addRewrite(this.masterClass, this.sheet, this.namespace, classes);
 		this.compiler = compiler;
 		this.sheet = sheet;
 		return namespacedClasses;
@@ -55,10 +61,10 @@ export default class Turbo {
 	// It returns the class attribute normalized into a single Turbo code block that is at the
 	// start of the class attribute, with namespacing applied if necessary.
 	addClassAttr(classAttr: string): string {
-		let [ turboClasses, otherClasses ] = normalizeAndSplitClassNames(classAttr);
+		let [ turboClasses, otherClasses ] = normalizeAndSplitClassNames(this.masterClass, classAttr);
 		let turboCodeBlock = turboClasses.join(' ');
 
-		let [compiler, sheet, namespacedClasses] = this.compiler.addRewrite(this.sheet, this.namespace, turboCodeBlock);
+		let [compiler, sheet, namespacedClasses] = this.compiler.addRewrite(this.masterClass, this.sheet, this.namespace, turboCodeBlock);
 		this.compiler = compiler;
 		this.sheet = sheet;
 
@@ -91,7 +97,7 @@ export default class Turbo {
 	css(): string {
 		let indentWith = "\t";
 		let newLine = "\n";
-		return this.compiler.format(this.sheet, this.namespace, indentWith, newLine, this.important);
+		return this.compiler.format(this.masterClass, this.sheet, this.namespace, indentWith, newLine, this.important);
 	}
 
 	style(): string {

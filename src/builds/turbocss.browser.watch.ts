@@ -9,6 +9,11 @@ function compileAndWatch() {
 	let contextPath = "";
 	let namespace = "";
 	let important = true;
+	let masterClass = "t1";
+
+	const baseCss = (masterClass === "t1")
+		? BASE_CSS_MIN
+		: BASE_CSS_MIN.replace(/t1/g, masterClass);
 
 	let config: Config|undefined = undefined;
 
@@ -27,7 +32,7 @@ function compileAndWatch() {
 		})
 	}
 	
-	let turbo = new Turbo(config, contextPath, namespace, important);
+	let turbo = new Turbo(config, contextPath, namespace, important, masterClass);
 
 	let head = document.getElementsByTagName('head')[0];
 
@@ -46,7 +51,7 @@ function compileAndWatch() {
 	// Add style tag for base CSS
 	let baseStyle = document.createElement('style');
 	head.appendChild(baseStyle);
-	baseStyle.innerHTML = BASE_CSS_MIN;
+	baseStyle.innerHTML = baseCss;
 
 	// Add style tag for Turbo generated styles
 	let style = document.createElement('style');
@@ -62,7 +67,7 @@ function compileAndWatch() {
 			return;
 		}
 
-		let turboExpression = extractTurboExpressionsFromClassAttr(classAttr);
+		let turboExpression = extractTurboExpressionsFromClassAttr(masterClass, classAttr);
 		if ( ! turboExpression) {
 			return;
 		}
@@ -76,7 +81,7 @@ function compileAndWatch() {
 	};
 
 	// Compile all current Turbo classes
-	let els = window.document.getElementsByClassName('t1');
+	let els = window.document.getElementsByClassName(masterClass);
 	for (let i=0; i<els.length; i++) {
 		let el = els[i];
 		add(el);
@@ -95,7 +100,7 @@ function compileAndWatch() {
 
 		for(const mutation of mutationsList) {
 			if (mutation.type === 'attributes') {
-				if (mutation.target && (mutation.target instanceof HTMLElement) && mutation.target.classList.contains('t1')) {
+				if (mutation.target && (mutation.target instanceof HTMLElement) && mutation.target.classList.contains(masterClass)) {
 					add(mutation.target);
 					updated = true;
 				}
@@ -103,11 +108,11 @@ function compileAndWatch() {
 			else if (mutation.type === 'childList') {
 				for (let i=0; i<mutation.addedNodes.length; i++) {
 					let node = mutation.addedNodes[i];
-					if ((node instanceof HTMLElement) && node.classList && node.classList.contains('t1')) {
+					if ((node instanceof HTMLElement) && node.classList && node.classList.contains(masterClass)) {
 						add(node);
 
 						// Find Turbo classes in the element's subtree
-						let els = node.getElementsByClassName('t1');
+						let els = node.getElementsByClassName(masterClass);
 						for (let i=0; i<els.length; i++) {
 							let el = els[i];
 							add(el);

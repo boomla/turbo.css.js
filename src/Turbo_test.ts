@@ -328,5 +328,32 @@ describe('Turbo', function() {
 
 		assert.equal(actCss, expCss)
 	});
+	it('should support using custom class name instead of t1', function() {
+		const contextPath = "";
+		const namespace = "NS_";
+		const important = false;
+		const masterClass = "master";
+		const turbo = new Turbo(NoCompatConfig, contextPath, namespace, important, masterClass);
+		
+		const actNamespacedClasses = turbo.add("master master-start master-all w-2 h-8");
+		
+		const expNamespacedClasses = "master master-start master-all NS_w-2 NS_h-8";
+		assert.equal(actNamespacedClasses, expNamespacedClasses);
+
+		const actHead = turbo.head()
+
+		const expHead = "" +
+			`<meta name="viewport" content="width=device-width, initial-scale=1">` + "\n" +
+			"<style>\n"+
+			".master.NS_w-2 {\n"+
+			"	width: 2px;\n"+
+			"}\n"+
+			".master.NS_h-8 {\n"+
+			"	height: 8px;\n"+
+			"}\n"+
+			"</style>";
+
+		assert.equal(actHead, expHead)
+	});
 });
 

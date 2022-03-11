@@ -4,11 +4,11 @@ import { assert } from 'chai';
 describe('eatT1()', function() {
 	it('should eat [t1] class from list', function() {
 		let yes = function(classNames: Array<string>, exp: Array<string>) {
-			let act = eatT1(classNames);
+			let act = eatT1("t1", classNames);
 			assert.deepEqual(act, exp, classNames.toString());
 		}
 		let no = function(...classNames: Array<string>) {
-			let act = eatT1(classNames);
+			let act = eatT1("t1", classNames);
 			assert.deepEqual(undefined, act, classNames.toString());
 		}
 
