@@ -71,7 +71,7 @@ function compileAndWatch() {
 		if ( ! turboExpression) {
 			return;
 		}
-		
+
 		try {
 			turbo.add(turboExpression);
 		}
@@ -86,6 +86,7 @@ function compileAndWatch() {
 		let el = els[i];
 		add(el);
 	}
+
 
 	// Hot-compile on changes
 	const observerConfig = {
@@ -108,17 +109,23 @@ function compileAndWatch() {
 			else if (mutation.type === 'childList') {
 				for (let i=0; i<mutation.addedNodes.length; i++) {
 					let node = mutation.addedNodes[i];
-					if ((node instanceof HTMLElement) && node.classList && node.classList.contains(masterClass)) {
+					if ( ! (node instanceof HTMLElement)) {
+						continue;
+					}
+
+					if (node.classList && node.classList.contains(masterClass)) {
 						add(node);
-
-						// Find Turbo classes in the element's subtree
-						let els = node.getElementsByClassName(masterClass);
-						for (let i=0; i<els.length; i++) {
-							let el = els[i];
-							add(el);
-						}
-
 						updated = true;
+					}
+
+					// Find Turbo classes in the element's subtree
+					let els = node.getElementsByClassName(masterClass);
+					for (let i=0; i<els.length; i++) {
+						let el = els[i];
+						if ((el instanceof HTMLElement) && el.classList && el.classList.contains(masterClass)) {
+							add(el);
+							updated = true;
+						}
 					}
 				}
 			}
